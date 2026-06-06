@@ -180,11 +180,8 @@ export default function BlogPage() {
 
       {/* HEADER */}
       <header className="blog-header">
-        <Link className="blog-logo" href="/">
-          <div className="blog-logo-mark">
-            <svg viewBox="0 0 24 24"><path d="M12 2C8 6 4 9 4 14a8 8 0 0016 0c0-5-4-8-8-12z" /></svg>
-          </div>
-          <span className="blog-logo-name">Ramudjitu</span>
+        <Link className="ramu-logo" href="/">
+          <img src="/logo.png" alt="Ramudjitu" style={{height: "38px", width: "auto"}} />
         </Link>
         <Link href="/" className="blog-nav-back">← Kembali ke Toko</Link>
       </header>

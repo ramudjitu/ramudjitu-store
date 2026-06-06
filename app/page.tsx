@@ -359,12 +359,9 @@ export default function Home() {
 
         {/* ── HEADER ── */}
         <header className="ramu-header">
-          <Link className="ramu-logo" href="/">
-            <div className="ramu-logo-mark">
-              <svg viewBox="0 0 24 24"><path d="M12 2C8 6 4 9 4 14a8 8 0 0016 0c0-5-4-8-8-12z" /></svg>
-            </div>
-            <span className="ramu-logo-name">Ramudjitu</span>
-          </Link>
+         <Link className="ramu-logo" href="/">
+           <img src="/logo.png" alt="Ramudjitu" style={{height: "38px", width: "auto"}} />
+        </Link> 
 
           <nav className="ramu-nav">
             <a onClick={() => scrollTo("produk")}>Produk</a>

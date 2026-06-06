@@ -232,9 +232,8 @@ export default async function ArtikelDetailPage({ params }: { params: Promise<{ 
 
       {/* HEADER */}
       <header className="det-header">
-        <Link className="det-logo" href="/">
-          <div className="det-logo-mark"><svg viewBox="0 0 24 24"><path d="M12 2C8 6 4 9 4 14a8 8 0 0016 0c0-5-4-8-8-12z" /></svg></div>
-          <span className="det-logo-name">Ramudjitu</span>
+        <Link className="ramu-logo" href="/">
+          <img src="/logo.png" alt="Ramudjitu" style={{height: "38px", width: "auto"}} />
         </Link>
         <Link href="/blog" className="det-nav-back">← Kembali ke Blog</Link>
       </header>
