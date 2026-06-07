@@ -98,12 +98,12 @@ const RAW_CSS = `
   .ramu-header {
     position: sticky; top: 0; z-index: 100;
     background: var(--cream-light);
-    padding: 0 1.25rem; height: 60px;
+    padding: 0 1.25rem; height: 68px;
     display: flex; align-items: center; justify-content: space-between;
     border-bottom: 1px solid var(--cream-mid);
     box-shadow: 0 2px 8px rgba(30,18,8,0.06);
   }
-  .ramu-logo { display: flex; align-items: center; text-decoration: none; }
+  .ramu-logo { display: flex; align-items: center; text-decoration: none; gap: 10px; }
   .ramu-logo img { height: 44px; width: 44px; border-radius: 50%; object-fit: cover; }
   .ramu-header-right { display: flex; align-items: center; gap: 10px; }
   .ramu-nav { display: flex; align-items: center; gap: 1.25rem; }
@@ -275,8 +275,10 @@ export default function Home() {
           {/* HEADER */}
           <header className="ramu-header">
             <Link className="ramu-logo" href="/">
-              <img src="/logo.png" alt="Ramudjitu" style={{height:"44px", width:"44px", borderRadius:"50%", objectFit:"cover"}} />
+              <img src="/logo.png" alt="Ramudjitu" style={{height:"56px", width:"56px", borderRadius:"50%", objectFit:"cover"}} />
+              <span style={{fontFamily:"'Playfair Display', serif", fontSize:"18px", fontWeight:"500", color:"#1E1208", marginLeft:"10px", letterSpacing:"0.3px"}}>Ramudjitu</span>
             </Link>
+              
             <nav className="ramu-nav">
               <a onClick={() => scrollTo("produk")}>Produk</a>
               <a onClick={() => scrollTo("tentang")}>Tentang</a>
