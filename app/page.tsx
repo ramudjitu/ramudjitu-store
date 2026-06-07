@@ -37,10 +37,16 @@ const produkData: Record<KategoriKey, Produk[]> = {
 };
 
 const kategoriList: { key: KategoriKey; emoji: string; nama: string; count: string }[] = [
-  { key: "nutrisi", emoji: "🥤", nama: "Minuman Nutrisi & Superfood", count: "6 produk" },
+  { key: "nutrisi", emoji: "🥤", nama: "Nutrisi & Superfood", count: "6 produk" },
   { key: "stamina", emoji: "⚡", nama: "Stamina & Vitalitas", count: "5 produk" },
   { key: "amino", emoji: "💪", nama: "Asam Amino", count: "4 produk" },
   { key: "antioksidan", emoji: "🛡️", nama: "Antioksidan", count: "4 produk" },
+];
+
+const blogPreviews = [
+  { slug: "manfaat-kunyit-untuk-kesehatan", emoji: "🌿", tag: "Herbal", title: "7 Manfaat Kunyit yang Terbukti Secara Ilmiah", excerpt: "Kunyit bukan sekadar bumbu dapur. Kandungan kurkumin di dalamnya memiliki efek anti-inflamasi yang luar biasa.", date: "20 Mei 2026", readTime: "5 menit" },
+  { slug: "jahe-merah-vs-jahe-biasa", emoji: "🍵", tag: "Edukasi", title: "Jahe Merah vs Jahe Biasa: Mana yang Lebih Baik?", excerpt: "Banyak yang belum tahu perbedaan jahe merah dan jahe biasa. Simak perbandingannya di sini.", date: "15 Mei 2026", readTime: "4 menit" },
+  { slug: "tips-jaga-stamina-alami", emoji: "⚡", tag: "Tips", title: "5 Cara Menjaga Stamina Secara Alami", excerpt: "Stamina prima tidak harus mengandalkan suplemen kimia. Ada cara alami yang lebih aman.", date: "10 Mei 2026", readTime: "6 menit" },
 ];
 
 const RAW_CSS = `
@@ -48,8 +54,6 @@ const RAW_CSS = `
 
   :root {
     --brown-dark: #1E1208;
-    --brown-mid: #3A2210;
-    --brown-warm: #6B3E1E;
     --cream: #F5ECD7;
     --cream-light: #FAF7F2;
     --cream-mid: #EDE0C8;
@@ -66,286 +70,196 @@ const RAW_CSS = `
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  .ramu-body { font-family: 'DM Sans', sans-serif; background: var(--cream-light); color: var(--text-dark); overflow-x: hidden; }
+
+  /* OUTER - background abu di luar wrapper */
+  .ramu-outer {
+    background: #d6cfc4;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  /* WRAPPER - konten terpusat seperti tampilan HP */
+  .ramu-wrapper {
+    width: 100%;
+    max-width: 500px;
+    background: var(--cream-light);
+    min-height: 100vh;
+    position: relative;
+    box-shadow: 0 0 60px rgba(0,0,0,0.2);
+    padding-bottom: 64px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
 
   /* HEADER */
   .ramu-header {
     position: sticky; top: 0; z-index: 100;
-    background: var(--brown-dark);
-    padding: 0 2.5rem; height: 64px;
+    background: var(--cream-light);
+    padding: 0 1.25rem; height: 60px;
     display: flex; align-items: center; justify-content: space-between;
-    border-bottom: 1px solid rgba(245,236,215,0.08);
+    border-bottom: 1px solid var(--cream-mid);
+    box-shadow: 0 2px 8px rgba(30,18,8,0.06);
   }
-  .ramu-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-  .ramu-logo-mark {
-    width: 38px; height: 38px; background: var(--green-mid); border-radius: 50%;
-    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-  }
-  .ramu-logo-mark svg { width: 20px; height: 20px; fill: none; stroke: #fff; stroke-width: 1.8; }
-  .ramu-logo-name { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--cream); letter-spacing: 0.3px; }
-  .ramu-nav { display: flex; align-items: center; gap: 2rem; }
-  .ramu-nav a { color: rgba(245,236,215,0.6); font-size: 13px; font-weight: 400; text-decoration: none; transition: color 0.2s; cursor: pointer; }
-  .ramu-nav a:hover { color: var(--cream); }
-  .ramu-header-right { display: flex; align-items: center; gap: 12px; }
-  .ramu-btn-cart {
-    display: flex; align-items: center; gap: 7px;
-    background: var(--green-mid); color: #fff; font-size: 13px; font-weight: 500;
-    padding: 8px 18px; border-radius: 24px; border: none; cursor: pointer; transition: background 0.2s; font-family: 'DM Sans', sans-serif;
-  }
-  .ramu-btn-cart:hover { background: var(--green-deep); }
-  .ramu-btn-cart svg { width: 15px; height: 15px; fill: none; stroke: #fff; stroke-width: 2; }
+  .ramu-logo { display: flex; align-items: center; text-decoration: none; }
+  .ramu-logo img { height: 44px; width: 44px; border-radius: 50%; object-fit: cover; }
+  .ramu-header-right { display: flex; align-items: center; gap: 10px; }
+  .ramu-nav { display: flex; align-items: center; gap: 1.25rem; }
+  .ramu-nav a { color: var(--text-mid); font-size: 12px; font-weight: 400; text-decoration: none; transition: color 0.2s; cursor: pointer; }
+  .ramu-nav a:hover { color: var(--green-mid); }
 
   /* HAMBURGER */
-  .ramu-hamburger {
-    display: none; flex-direction: column; justify-content: center; gap: 5px;
-    background: none; border: none; cursor: pointer; padding: 6px; z-index: 200;
-  }
-  .ramu-hamburger span {
-    display: block; width: 22px; height: 2px; background: var(--cream);
-    border-radius: 2px; transition: all 0.3s;
-  }
+  .ramu-hamburger { display: flex; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
+  .ramu-hamburger span { display: block; width: 20px; height: 2px; background: var(--brown-dark); border-radius: 2px; transition: all 0.3s; }
   .ramu-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .ramu-hamburger.open span:nth-child(2) { opacity: 0; }
   .ramu-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
   /* MOBILE MENU */
   .ramu-mobile-menu {
-    display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0;
-    background: var(--brown-dark); z-index: 99; flex-direction: column;
-    padding: 2rem 1.5rem; gap: 0; overflow-y: auto;
+    display: none; position: fixed;
+    top: 60px; width: 100%; max-width: 500px;
+    bottom: 64px; left: 50%; transform: translateX(-50%);
+    background: var(--cream-light); z-index: 99;
+    flex-direction: column; padding: 1.25rem;
+    overflow-y: auto; border-top: 1px solid var(--cream-mid);
   }
   .ramu-mobile-menu.open { display: flex; }
-  .ramu-mobile-menu a {
-    color: rgba(245,236,215,0.8); font-size: 18px; font-weight: 400;
-    text-decoration: none; padding: 1rem 0;
-    border-bottom: 1px solid rgba(245,236,215,0.08);
-    transition: color 0.2s; cursor: pointer;
-  }
-  .ramu-mobile-menu a:hover { color: var(--cream); }
-  .ramu-mobile-menu .ramu-btn-cart {
-    margin-top: 1.5rem; justify-content: center; padding: 14px; border-radius: 12px; font-size: 15px;
-  }
+  .ramu-mobile-menu a { color: var(--text-dark); font-size: 15px; text-decoration: none; padding: 0.9rem 0; border-bottom: 1px solid var(--cream-mid); display: flex; align-items: center; gap: 10px; cursor: pointer; transition: color 0.2s; }
+  .ramu-mobile-menu a:hover { color: var(--green-mid); }
 
   /* HERO */
   .ramu-hero {
-    background: var(--brown-dark); padding: 5rem 2.5rem 4rem;
-    display: grid; grid-template-columns: 1fr auto; gap: 3rem;
-    align-items: center; position: relative; overflow: hidden;
+    background: var(--brown-dark); padding: 2.5rem 1.25rem;
+    position: relative; overflow: hidden;
   }
-  .ramu-hero::before {
-    content: ''; position: absolute; top: -80px; right: -80px;
-    width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(74,122,37,0.15) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .ramu-hero-badge {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: rgba(122,158,78,0.15); border: 1px solid rgba(122,158,78,0.3);
-    color: var(--green-light); font-size: 11px; font-weight: 500;
-    letter-spacing: 1.5px; text-transform: uppercase;
-    padding: 5px 14px; border-radius: 20px; margin-bottom: 1.5rem;
-  }
-  .ramu-hero-badge span { width: 6px; height: 6px; background: var(--green-bright); border-radius: 50%; display: inline-block; }
-  .ramu-hero-title { font-family: 'Playfair Display', serif; font-size: 46px; font-weight: 400; color: var(--cream); line-height: 1.2; margin-bottom: 1.25rem; max-width: 500px; }
+  .ramu-hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 280px; height: 280px; background: radial-gradient(circle, rgba(74,122,37,0.18) 0%, transparent 70%); pointer-events: none; }
+  .ramu-hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(122,158,78,0.15); border: 1px solid rgba(122,158,78,0.3); color: var(--green-light); font-size: 10px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 1.25rem; }
+  .ramu-hero-badge span { width: 5px; height: 5px; background: var(--green-bright); border-radius: 50%; display: inline-block; }
+  .ramu-hero-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 400; color: var(--cream); line-height: 1.2; margin-bottom: 1rem; }
   .ramu-hero-title em { font-style: italic; color: var(--green-light); }
-  .ramu-hero-sub { font-size: 15px; font-weight: 300; color: rgba(245,236,215,0.65); line-height: 1.8; max-width: 420px; margin-bottom: 2rem; }
-  .ramu-hero-cta {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: var(--green-mid); color: #fff; font-size: 14px; font-weight: 500;
-    padding: 13px 28px; border-radius: 32px; text-decoration: none; border: none;
-    cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif;
-  }
-  .ramu-hero-cta:hover { background: var(--green-deep); transform: translateY(-1px); }
-  .ramu-hero-cta svg { width: 16px; height: 16px; fill: none; stroke: #fff; stroke-width: 2; }
-  .ramu-hero-stats { display: flex; flex-direction: column; gap: 14px; }
-  .ramu-stat-pill {
-    background: rgba(245,236,215,0.06); border: 1px solid rgba(245,236,215,0.12);
-    border-radius: 14px; padding: 18px 24px; text-align: center; min-width: 110px;
-  }
-  .ramu-stat-num { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--green-light); }
-  .ramu-stat-label { font-size: 11px; color: rgba(245,236,215,0.5); margin-top: 4px; }
+  .ramu-hero-sub { font-size: 13px; font-weight: 300; color: rgba(245,236,215,0.65); line-height: 1.8; margin-bottom: 1.5rem; }
+  .ramu-hero-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--green-mid); color: #fff; font-size: 13px; font-weight: 500; padding: 11px 24px; border-radius: 32px; border: none; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; margin-bottom: 1.5rem; }
+  .ramu-hero-cta:hover { background: var(--green-deep); }
+  .ramu-hero-cta svg { width: 14px; height: 14px; fill: none; stroke: #fff; stroke-width: 2; }
+  .ramu-hero-stats { display: flex; gap: 10px; }
+  .ramu-stat-pill { background: rgba(245,236,215,0.07); border: 1px solid rgba(245,236,215,0.12); border-radius: 12px; padding: 12px 16px; text-align: center; flex: 1; }
+  .ramu-stat-num { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--green-light); }
+  .ramu-stat-label { font-size: 10px; color: rgba(245,236,215,0.5); margin-top: 3px; }
+
+  /* SECTION UMUM */
+  .ramu-section { padding: 1.75rem 1.25rem; }
+  .ramu-section-alt { padding: 1.75rem 1.25rem; background: var(--cream-mid); }
+  .ramu-eyebrow { font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--green-mid); margin-bottom: 0.4rem; }
+  .ramu-section-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 400; color: var(--text-dark); margin-bottom: 1.25rem; line-height: 1.35; }
 
   /* KEUNGGULAN */
-  .ramu-keunggulan { padding: 4rem 2.5rem; background: var(--cream-light); }
-  .ramu-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--green-mid); margin-bottom: 0.6rem; }
-  .ramu-section-title { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 400; color: var(--text-dark); margin-bottom: 2.5rem; max-width: 480px; line-height: 1.35; }
-  .ramu-k-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; }
-  .ramu-k-card {
-    background: #fff; border: 1px solid var(--cream-mid); border-radius: 16px;
-    padding: 1.5rem; transition: border-color 0.2s, transform 0.2s;
-  }
-  .ramu-k-card:hover { border-color: var(--green-bright); transform: translateY(-2px); }
-  .ramu-k-icon {
-    width: 44px; height: 44px; background: var(--green-pale); border-radius: 12px;
-    display: flex; align-items: center; justify-content: center; margin-bottom: 14px;
-  }
-  .ramu-k-icon svg { width: 22px; height: 22px; fill: none; stroke: var(--green-mid); stroke-width: 1.8; }
-  .ramu-k-card h4 { font-size: 14px; font-weight: 500; color: var(--text-dark); margin-bottom: 6px; }
-  .ramu-k-card p { font-size: 13px; font-weight: 300; color: var(--text-muted); line-height: 1.7; }
+  .ramu-k-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .ramu-k-card { background: #fff; border: 1px solid var(--cream-mid); border-radius: 14px; padding: 1rem; transition: border-color 0.2s; }
+  .ramu-k-card:hover { border-color: var(--green-bright); }
+  .ramu-k-icon { width: 36px; height: 36px; background: var(--green-pale); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+  .ramu-k-icon svg { width: 18px; height: 18px; fill: none; stroke: var(--green-mid); stroke-width: 1.8; }
+  .ramu-k-card h4 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 4px; }
+  .ramu-k-card p { font-size: 11px; font-weight: 300; color: var(--text-muted); line-height: 1.6; }
 
   /* KATEGORI */
-  .ramu-kategori { background: var(--cream-mid); padding: 3.5rem 2.5rem; }
-  .ramu-kat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-top: 1.5rem; }
-  .ramu-kat-card {
-    background: #fff; border: 1.5px solid var(--cream-mid); border-radius: 16px;
-    padding: 1.5rem 1rem; text-align: center; cursor: pointer; transition: all 0.2s;
-  }
+  .ramu-kat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 1rem; }
+  .ramu-kat-card { background: #fff; border: 1.5px solid var(--cream-mid); border-radius: 14px; padding: 1rem; text-align: center; cursor: pointer; transition: all 0.2s; }
   .ramu-kat-card:hover { border-color: var(--green-bright); }
   .ramu-kat-card.active { border-color: var(--green-mid); background: var(--green-pale); }
-  .ramu-kat-emoji { font-size: 34px; margin-bottom: 10px; display: block; }
-  .ramu-kat-name { font-size: 13px; font-weight: 500; color: var(--text-dark); line-height: 1.4; margin-bottom: 4px; }
-  .ramu-kat-count { font-size: 11px; color: var(--text-muted); }
-  .ramu-kat-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--cream-mid); margin: 10px auto 0; transition: background 0.2s; }
+  .ramu-kat-emoji { font-size: 28px; margin-bottom: 8px; display: block; }
+  .ramu-kat-name { font-size: 12px; font-weight: 500; color: var(--text-dark); line-height: 1.4; margin-bottom: 3px; }
+  .ramu-kat-count { font-size: 10px; color: var(--text-muted); }
+  .ramu-kat-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--cream-mid); margin: 8px auto 0; transition: background 0.2s; }
   .ramu-kat-card.active .ramu-kat-dot { background: var(--green-mid); }
 
   /* PRODUK */
-  .ramu-produk { padding: 2.5rem 2.5rem 4rem; background: var(--cream-light); }
-  .ramu-produk-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; }
-  .ramu-filter-label { font-size: 13px; color: var(--text-muted); }
+  .ramu-filter-label { font-size: 12px; color: var(--text-muted); margin-bottom: 1rem; }
   .ramu-filter-label strong { color: var(--text-dark); }
-  .ramu-produk-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 18px; }
-  .ramu-p-card {
-    background: #fff; border: 1px solid var(--cream-mid); border-radius: 16px;
-    overflow: hidden; cursor: pointer; transition: all 0.2s;
-  }
-  .ramu-p-card:hover { border-color: var(--green-bright); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(74,122,37,0.1); }
-  .ramu-p-img {
-    height: 140px; background: var(--green-pale);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 48px; position: relative;
-  }
-  .ramu-p-lp-tag {
-    position: absolute; top: 10px; left: 10px;
-    background: rgba(255,255,255,0.9); border: 1px solid var(--amber);
-    color: var(--amber); font-size: 10px; font-weight: 500;
-    padding: 3px 8px; border-radius: 10px;
-  }
-  .ramu-p-info { padding: 14px; }
-  .ramu-p-name { font-size: 14px; font-weight: 500; color: var(--text-dark); margin-bottom: 5px; }
-  .ramu-p-desc { font-size: 12px; font-weight: 300; color: var(--text-muted); margin-bottom: 12px; line-height: 1.6; }
+  .ramu-produk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .ramu-p-card { background: #fff; border: 1px solid var(--cream-mid); border-radius: 14px; overflow: hidden; cursor: pointer; transition: all 0.2s; }
+  .ramu-p-card:hover { border-color: var(--green-bright); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(74,122,37,0.1); }
+  .ramu-p-img { height: 110px; background: var(--green-pale); display: flex; align-items: center; justify-content: center; font-size: 40px; position: relative; }
+  .ramu-p-lp-tag { position: absolute; top: 8px; left: 8px; background: rgba(255,255,255,0.92); border: 1px solid var(--amber); color: var(--amber); font-size: 9px; font-weight: 500; padding: 2px 7px; border-radius: 8px; }
+  .ramu-p-info { padding: 10px; }
+  .ramu-p-name { font-size: 12px; font-weight: 500; color: var(--text-dark); margin-bottom: 4px; line-height: 1.4; }
+  .ramu-p-desc { font-size: 11px; font-weight: 300; color: var(--text-muted); margin-bottom: 10px; line-height: 1.5; }
   .ramu-p-footer { display: flex; align-items: center; justify-content: space-between; }
-  .ramu-p-price { font-size: 15px; font-weight: 500; color: var(--green-mid); }
-  .ramu-p-btn {
-    background: var(--green-mid); color: #fff; border: none; border-radius: 10px;
-    padding: 6px 14px; font-size: 12px; font-weight: 500; cursor: pointer;
-    font-family: 'DM Sans', sans-serif; transition: background 0.2s;
-  }
+  .ramu-p-price { font-size: 13px; font-weight: 500; color: var(--green-mid); }
+  .ramu-p-btn { background: var(--green-mid); color: #fff; border: none; border-radius: 8px; padding: 5px 10px; font-size: 11px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.2s; }
   .ramu-p-btn:hover { background: var(--green-deep); }
 
-  /* BLOG PREVIEW */
-  .ramu-blog-preview { padding: 4rem 2.5rem; background: var(--cream-mid); }
-  .ramu-blog-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
-  .ramu-blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; }
-  .ramu-blog-card {
-    background: #fff; border: 1px solid var(--cream-mid); border-radius: 16px;
-    overflow: hidden; text-decoration: none; transition: all 0.2s; display: block;
-  }
-  .ramu-blog-card:hover { border-color: var(--green-bright); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(74,122,37,0.1); }
-  .ramu-blog-img {
-    height: 120px; background: var(--green-pale);
-    display: flex; align-items: center; justify-content: center; font-size: 40px;
-  }
-  .ramu-blog-info { padding: 16px; }
-  .ramu-blog-tag {
-    display: inline-block; background: var(--green-pale); color: var(--green-mid);
-    font-size: 10px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase;
-    padding: 3px 10px; border-radius: 10px; margin-bottom: 10px;
-  }
-  .ramu-blog-title { font-family: 'Playfair Display', serif; font-size: 15px; color: var(--text-dark); line-height: 1.4; margin-bottom: 8px; }
-  .ramu-blog-excerpt { font-size: 12px; font-weight: 300; color: var(--text-muted); line-height: 1.7; margin-bottom: 12px; }
-  .ramu-blog-meta { font-size: 11px; color: var(--text-muted); }
-  .ramu-btn-outline {
-    display: inline-flex; align-items: center; gap: 8px;
-    border: 1.5px solid var(--green-mid); color: var(--green-mid);
-    font-size: 13px; font-weight: 500; padding: 9px 20px; border-radius: 24px;
-    text-decoration: none; transition: all 0.2s; font-family: 'DM Sans', sans-serif;
-    background: transparent; cursor: pointer;
-  }
+  /* BLOG */
+  .ramu-blog-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem; }
+  .ramu-btn-outline { display: inline-flex; align-items: center; border: 1.5px solid var(--green-mid); color: var(--green-mid); font-size: 11px; font-weight: 500; padding: 6px 14px; border-radius: 20px; text-decoration: none; transition: all 0.2s; font-family: 'DM Sans', sans-serif; background: transparent; cursor: pointer; }
   .ramu-btn-outline:hover { background: var(--green-mid); color: #fff; }
+  .ramu-blog-grid { display: flex; flex-direction: column; gap: 12px; }
+  .ramu-blog-card { background: #fff; border: 1px solid var(--cream-mid); border-radius: 14px; overflow: hidden; text-decoration: none; display: flex; transition: all 0.2s; }
+  .ramu-blog-card:hover { border-color: var(--green-bright); }
+  .ramu-blog-img { width: 90px; min-height: 90px; background: var(--green-pale); display: flex; align-items: center; justify-content: center; font-size: 32px; flex-shrink: 0; }
+  .ramu-blog-info { padding: 12px; flex: 1; }
+  .ramu-blog-tag { display: inline-block; background: var(--green-pale); color: var(--green-mid); font-size: 9px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; padding: 2px 8px; border-radius: 8px; margin-bottom: 6px; }
+  .ramu-blog-title { font-family: 'Playfair Display', serif; font-size: 13px; color: var(--text-dark); line-height: 1.4; margin-bottom: 6px; }
+  .ramu-blog-meta { font-size: 10px; color: var(--text-muted); }
 
   /* TESTIMONI */
-  .ramu-testimoni { background: var(--brown-dark); padding: 4rem 2.5rem; }
+  .ramu-testimoni { background: var(--brown-dark); padding: 1.75rem 1.25rem; }
   .ramu-testimoni .ramu-eyebrow { color: var(--green-light); }
   .ramu-testimoni .ramu-section-title { color: var(--cream); }
-  .ramu-testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-top: 1.5rem; }
-  .ramu-t-card {
-    background: rgba(245,236,215,0.05); border: 1px solid rgba(245,236,215,0.1);
-    border-radius: 16px; padding: 1.5rem; transition: border-color 0.2s;
-  }
-  .ramu-t-card:hover { border-color: rgba(122,158,78,0.4); }
-  .ramu-t-stars { color: var(--amber-light); font-size: 13px; margin-bottom: 10px; letter-spacing: 2px; }
-  .ramu-t-text { font-size: 13px; font-weight: 300; color: rgba(245,236,215,0.75); line-height: 1.8; margin-bottom: 14px; font-style: italic; }
+  .ramu-testi-grid { display: flex; flex-direction: column; gap: 12px; margin-top: 1rem; }
+  .ramu-t-card { background: rgba(245,236,215,0.05); border: 1px solid rgba(245,236,215,0.1); border-radius: 14px; padding: 1.25rem; }
+  .ramu-t-stars { color: var(--amber-light); font-size: 12px; margin-bottom: 8px; letter-spacing: 2px; }
+  .ramu-t-text { font-size: 12px; font-weight: 300; color: rgba(245,236,215,0.75); line-height: 1.8; margin-bottom: 12px; font-style: italic; }
   .ramu-t-author { display: flex; align-items: center; gap: 10px; }
-  .ramu-t-avatar {
-    width: 34px; height: 34px; border-radius: 50%; background: var(--green-pale);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px; font-weight: 500; color: var(--green-mid); flex-shrink: 0;
-  }
-  .ramu-t-name { font-size: 13px; font-weight: 500; color: var(--cream); }
-  .ramu-t-loc { font-size: 11px; color: rgba(245,236,215,0.4); }
+  .ramu-t-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--green-pale); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; color: var(--green-mid); flex-shrink: 0; }
+  .ramu-t-name { font-size: 12px; font-weight: 500; color: var(--cream); }
+  .ramu-t-loc { font-size: 10px; color: rgba(245,236,215,0.4); }
 
   /* FOOTER */
-  .ramu-footer {
-    background: var(--brown-dark); border-top: 1px solid rgba(245,236,215,0.08);
-    padding: 2.5rem; text-align: center;
-  }
-  .ramu-footer-logo { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--cream); margin-bottom: 6px; }
-  .ramu-footer-tagline { font-size: 12px; font-weight: 300; color: rgba(245,236,215,0.4); margin-bottom: 1.5rem; }
-  .ramu-footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
-  .ramu-footer-links a { font-size: 12px; color: rgba(245,236,215,0.4); text-decoration: none; transition: color 0.2s; }
-  .ramu-footer-links a:hover { color: var(--cream); }
+  .ramu-footer { background: var(--brown-dark); border-top: 1px solid rgba(245,236,215,0.08); padding: 2rem 1.25rem 1.5rem; }
+  .ramu-footer-logo { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--cream); margin-bottom: 4px; }
+  .ramu-footer-tagline { font-size: 11px; font-weight: 300; color: rgba(245,236,215,0.4); margin-bottom: 1.25rem; }
+  .ramu-footer-sosmed { display: flex; gap: 10px; margin-bottom: 1.5rem; }
+  .ramu-sosmed-btn { width: 34px; height: 34px; border-radius: 50%; background: rgba(245,236,215,0.08); border: 1px solid rgba(245,236,215,0.15); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all 0.2s; }
+  .ramu-sosmed-btn:hover { background: var(--green-mid); border-color: var(--green-mid); }
+  .ramu-sosmed-btn svg { width: 15px; height: 15px; fill: rgba(245,236,215,0.7); }
+  .ramu-footer-links { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-bottom: 1.5rem; }
+  .ramu-footer-links a { font-size: 11px; color: rgba(245,236,215,0.4); text-decoration: none; transition: color 0.2s; cursor: pointer; }
+  .ramu-footer-links a:hover { color: var(--green-light); }
+  .ramu-footer-copy { font-size: 10px; color: rgba(245,236,215,0.25); text-align: center; padding-top: 1rem; border-top: 1px solid rgba(245,236,215,0.08); }
 
-  /* WA FLOAT */
-  .ramu-wa-float {
-    position: fixed; bottom: 24px; right: 24px; z-index: 999;
-    width: 52px; height: 52px; border-radius: 50%;
-    background: #25D366; color: #fff; border: none; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 4px 16px rgba(37,211,102,0.4); transition: transform 0.2s;
+  /* BOTTOM NAV */
+  .ramu-bottom-nav {
+    position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 100%; max-width: 500px; z-index: 100;
+    background: var(--cream-light); border-top: 1px solid var(--cream-mid);
+    padding: 8px 0 10px;
+    box-shadow: 0 -4px 16px rgba(30,18,8,0.08);
   }
-  .ramu-wa-float:hover { transform: scale(1.1); }
-  .ramu-wa-float svg { width: 26px; height: 26px; fill: #fff; }
+  .ramu-bottom-nav-inner { display: flex; justify-content: space-around; align-items: center; }
+  .ramu-bottom-nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; text-decoration: none; cursor: pointer; background: none; border: none; font-family: 'DM Sans', sans-serif; flex: 1; padding: 4px 0; }
+  .ramu-bottom-nav-item svg { width: 20px; height: 20px; fill: none; stroke: var(--text-muted); stroke-width: 1.8; transition: stroke 0.2s; }
+  .ramu-bottom-nav-item span { font-size: 10px; color: var(--text-muted); transition: color 0.2s; }
+  .ramu-bottom-nav-item.active svg { stroke: var(--green-mid); }
+  .ramu-bottom-nav-item.active span { color: var(--green-mid); font-weight: 500; }
+  .ramu-bottom-nav-wa svg { fill: #25D366 !important; stroke: none !important; }
+  .ramu-bottom-nav-wa span { color: #25D366 !important; }
 
-  /* RESPONSIVE TABLET */
-  @media (max-width: 900px) {
-    .ramu-hero { grid-template-columns: 1fr; }
-    .ramu-hero-stats { flex-direction: row; justify-content: flex-start; }
-    .ramu-hero-title { font-size: 36px; }
-  }
-
-  /* RESPONSIVE MOBILE */
-  @media (max-width: 640px) {
-    .ramu-header { padding: 0 1.25rem; }
-    .ramu-nav { display: none; }
-    .ramu-btn-cart { display: none; }
-    .ramu-hamburger { display: flex; }
-    .ramu-hero { padding: 3rem 1.25rem 2.5rem; }
-    .ramu-hero-title { font-size: 28px; }
-    .ramu-hero-sub { font-size: 14px; }
-    .ramu-hero-stats { flex-direction: row; gap: 10px; }
-    .ramu-stat-pill { padding: 12px 16px; min-width: unset; flex: 1; }
-    .ramu-stat-num { font-size: 18px; }
-    .ramu-keunggulan, .ramu-kategori, .ramu-produk, .ramu-testimoni, .ramu-blog-preview { padding-left: 1.25rem; padding-right: 1.25rem; }
-    .ramu-section-title { font-size: 22px; }
-    .ramu-produk-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .ramu-p-img { height: 110px; font-size: 36px; }
-    .ramu-kat-grid { grid-template-columns: repeat(2, 1fr); }
-    .ramu-blog-grid { grid-template-columns: 1fr; }
-    .ramu-testi-grid { grid-template-columns: 1fr; }
-    .ramu-footer { padding: 2rem 1.25rem; }
-    .ramu-footer-links { gap: 1rem; }
+  /* WA FLOAT - hanya di desktop lebar */
+  .ramu-wa-float { display: none; }
+  @media (min-width: 600px) {
+    .ramu-wa-float { position: fixed; bottom: 24px; right: 24px; z-index: 999; width: 50px; height: 50px; border-radius: 50%; background: #25D366; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(37,211,102,0.4); transition: transform 0.2s; }
+    .ramu-wa-float:hover { transform: scale(1.1); }
+    .ramu-wa-float svg { width: 24px; height: 24px; fill: #fff; }
   }
 `;
-
-const blogPreviews = [
-  { slug: "manfaat-kunyit-untuk-kesehatan", emoji: "🌿", tag: "Herbal", title: "7 Manfaat Kunyit yang Terbukti Secara Ilmiah", excerpt: "Kunyit bukan sekadar bumbu dapur. Kandungan kurkumin di dalamnya memiliki efek anti-inflamasi yang luar biasa untuk tubuh.", date: "20 Mei 2026", readTime: "5 menit" },
-  { slug: "jahe-merah-vs-jahe-biasa", emoji: "🍵", tag: "Edukasi", title: "Jahe Merah vs Jahe Biasa: Mana yang Lebih Baik?", excerpt: "Banyak yang belum tahu perbedaan jahe merah dan jahe biasa. Simak perbandingan kandungan dan manfaatnya di sini.", date: "15 Mei 2026", readTime: "4 menit" },
-  { slug: "tips-jaga-stamina-alami", emoji: "⚡", tag: "Tips", title: "5 Cara Menjaga Stamina Secara Alami Tanpa Efek Samping", excerpt: "Stamina prima tidak harus mengandalkan suplemen kimia. Ada cara alami yang lebih aman dan berkelanjutan untuk tubuh.", date: "10 Mei 2026", readTime: "6 menit" },
-];
 
 export default function Home() {
   const [aktifKategori, setAktifKategori] = useState<KategoriKey>("nutrisi");
   const [menuOpen, setMenuOpen] = useState(false);
+  const waNumber = "6281234567890";
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -355,190 +269,212 @@ export default function Home() {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: RAW_CSS }} />
-      <div className="ramu-body">
+      <div className="ramu-outer">
+        <div className="ramu-wrapper">
 
-        {/* ── HEADER ── */}
-        <header className="ramu-header">
-         <Link className="ramu-logo" href="/">
-           <img src="/logo.png" alt="Ramudjitu" style={{height: "38px", width: "auto"}} />
-        </Link> 
-
-          <nav className="ramu-nav">
-            <a onClick={() => scrollTo("produk")}>Produk</a>
-            <a onClick={() => scrollTo("tentang")}>Tentang Kami</a>
-            <Link href="/blog">Blog</Link>
-            <a onClick={() => scrollTo("testimoni")}>Testimoni</a>
-          </nav>
-
-          <div className="ramu-header-right">
-            <button className="ramu-btn-cart">
-              <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" /><line x1="3" y1="6" x2="21" y2="6" /><path d="M16 10a4 4 0 01-8 0" /></svg>
-              Keranjang
-            </button>
+          {/* HEADER */}
+          <header className="ramu-header">
+            <Link className="ramu-logo" href="/">
+              <img src="/logo.png" alt="Ramudjitu" style={{height:"44px", width:"44px", borderRadius:"50%", objectFit:"cover"}} />
+            </Link>
+            <nav className="ramu-nav">
+              <a onClick={() => scrollTo("produk")}>Produk</a>
+              <a onClick={() => scrollTo("tentang")}>Tentang</a>
+              <Link href="/blog">Blog</Link>
+              <a onClick={() => scrollTo("testimoni")}>Testimoni</a>
+            </nav>
             <button className={`ramu-hamburger${menuOpen ? " open" : ""}`} onClick={() => setMenuOpen(!menuOpen)}>
               <span></span><span></span><span></span>
             </button>
+          </header>
+
+          {/* MOBILE MENU */}
+          <div className={`ramu-mobile-menu${menuOpen ? " open" : ""}`}>
+            <a onClick={() => scrollTo("produk")}>🛍️ Produk</a>
+            <a onClick={() => scrollTo("tentang")}>🌿 Tentang Kami</a>
+            <Link href="/blog" onClick={() => setMenuOpen(false)}>📝 Blog</Link>
+            <a onClick={() => scrollTo("testimoni")}>⭐ Testimoni</a>
           </div>
-        </header>
 
-        {/* ── MOBILE MENU ── */}
-        <div className={`ramu-mobile-menu${menuOpen ? " open" : ""}`}>
-          <a onClick={() => scrollTo("produk")}>🛍️ Produk</a>
-          <a onClick={() => scrollTo("tentang")}>🌿 Tentang Kami</a>
-          <Link href="/blog" onClick={() => setMenuOpen(false)}>📝 Blog</Link>
-          <a onClick={() => scrollTo("testimoni")}>⭐ Testimoni</a>
-          <button className="ramu-btn-cart" onClick={() => setMenuOpen(false)}>
-            <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" /><line x1="3" y1="6" x2="21" y2="6" /><path d="M16 10a4 4 0 01-8 0" /></svg>
-            Keranjang
-          </button>
-        </div>
-
-        {/* ── HERO ── */}
-        <section className="ramu-hero">
-          <div>
+          {/* HERO */}
+          <section className="ramu-hero">
             <div className="ramu-hero-badge"><span></span> Herbal Alami Indonesia</div>
             <h1 className="ramu-hero-title">Kesehatan dari <em>Alam,</em><br />Terbukti oleh Tradisi</h1>
             <p className="ramu-hero-sub">Racikan ramu pilihan dari bahan herbal terbaik. Dipercaya turun-temurun, kini hadir dalam formula modern yang praktis dan terstandar.</p>
             <button className="ramu-hero-cta" onClick={() => scrollTo("produk")}>
               Lihat Semua Produk
-              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </button>
-          </div>
-          <div className="ramu-hero-stats">
-            <div className="ramu-stat-pill"><div className="ramu-stat-num">100%</div><div className="ramu-stat-label">Bahan Alami</div></div>
-            <div className="ramu-stat-pill"><div className="ramu-stat-num">BPOM</div><div className="ramu-stat-label">Terdaftar</div></div>
-            <div className="ramu-stat-pill"><div className="ramu-stat-num">5K+</div><div className="ramu-stat-label">Pelanggan</div></div>
-          </div>
-        </section>
+            <div className="ramu-hero-stats">
+              <div className="ramu-stat-pill"><div className="ramu-stat-num">100%</div><div className="ramu-stat-label">Bahan Alami</div></div>
+              <div className="ramu-stat-pill"><div className="ramu-stat-num">BPOM</div><div className="ramu-stat-label">Terdaftar</div></div>
+              <div className="ramu-stat-pill"><div className="ramu-stat-num">5K+</div><div className="ramu-stat-label">Pelanggan</div></div>
+            </div>
+          </section>
 
-        {/* ── KEUNGGULAN ── */}
-        <section className="ramu-keunggulan" id="tentang">
-          <div className="ramu-eyebrow">Mengapa Ramudjitu</div>
-          <h2 className="ramu-section-title">Jamu bukan sekadar minuman, ini adalah warisan</h2>
-          <div className="ramu-k-grid">
-            {[
-              { title: "Bahan pilihan", desc: "Dipilih langsung dari petani rempah terpercaya di seluruh nusantara.", icon: <path d="M12 2C8 6 4 9 4 14a8 8 0 0016 0c0-5-4-8-8-12z" /> },
-              { title: "Formula terstandar", desc: "Racikan terukur dengan dosis yang konsisten di setiap kemasan produk.", icon: <path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" /> },
-              { title: "Tersertifikasi", desc: "Terdaftar di BPOM dan memenuhi standar halal MUI untuk keamanan Anda.", icon: <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /> },
-              { title: "Edukasi lengkap", desc: "Setiap produk dilengkapi halaman edukasi dengan penjelasan dari hulu ke hilir.", icon: <><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z" /><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z" /></> },
-            ].map((item, i) => (
-              <div className="ramu-k-card" key={i}>
-                <div className="ramu-k-icon"><svg viewBox="0 0 24 24">{item.icon}</svg></div>
-                <h4>{item.title}</h4>
-                <p>{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* ── KATEGORI ── */}
-        <section className="ramu-kategori" id="produk">
-          <div className="ramu-eyebrow">Kategori Produk</div>
-          <h2 className="ramu-section-title">Pilih kebutuhanmu</h2>
-          <div className="ramu-kat-grid">
-            {kategoriList.map((kat) => (
-              <div key={kat.key} className={`ramu-kat-card${aktifKategori === kat.key ? " active" : ""}`} onClick={() => setAktifKategori(kat.key)}>
-                <span className="ramu-kat-emoji">{kat.emoji}</span>
-                <div className="ramu-kat-name">{kat.nama}</div>
-                <div className="ramu-kat-count">{kat.count}</div>
-                <div className="ramu-kat-dot"></div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* ── PRODUK ── */}
-        <section className="ramu-produk">
-          <div className="ramu-produk-header">
-            <div className="ramu-filter-label">Menampilkan: <strong>{kategoriList.find((k) => k.key === aktifKategori)?.nama}</strong></div>
-          </div>
-          <div className="ramu-produk-grid">
-            {produkData[aktifKategori].map((p, i) => (
-              <div key={i} className="ramu-p-card" onClick={() => (window.location.href = p.lp)}>
-                <div className="ramu-p-img">
-                  <span className="ramu-p-lp-tag">📖 Edukasi lengkap</span>
-                  {p.emoji}
+          {/* KEUNGGULAN */}
+          <section className="ramu-section" id="tentang">
+            <div className="ramu-eyebrow">Mengapa Ramudjitu</div>
+            <h2 className="ramu-section-title">Jamu bukan sekadar minuman, ini adalah warisan</h2>
+            <div className="ramu-k-grid">
+              {[
+                { title: "Bahan pilihan", desc: "Dipilih dari petani rempah terpercaya di seluruh nusantara.", icon: <path d="M12 2C8 6 4 9 4 14a8 8 0 0016 0c0-5-4-8-8-12z"/> },
+                { title: "Formula terstandar", desc: "Racikan terukur dengan dosis konsisten di setiap kemasan.", icon: <path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/> },
+                { title: "Tersertifikasi", desc: "Terdaftar BPOM dan memenuhi standar halal MUI.", icon: <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/> },
+                { title: "Edukasi lengkap", desc: "Setiap produk dilengkapi halaman edukasi detail.", icon: <><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></> },
+              ].map((item, i) => (
+                <div className="ramu-k-card" key={i}>
+                  <div className="ramu-k-icon"><svg viewBox="0 0 24 24">{item.icon}</svg></div>
+                  <h4>{item.title}</h4>
+                  <p>{item.desc}</p>
                 </div>
-                <div className="ramu-p-info">
-                  <div className="ramu-p-name">{p.nama}</div>
-                  <div className="ramu-p-desc">{p.desc}</div>
-                  <div className="ramu-p-footer">
-                    <span className="ramu-p-price">{p.harga}</span>
-                    <button className="ramu-p-btn">Pelajari →</button>
+              ))}
+            </div>
+          </section>
+
+          {/* KATEGORI */}
+          <section className="ramu-section-alt" id="produk">
+            <div className="ramu-eyebrow">Kategori Produk</div>
+            <h2 className="ramu-section-title">Pilih kebutuhanmu</h2>
+            <div className="ramu-kat-grid">
+              {kategoriList.map((kat) => (
+                <div key={kat.key} className={`ramu-kat-card${aktifKategori === kat.key ? " active" : ""}`} onClick={() => setAktifKategori(kat.key)}>
+                  <span className="ramu-kat-emoji">{kat.emoji}</span>
+                  <div className="ramu-kat-name">{kat.nama}</div>
+                  <div className="ramu-kat-count">{kat.count}</div>
+                  <div className="ramu-kat-dot"></div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* PRODUK */}
+          <section className="ramu-section">
+            <div className="ramu-filter-label">Menampilkan: <strong>{kategoriList.find((k) => k.key === aktifKategori)?.nama}</strong></div>
+            <div className="ramu-produk-grid">
+              {produkData[aktifKategori].map((p, i) => (
+                <div key={i} className="ramu-p-card" onClick={() => (window.location.href = p.lp)}>
+                  <div className="ramu-p-img">
+                    <span className="ramu-p-lp-tag">📖 Edukasi</span>
+                    {p.emoji}
+                  </div>
+                  <div className="ramu-p-info">
+                    <div className="ramu-p-name">{p.nama}</div>
+                    <div className="ramu-p-desc">{p.desc}</div>
+                    <div className="ramu-p-footer">
+                      <span className="ramu-p-price">{p.harga}</span>
+                      <button className="ramu-p-btn">Pelajari →</button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* ── BLOG PREVIEW ── */}
-        <section className="ramu-blog-preview">
-          <div className="ramu-blog-header">
-            <div>
-              <div className="ramu-eyebrow">Artikel & Tips</div>
-              <h2 className="ramu-section-title" style={{marginBottom: 0}}>Edukasi herbal untuk hidup lebih sehat</h2>
+              ))}
             </div>
-            <Link href="/blog" className="ramu-btn-outline">Lihat Semua Artikel →</Link>
-          </div>
-          <div className="ramu-blog-grid">
-            {blogPreviews.map((b) => (
-              <Link href={`/blog/${b.slug}`} className="ramu-blog-card" key={b.slug}>
-                <div className="ramu-blog-img">{b.emoji}</div>
-                <div className="ramu-blog-info">
-                  <span className="ramu-blog-tag">{b.tag}</span>
-                  <div className="ramu-blog-title">{b.title}</div>
-                  <div className="ramu-blog-excerpt">{b.excerpt}</div>
-                  <div className="ramu-blog-meta">{b.date} · {b.readTime} baca</div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
+          </section>
 
-        {/* ── TESTIMONI ── */}
-        <section className="ramu-testimoni" id="testimoni">
-          <div className="ramu-eyebrow">Cerita Pelanggan</div>
-          <h2 className="ramu-section-title">Ribuan orang sudah merasakan manfaatnya</h2>
-          <div className="ramu-testi-grid">
-            {[
-              { stars: "★★★★★", text: "Sudah 2 bulan pakai Ramu Stamina, badan jauh lebih segar tiap pagi. Suami juga ikutan pesan sekarang.", initials: "SR", nama: "Sari R.", loc: "Bandung" },
-              { stars: "★★★★★", text: "Yang bikin saya yakin beli itu ada halaman penjelasan lengkapnya. Jadi tahu betul manfaat tiap bahannya.", initials: "BW", nama: "Budi W.", loc: "Surabaya" },
-              { stars: "★★★★☆", text: "Packaging rapi, produknya terjamin karena ada sertifikat BPOM-nya. Cocok buat dijadikan oleh-oleh keluarga.", initials: "DM", nama: "Dewi M.", loc: "Jakarta" },
-            ].map((t, i) => (
-              <div className="ramu-t-card" key={i}>
-                <div className="ramu-t-stars">{t.stars}</div>
-                <p className="ramu-t-text">&ldquo;{t.text}&rdquo;</p>
-                <div className="ramu-t-author">
-                  <div className="ramu-t-avatar">{t.initials}</div>
-                  <div><div className="ramu-t-name">{t.nama}</div><div className="ramu-t-loc">{t.loc}</div></div>
-                </div>
+          {/* BLOG */}
+          <section className="ramu-section-alt">
+            <div className="ramu-blog-header">
+              <div>
+                <div className="ramu-eyebrow">Artikel & Tips</div>
+                <h2 className="ramu-section-title" style={{marginBottom:0}}>Edukasi herbal untuk hidup sehat</h2>
               </div>
-            ))}
-          </div>
-        </section>
+              <Link href="/blog" className="ramu-btn-outline">Semua →</Link>
+            </div>
+            <div className="ramu-blog-grid">
+              {blogPreviews.map((b) => (
+                <Link href={`/blog/${b.slug}`} className="ramu-blog-card" key={b.slug}>
+                  <div className="ramu-blog-img">{b.emoji}</div>
+                  <div className="ramu-blog-info">
+                    <span className="ramu-blog-tag">{b.tag}</span>
+                    <div className="ramu-blog-title">{b.title}</div>
+                    <div className="ramu-blog-meta">{b.date} · {b.readTime} baca</div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
 
-        {/* ── FOOTER ── */}
-        <footer className="ramu-footer">
-          <div className="ramu-footer-logo">🌿 Ramudjitu</div>
-          <div className="ramu-footer-tagline">Herbal pilihan, kesehatan terjaga</div>
-          <div className="ramu-footer-links">
-            <a href="#">Syarat &amp; Ketentuan</a>
-            <a href="#">Kebijakan Privasi</a>
-            <a href="#">Kebijakan Pengembalian</a>
-            <a href="#">Hubungi Kami</a>
-            <Link href="/blog">Blog</Link>
-          </div>
-        </footer>
+          {/* TESTIMONI */}
+          <section className="ramu-testimoni" id="testimoni">
+            <div className="ramu-eyebrow">Cerita Pelanggan</div>
+            <h2 className="ramu-section-title">Ribuan orang sudah merasakan manfaatnya</h2>
+            <div className="ramu-testi-grid">
+              {[
+                { stars: "★★★★★", text: "Sudah 2 bulan pakai Ramu Stamina, badan jauh lebih segar tiap pagi. Suami juga ikutan pesan sekarang.", initials: "SR", nama: "Sari R.", loc: "Bandung" },
+                { stars: "★★★★★", text: "Yang bikin saya yakin beli itu ada halaman penjelasan lengkapnya. Jadi tahu betul manfaat tiap bahannya.", initials: "BW", nama: "Budi W.", loc: "Surabaya" },
+                { stars: "★★★★☆", text: "Packaging rapi, produknya terjamin karena ada sertifikat BPOM-nya. Cocok buat dijadikan oleh-oleh keluarga.", initials: "DM", nama: "Dewi M.", loc: "Jakarta" },
+              ].map((t, i) => (
+                <div className="ramu-t-card" key={i}>
+                  <div className="ramu-t-stars">{t.stars}</div>
+                  <p className="ramu-t-text">&ldquo;{t.text}&rdquo;</p>
+                  <div className="ramu-t-author">
+                    <div className="ramu-t-avatar">{t.initials}</div>
+                    <div><div className="ramu-t-name">{t.nama}</div><div className="ramu-t-loc">{t.loc}</div></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
 
-        {/* ── WA FLOAT ── */}
-        <button className="ramu-wa-float" onClick={() => window.open("https://wa.me/6281234567890", "_blank")}>
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-          </svg>
-        </button>
+          {/* FOOTER */}
+          <footer className="ramu-footer">
+            <div className="ramu-footer-logo">🌿 Ramudjitu</div>
+            <div className="ramu-footer-tagline">Herbal pilihan, kesehatan terjaga</div>
+            <div className="ramu-footer-sosmed">
+              <a href="https://facebook.com/ramudjitu" target="_blank" rel="noopener noreferrer" className="ramu-sosmed-btn">
+                <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+              </a>
+              <a href="https://instagram.com/ramudjitu" target="_blank" rel="noopener noreferrer" className="ramu-sosmed-btn">
+                <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              </a>
+              <a href="https://youtube.com/@ramudjitu" target="_blank" rel="noopener noreferrer" className="ramu-sosmed-btn">
+                <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" style={{fill:"var(--brown-dark)"}}/></svg>
+              </a>
+              <a href="https://tiktok.com/@ramudjitu" target="_blank" rel="noopener noreferrer" className="ramu-sosmed-btn">
+                <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+              </a>
+            </div>
+            <div className="ramu-footer-links">
+              <a onClick={() => scrollTo("produk")}>Produk</a>
+              <a onClick={() => scrollTo("tentang")}>Tentang Kami</a>
+              <Link href="/blog" style={{color:"rgba(245,236,215,0.4)", textDecoration:"none"}}>Blog</Link>
+              <a onClick={() => scrollTo("testimoni")}>Testimoni</a>
+              <a href="#">Syarat & Ketentuan</a>
+              <a href="#">Kebijakan Privasi</a>
+              <a href="#">FAQ</a>
+            </div>
+            <div className="ramu-footer-copy">© 2026 Ramudjitu · Semua hak dilindungi</div>
+          </footer>
 
+          {/* BOTTOM NAV */}
+          <nav className="ramu-bottom-nav">
+            <div className="ramu-bottom-nav-inner">
+              <button className="ramu-bottom-nav-item active" onClick={() => window.scrollTo({top:0, behavior:"smooth"})}>
+                <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <span>Beranda</span>
+              </button>
+              <button className="ramu-bottom-nav-item" onClick={() => scrollTo("produk")}>
+                <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                <span>Produk</span>
+              </button>
+              <Link href="/blog" className="ramu-bottom-nav-item">
+                <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+                <span>Blog</span>
+              </Link>
+              <button className="ramu-bottom-nav-item ramu-bottom-nav-wa" onClick={() => window.open(`https://wa.me/${waNumber}`, "_blank")}>
+                <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                <span>Chat</span>
+              </button>
+            </div>
+          </nav>
+
+        </div>
       </div>
+
+      {/* WA FLOAT - desktop */}
+      <button className="ramu-wa-float" onClick={() => window.open(`https://wa.me/${waNumber}`, "_blank")}>
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </button>
     </>
   );
 }
