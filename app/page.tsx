@@ -100,8 +100,8 @@ const RAW_CSS = `
     background: var(--cream-light);
     padding: 0 1.25rem; height: 68px;
     display: flex; align-items: center; justify-content: space-between;
-    border-bottom: 1px solid var(--cream-mid);
-    box-shadow: 0 2px 8px rgba(30,18,8,0.06);
+    border-bottom: 1px solid rgba(245,236,215,0.08);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
   }
   .ramu-logo { display: flex; align-items: center; text-decoration: none; gap: 10px; }
   .ramu-logo img { height: 44px; width: 44px; border-radius: 50%; object-fit: cover; }
@@ -133,7 +133,8 @@ const RAW_CSS = `
 
   /* HERO */
   .ramu-hero {
-    background: var(--brown-dark); padding: 2.5rem 1.25rem;
+    background: linear-gradient(135deg, #2C1F0E 0%, #3D2E10 60%, #2D4A1A 100%);
+    padding: 2.5rem 1.25rem;
     position: relative; overflow: hidden;
   }
   .ramu-hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 280px; height: 280px; background: radial-gradient(circle, rgba(74,122,37,0.18) 0%, transparent 70%); pointer-events: none; }
@@ -286,7 +287,7 @@ export default function Home() {
               
             <nav className="ramu-nav">
               <a onClick={() => scrollTo("produk")}>Produk</a>
-              <a onClick={() => scrollTo("tentang")}>Tentang</a>
+              <a onClick={() => scrollTo("tentang")}>Tentang Kami</a>
               <Link href="/blog">Blog</Link>
               <a onClick={() => scrollTo("testimoni")}>Testimoni</a>
             </nav>
