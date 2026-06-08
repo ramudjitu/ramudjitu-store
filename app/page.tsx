@@ -289,7 +289,7 @@ export default function Home() {
               <a onClick={() => scrollTo("produk")}>Produk</a>
               <a onClick={() => scrollTo("tentang")}>Tentang Kami</a>
               <Link href="/blog">Blog</Link>
-              <a onClick={() => scrollTo("testimoni")}>Testimoni</a>
+             
             </nav>
             <button className={`ramu-hamburger${menuOpen ? " open" : ""}`} onClick={() => setMenuOpen(!menuOpen)}>
               <span></span><span></span><span></span>
@@ -301,7 +301,7 @@ export default function Home() {
             <a onClick={() => scrollTo("produk")}>Produk</a>
             <a onClick={() => scrollTo("tentang")}>Tentang Kami</a>
             <Link href="/blog" onClick={() => setMenuOpen(false)}>Blog</Link>
-            <a onClick={() => scrollTo("testimoni")}>Testimoni</a>
+            
           </div>
 
           {/* HERO */}
@@ -398,28 +398,6 @@ export default function Home() {
                     <div className="ramu-blog-meta">{b.date} · {b.readTime} baca</div>
                   </div>
                 </Link>
-              ))}
-            </div>
-          </section>
-
-          {/* TESTIMONI */}
-          <section className="ramu-testimoni" id="testimoni">
-            <div className="ramu-eyebrow">Cerita Pelanggan</div>
-            <h2 className="ramu-section-title">Ribuan orang sudah merasakan manfaatnya</h2>
-            <div className="ramu-testi-grid">
-              {[
-                { stars: "★★★★★", text: "Sudah 2 bulan pakai Ramu Stamina, badan jauh lebih segar tiap pagi. Suami juga ikutan pesan sekarang.", initials: "SR", nama: "Sari R.", loc: "Bandung" },
-                { stars: "★★★★★", text: "Yang bikin saya yakin beli itu ada halaman penjelasan lengkapnya. Jadi tahu betul manfaat tiap bahannya.", initials: "BW", nama: "Budi W.", loc: "Surabaya" },
-                { stars: "★★★★☆", text: "Packaging rapi, produknya terjamin karena ada sertifikat BPOM-nya. Cocok buat dijadikan oleh-oleh keluarga.", initials: "DM", nama: "Dewi M.", loc: "Jakarta" },
-              ].map((t, i) => (
-                <div className="ramu-t-card" key={i}>
-                  <div className="ramu-t-stars">{t.stars}</div>
-                  <p className="ramu-t-text">&ldquo;{t.text}&rdquo;</p>
-                  <div className="ramu-t-author">
-                    <div className="ramu-t-avatar">{t.initials}</div>
-                    <div><div className="ramu-t-name">{t.nama}</div><div className="ramu-t-loc">{t.loc}</div></div>
-                  </div>
-                </div>
               ))}
             </div>
           </section>
