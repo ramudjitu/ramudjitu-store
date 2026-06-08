@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 
 interface Produk {
@@ -91,7 +91,7 @@ const RAW_CSS = `
     padding-bottom: 64px;
     font-family: 'DM Sans', sans-serif;
     color: var(--text-dark);
-    overflow-x: hidden;
+    overflow-x: visible;
   }
 
   /* HEADER */
@@ -167,11 +167,14 @@ const RAW_CSS = `
   .ramu-k-card p { font-size: 11px; font-weight: 300; color: var(--text-muted); line-height: 1.6; }
 
   /* KATEGORI */
-  .ramu-kat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 1rem; }
-  .ramu-kat-card { background: #fff; border: 1.5px solid var(--cream-mid); border-radius: 14px; padding: 1rem; text-align: center; cursor: pointer; transition: all 0.2s; }
+  .ramu-kat-grid { display: flex; gap: 10px; margin-top: 1rem; padding-bottom: 8px; }
+  .ramu-kat-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; width: 100%; scrollbar-width: none; }
+  .ramu-kat-scroll::-webkit-scrollbar { display: none; }
+  .ramu-kat-card { min-width: 160px; flex-shrink: 0; scroll-snap-align: start; background: #fff; border: 1.5px solid var(--cream-mid); border-radius: 14px; padding: 0.75rem 1rem; cursor: pointer; transition: all 0.2s; display: flex; flex-direction: row; align-items: center; gap: 10px; }
+  @media (min-width: 500px) { .ramu-kat-card { min-width: 190px; } }
   .ramu-kat-card:hover { border-color: var(--green-bright); }
   .ramu-kat-card.active { border-color: var(--green-mid); background: var(--green-pale); }
-  .ramu-kat-emoji { font-size: 28px; margin-bottom: 8px; display: block; }
+  .ramu-kat-emoji { font-size: 28px; display: block; flex-shrink: 0; }
   .ramu-kat-name { font-size: 12px; font-weight: 500; color: var(--text-dark); line-height: 1.4; margin-bottom: 3px; }
   .ramu-kat-count { font-size: 10px; color: var(--text-muted); }
   .ramu-kat-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--cream-mid); margin: 8px auto 0; transition: background 0.2s; }
@@ -265,6 +268,8 @@ const RAW_CSS = `
 export default function Home() {
   const [aktifKategori, setAktifKategori] = useState<KategoriKey>("nutrisi");
   const [menuOpen, setMenuOpen] = useState(false);
+  const katGridRef = useRef<HTMLDivElement>(null);
+  const scrollKat = (dir: number) => { katGridRef.current?.scrollBy({left: dir * 200, behavior: 'smooth'}); };
   const waNumber = "6281234567890";
 
   const scrollTo = (id: string) => {
@@ -344,15 +349,20 @@ export default function Home() {
           <section className="ramu-section-alt" id="produk">
             <div className="ramu-eyebrow">Kategori Produk</div>
             <h2 className="ramu-section-title">Pilih kebutuhanmu</h2>
-            <div className="ramu-kat-grid">
-              {kategoriList.map((kat) => (
-                <div key={kat.key} className={`ramu-kat-card${aktifKategori === kat.key ? " active" : ""}`} onClick={() => setAktifKategori(kat.key)}>
-                  <span className="ramu-kat-emoji">{kat.emoji}</span>
-                  <div className="ramu-kat-name">{kat.nama}</div>
-                  <div className="ramu-kat-count">{kat.count}</div>
-                  <div className="ramu-kat-dot"></div>
-                </div>
-              ))}
+            <div style={{position:"relative", padding:"0 36px"}}>
+              <button onClick={() => scrollKat(-1)} style={{position:"absolute", left:"0", top:"50%", transform:"translateY(-50%)", zIndex:10, background:"#fff", border:"1.5px solid #EDE0C8", borderRadius:"50%", width:"32px", height:"32px", fontSize:"18px", lineHeight:"1", cursor:"pointer", boxShadow:"0 2px 8px rgba(0,0,0,0.1)", display:"flex", alignItems:"center", justifyContent:"center"}}>‹</button>
+              <button onClick={() => scrollKat(1)} style={{position:"absolute", right:"0", top:"50%", transform:"translateY(-50%)", zIndex:10, background:"#fff", border:"1.5px solid #EDE0C8", borderRadius:"50%", width:"32px", height:"32px", fontSize:"18px", lineHeight:"1", cursor:"pointer", boxShadow:"0 2px 8px rgba(0,0,0,0.1)", display:"flex", alignItems:"center", justifyContent:"center"}}>›</button>
+              <div ref={katGridRef} style={{display:"flex", gap:"10px", overflowX:"auto", scrollBehavior:"smooth", WebkitOverflowScrolling:"touch", scrollbarWidth:"none", msOverflowStyle:"none"}}>
+                {kategoriList.map((kat) => (
+                  <div key={kat.key} className={`ramu-kat-card${aktifKategori === kat.key ? " active" : ""}`} onClick={() => setAktifKategori(kat.key)}>
+                    <span className="ramu-kat-emoji">{kat.emoji}</span>
+                    <div>
+                      <div className="ramu-kat-name">{kat.nama}</div>
+                      <div className="ramu-kat-count">{kat.count}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </section>
 
