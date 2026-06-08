@@ -288,7 +288,7 @@ export default function Home() {
           <header className="ramu-header">
             <Link className="ramu-logo" href="/">
               <img src="/logo.png" alt="Ramudjitu" style={{height:"56px", width:"56px", borderRadius:"50%", objectFit:"cover"}} />
-              <span style={{fontFamily:"'Playfair Display', serif", fontSize:"18px", fontWeight:"500", color:"#1E1208", marginLeft:"10px", letterSpacing:"0.3px"}}>Ramudjitu</span>
+              <span style={{fontFamily:"'Playfair Display', serif", fontSize:"16px", fontWeight:"700", letterSpacing:"0.3px"}}><span style={{color:"#2e3a1f"}}>Ramu</span><span style={{color:"#4a3218"}}>Djitu</span></span>
             </Link>
               
             <nav className="ramu-nav">
