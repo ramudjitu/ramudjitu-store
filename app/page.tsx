@@ -106,7 +106,8 @@ const RAW_CSS = `
   .ramu-logo { display: flex; align-items: center; text-decoration: none; gap: 10px; }
   .ramu-logo img { height: 44px; width: 44px; border-radius: 50%; object-fit: cover; }
   .ramu-header-right { display: flex; align-items: center; gap: 10px; }
-  .ramu-nav { display: flex; align-items: center; gap: 1.25rem; }
+  .ramu-nav { display: none; }
+  @media (min-width: 500px) { .ramu-nav { display: flex; align-items: center; gap: 1.25rem; } }
   .ramu-nav a { color: var(--text-mid); font-size: 12px; font-weight: 400; text-decoration: none; transition: color 0.2s; cursor: pointer; }
   .ramu-nav a:hover { color: var(--green-mid); }
 
