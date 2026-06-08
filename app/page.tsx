@@ -220,7 +220,7 @@ const RAW_CSS = `
   .ramu-t-loc { font-size: 10px; color: rgba(245,236,215,0.4); }
 
   /* FOOTER */
-  .ramu-footer { background: var(--brown-dark); border-top: 1px solid rgba(245,236,215,0.08); padding: 2rem 1.25rem 1.5rem; }
+  .ramu-footer { background: linear-gradient(135deg, #2C1F0E 0%, #3D2E10 60%, #2D4A1A 100%); border-top: 1px solid rgba(245,236,215,0.08); padding: 2rem 1.25rem 1.5rem; }
   .ramu-footer-logo { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--cream); margin-bottom: 4px; }
   .ramu-footer-tagline { font-size: 11px; font-weight: 300; color: rgba(245,236,215,0.4); margin-bottom: 1.25rem; }
   .ramu-footer-sosmed { display: flex; gap: 10px; margin-bottom: 1.5rem; }
