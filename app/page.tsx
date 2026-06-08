@@ -293,10 +293,10 @@ export default function Home() {
 
           {/* MOBILE MENU */}
           <div className={`ramu-mobile-menu${menuOpen ? " open" : ""}`}>
-            <a onClick={() => scrollTo("produk")}>🛍️ Produk</a>
-            <a onClick={() => scrollTo("tentang")}>🌿 Tentang Kami</a>
-            <Link href="/blog" onClick={() => setMenuOpen(false)}>📝 Blog</Link>
-            <a onClick={() => scrollTo("testimoni")}>⭐ Testimoni</a>
+            <a onClick={() => scrollTo("produk")}>Produk</a>
+            <a onClick={() => scrollTo("tentang")}>Tentang Kami</a>
+            <Link href="/blog" onClick={() => setMenuOpen(false)}>Blog</Link>
+            <a onClick={() => scrollTo("testimoni")}>Testimoni</a>
           </div>
 
           {/* HERO */}
