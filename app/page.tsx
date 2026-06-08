@@ -226,6 +226,10 @@ const RAW_CSS = `
   .ramu-sosmed-btn { width: 34px; height: 34px; border-radius: 50%; background: rgba(245,236,215,0.08); border: 1px solid rgba(245,236,215,0.15); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all 0.2s; }
   .ramu-sosmed-btn:hover { background: var(--green-mid); border-color: var(--green-mid); }
   .ramu-sosmed-btn svg { width: 15px; height: 15px; fill: rgba(245,236,215,0.7); }
+  .ramu-sosmed-fb { background: #1877F2 !important; border-color: #1877F2 !important; }
+  .ramu-sosmed-ig { background: #E1306C !important; border-color: #E1306C !important; }
+  .ramu-sosmed-yt { background: #FF0000 !important; border-color: #FF0000 !important; }
+  .ramu-sosmed-tt { background: #010101 !important; border-color: #333 !important; }
   .ramu-footer-links { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-bottom: 1.5rem; }
   .ramu-footer-links a { font-size: 11px; color: rgba(245,236,215,0.4); text-decoration: none; transition: color 0.2s; cursor: pointer; }
   .ramu-footer-links a:hover { color: var(--green-light); }
@@ -421,29 +425,27 @@ export default function Home() {
 
           {/* FOOTER */}
           <footer className="ramu-footer">
-            <div className="ramu-footer-logo">🌿 Ramudjitu</div>
+            <div className="ramu-footer-logo"><img src="/logo.png" style={{width:"40px", height:"40px", borderRadius:"50%", objectFit:"cover", marginRight:"8px", verticalAlign:"middle"}} />Ramudjitu</div>
             <div className="ramu-footer-tagline">Herbal pilihan, kesehatan terjaga</div>
             <div className="ramu-footer-sosmed">
-              <a href="https://facebook.com/ramudjitu" target="_blank" rel="noopener noreferrer" className="ramu-sosmed-btn">
+              <a href="https://facebook.com/ramudjitu" target="_blank" rel="noopener noreferrer" className="ramu-sosmed-btn ramu-sosmed-fb">
                 <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
               </a>
-              <a href="https://instagram.com/ramudjitu" target="_blank" rel="noopener noreferrer" className="ramu-sosmed-btn">
+              <a href="https://instagram.com/ramudjitu" target="_blank" rel="noopener noreferrer" className="ramu-sosmed-btn ramu-sosmed-ig">
                 <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
               </a>
-              <a href="https://youtube.com/@ramudjitu" target="_blank" rel="noopener noreferrer" className="ramu-sosmed-btn">
+              <a href="https://youtube.com/@ramudjitu" target="_blank" rel="noopener noreferrer" className="ramu-sosmed-btn ramu-sosmed-yt">
                 <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" style={{fill:"var(--brown-dark)"}}/></svg>
               </a>
-              <a href="https://tiktok.com/@ramudjitu" target="_blank" rel="noopener noreferrer" className="ramu-sosmed-btn">
+              <a href="https://tiktok.com/@ramudjitu" target="_blank" rel="noopener noreferrer" className="ramu-sosmed-btn ramu-sosmed-tt">
                 <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
               </a>
             </div>
             <div className="ramu-footer-links">
-              <a onClick={() => scrollTo("produk")}>Produk</a>
-              <a onClick={() => scrollTo("tentang")}>Tentang Kami</a>
-              <Link href="/blog" style={{color:"rgba(245,236,215,0.4)", textDecoration:"none"}}>Blog</Link>
-              <a onClick={() => scrollTo("testimoni")}>Testimoni</a>
               <a href="#">Syarat & Ketentuan</a>
               <a href="#">Kebijakan Privasi</a>
+              <a href="#">Kebijakan Pengembalian</a>
+              <a href="#">Hubungi Kami</a>
               <a href="#">FAQ</a>
             </div>
             <div className="ramu-footer-copy">© 2026 Ramudjitu · Semua hak dilindungi</div>
@@ -460,10 +462,10 @@ export default function Home() {
                 <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
                 <span>Produk</span>
               </button>
-              <Link href="/blog" className="ramu-bottom-nav-item">
-                <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
-                <span>Blog</span>
-              </Link>
+              <button className="ramu-bottom-nav-item" onClick={() => scrollTo("produk")}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                <span>Keranjang</span>
+              </button>
               <button className="ramu-bottom-nav-item ramu-bottom-nav-wa" onClick={() => window.open(`https://wa.me/${waNumber}`, "_blank")}>
                 <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                 <span>Chat</span>
@@ -474,10 +476,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* WA FLOAT - desktop */}
-      <button className="ramu-wa-float" onClick={() => window.open(`https://wa.me/${waNumber}`, "_blank")}>
-        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      </button>
     </>
   );
 }
