@@ -140,15 +140,15 @@ const RAW_CSS = `
   .ramu-hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 280px; height: 280px; background: radial-gradient(circle, rgba(74,122,37,0.18) 0%, transparent 70%); pointer-events: none; }
   .ramu-hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(122,158,78,0.15); border: 1px solid rgba(122,158,78,0.3); color: var(--green-light); font-size: 10px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 1.25rem; }
   .ramu-hero-badge span { width: 5px; height: 5px; background: var(--green-bright); border-radius: 50%; display: inline-block; }
-  .ramu-hero-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 400; color: var(--cream); line-height: 1.2; margin-bottom: 1rem; }
+  .ramu-hero-title { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 400; color: var(--cream); line-height: 1.2; margin-bottom: 0.75rem; }
   .ramu-hero-title em { font-style: italic; color: var(--green-light); }
-  .ramu-hero-sub { font-size: 13px; font-weight: 300; color: rgba(245,236,215,0.65); line-height: 1.8; margin-bottom: 1.5rem; }
+  .ramu-hero-sub { font-size: 12px; font-weight: 300; color: rgba(245,236,215,0.65); line-height: 1.8; margin-bottom: 1.5rem; }
   .ramu-hero-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--green-mid); color: #fff; font-size: 13px; font-weight: 500; padding: 11px 24px; border-radius: 32px; border: none; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; margin-bottom: 1.5rem; }
   .ramu-hero-cta:hover { background: var(--green-deep); }
   .ramu-hero-cta svg { width: 14px; height: 14px; fill: none; stroke: #fff; stroke-width: 2; }
   .ramu-hero-stats { display: flex; gap: 10px; }
   .ramu-stat-pill { background: rgba(245,236,215,0.07); border: 1px solid rgba(245,236,215,0.12); border-radius: 12px; padding: 12px 16px; text-align: center; flex: 1; }
-  .ramu-stat-num { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--green-light); }
+  .ramu-stat-num { font-family: 'Playfair Display', serif; font-size: 13px; color: var(--green-light); }
   .ramu-stat-label { font-size: 10px; color: rgba(245,236,215,0.5); margin-top: 3px; }
 
   /* SECTION UMUM */
@@ -312,17 +312,18 @@ export default function Home() {
 
           {/* HERO */}
           <section className="ramu-hero">
-            <div className="ramu-hero-badge"><span></span> Herbal Alami Indonesia</div>
-            <h1 className="ramu-hero-title">Kesehatan dari <em>Alam,</em><br />Terbukti oleh Tradisi</h1>
-            <p className="ramu-hero-sub">Racikan ramu pilihan dari bahan herbal terbaik. Dipercaya turun-temurun, kini hadir dalam formula modern yang praktis dan terstandar.</p>
+            <div className="ramu-hero-badge"><span></span> HEALTH & WELLNESS PILIHAN</div>
+            <h1 className="ramu-hero-title">Tidak Semua Produk Kami Jual. Hanya yang Kami <em>Percaya,</em></h1>
+              <p style={{fontSize:"15px", fontWeight:"400", color:"rgba(245,236,215,0.75)", lineHeight:"1.6", marginTop:"-0.5rem", marginBottom:"1.5rem"}}>Temukan pilihan terpercaya untuk hidup yang lebih sehat</p>
+            <p className="ramu-hero-sub">Di tengah banyaknya pilihan produk kesehatan, RamuDjitu menghadirkan produk health & wellness pilihan dari berbagai brand terpercaya. Mulai dari herbal modern, suplemen, hingga solusi gaya hidup sehat yang dipilih berdasarkan kualitas, keamanan, dan manfaat yang nyata..</p>
             <button className="ramu-hero-cta" onClick={() => scrollTo("produk")}>
               Lihat Semua Produk
               <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </button>
             <div className="ramu-hero-stats">
-              <div className="ramu-stat-pill"><div className="ramu-stat-num">100%</div><div className="ramu-stat-label">Bahan Alami</div></div>
+              <div className="ramu-stat-pill"><div className="ramu-stat-num">PRODUK PILIHAN</div><div className="ramu-stat-label">Health & Wellness</div></div>
               <div className="ramu-stat-pill"><div className="ramu-stat-num">BPOM</div><div className="ramu-stat-label">Terdaftar</div></div>
-              <div className="ramu-stat-pill"><div className="ramu-stat-num">5K+</div><div className="ramu-stat-label">Pelanggan</div></div>
+              <div className="ramu-stat-pill"><div className="ramu-stat-num">MULTI-BRAND</div><div className="ramu-stat-label">Terpercaya</div></div>
             </div>
           </section>
 
