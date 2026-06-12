@@ -155,7 +155,7 @@ const RAW_CSS = `
   .ramu-section { padding: 1.75rem 1.25rem; }
   .ramu-section-alt { padding: 1.75rem 1.25rem; background: var(--cream-mid); }
   .ramu-eyebrow { font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--green-mid); margin-bottom: 0.4rem; }
-  .ramu-section-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 400; color: var(--text-dark); margin-bottom: 1.25rem; line-height: 1.35; }
+  .ramu-section-title { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 300; color: var(--text-dark); margin-bottom: 1.25rem; line-height: 1.35; }
 
   /* KEUNGGULAN */
   .ramu-k-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -315,7 +315,7 @@ export default function Home() {
             <div className="ramu-hero-badge"><span></span> HEALTH & WELLNESS PILIHAN</div>
             <h1 className="ramu-hero-title">Tidak Semua Produk Kami Jual. Hanya yang Kami <em>Percaya,</em></h1>
               <p style={{fontSize:"17px", fontWeight:"400", color:"rgba(245,236,215,0.75)", lineHeight:"1.6", marginTop:"-0.5rem", marginBottom:"1.5rem"}}>Temukan pilihan terpercaya untuk hidup yang lebih sehat</p>
-            <p className="ramu-hero-sub">Di tengah banyaknya pilihan produk kesehatan, RamuDjitu menghadirkan produk health & wellness pilihan dari berbagai brand terpercaya. Mulai dari herbal modern, suplemen, hingga solusi gaya hidup sehat yang dipilih berdasarkan kualitas, keamanan, dan manfaat yang nyata..</p>
+          
             <button className="ramu-hero-cta" onClick={() => scrollTo("produk")}>
               Lihat Semua Produk
               <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -328,18 +328,18 @@ export default function Home() {
           </section>
 
           {/* KEUNGGULAN */}
-          <section className="ramu-section" id="tentang">
-            <div className="ramu-eyebrow">Mengapa Ramudjitu</div>
-            <h2 className="ramu-section-title">Jamu bukan sekadar minuman, ini adalah warisan</h2>
+          <section className="ramu-section" id="tentang" style={{background:"#EFF5E6"}}>
+            <div className="ramu-eyebrow" style={{display:"inline-block", background:"#C5DC8E", color:"#2D4A1A", padding:"2px 10px", borderRadius:"10px"}}>Mengapa Ramudjitu</div>
+            <p style={{fontSize:"13px", fontWeight:"300", color:"var(--text-mid)", lineHeight:"1.8", textAlign:"justify", marginBottom:"1.25rem"}}>Di tengah banyaknya pilihan produk kesehatan dan wellness, memilih yang tepat tidak selalu mudah. RamuDjitu hadir untuk menghadirkan produk health & wellness pilihan dari berbagai brand terpercaya yang dipilih berdasarkan kualitas, legalitas, reputasi, dan relevansinya dengan gaya hidup sehat modern. Bagi kami, kesehatan bukan sekadar tentang banyaknya pilihan, tetapi tentang menemukan pilihan yang tepat dan memberikan manfaat yang nyata. Itulah semangat yang menjadi dasar hadirnya RamuDjitu.</p>
             <div className="ramu-k-grid">
               {[
-                { title: "Bahan pilihan", desc: "Dipilih dari petani rempah terpercaya di seluruh nusantara.", icon: <path d="M12 2C8 6 4 9 4 14a8 8 0 0016 0c0-5-4-8-8-12z"/> },
-                { title: "Formula terstandar", desc: "Racikan terukur dengan dosis konsisten di setiap kemasan.", icon: <path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/> },
-                { title: "Tersertifikasi", desc: "Terdaftar BPOM dan memenuhi standar halal MUI.", icon: <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/> },
-                { title: "Edukasi lengkap", desc: "Setiap produk dilengkapi halaman edukasi detail.", icon: <><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></> },
+                { title: "Produk Pilihan", desc: "Kami menghadirkan produk yang dipilih dengan mempertimbangkan kualitas dan kepercayaan." },
+                { title: "Brand Terpercaya", desc: "Berbagai pilihan dari brand yang memiliki komitmen terhadap kualitas dan kepuasan pelanggan." },
+                { title: "Legal & Terdaftar", desc: "Kami mengutamakan produk yang memiliki legalitas dan standar yang jelas." },
+                { title: "Manfaat yang Nyata", desc: "Kami percaya setiap pilihan kesehatan seharusnya memberikan nilai dan manfaat yang dapat dirasakan dalam kehidupan sehari-hari." },
               ].map((item, i) => (
                 <div className="ramu-k-card" key={i}>
-                  <div className="ramu-k-icon"><svg viewBox="0 0 24 24">{item.icon}</svg></div>
+                
                   <h4>{item.title}</h4>
                   <p>{item.desc}</p>
                 </div>
