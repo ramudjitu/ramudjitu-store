@@ -37,10 +37,10 @@ const produkData: Record<KategoriKey, Produk[]> = {
 };
 
 const kategoriList: { key: KategoriKey; emoji: string; nama: string; count: string }[] = [
-  { key: "nutrisi", emoji: "🥤", nama: "Nutrisi & Superfood", count: "6 produk" },
-  { key: "stamina", emoji: "⚡", nama: "Stamina & Vitalitas", count: "5 produk" },
-  { key: "amino", emoji: "💪", nama: "Asam Amino", count: "4 produk" },
-  { key: "antioksidan", emoji: "🛡️", nama: "Antioksidan", count: "4 produk" },
+  { key: "nutrisi", emoji: "🥤", nama: "Fondasi", count: "6 produk" },
+  { key: "stamina", emoji: "⚡", nama: "Regenerasi", count: "5 produk" },
+  { key: "amino", emoji: "💪", nama: "Perlindungan", count: "4 produk" },
+  { key: "antioksidan", emoji: "🛡️", nama: "Performa", count: "4 produk" },
 ];
 
 const blogPreviews = [
@@ -107,12 +107,12 @@ const RAW_CSS = `
   .ramu-logo img { height: 44px; width: 44px; border-radius: 50%; object-fit: cover; }
   .ramu-header-right { display: flex; align-items: center; gap: 10px; }
   .ramu-nav { display: none; }
-  @media (min-width: 500px) { .ramu-nav { display: flex; align-items: center; gap: 1.25rem; } }
+  @media (min-width: 500px) { .ramu-nav { display: flex; align-items: center; gap: 1.25rem; flex: 1; justify-content: center; } }
   .ramu-nav a { color: var(--text-mid); font-size: 12px; font-weight: 400; text-decoration: none; transition: color 0.2s; cursor: pointer; }
   .ramu-nav a:hover { color: var(--green-mid); }
 
   /* HAMBURGER */
-  .ramu-hamburger { display: flex; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
+  .ramu-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
   .ramu-hamburger span { display: block; width: 20px; height: 2px; background: var(--brown-dark); border-radius: 2px; transition: all 0.3s; }
   .ramu-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .ramu-hamburger.open span:nth-child(2) { opacity: 0; }
@@ -170,8 +170,8 @@ const RAW_CSS = `
   .ramu-kat-grid { display: flex; gap: 10px; margin-top: 1rem; padding-bottom: 8px; }
   .ramu-kat-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; width: 100%; scrollbar-width: none; }
   .ramu-kat-scroll::-webkit-scrollbar { display: none; }
-  .ramu-kat-card { min-width: 200px; height: 80px; flex-shrink: 0; scroll-snap-align: start; background: #fff; border: 1.5px solid var(--cream-mid); border-radius: 14px; padding: 1rem 1.25rem; cursor: pointer; transition: all 0.2s; display: flex; flex-direction: row; align-items: center; gap: 12px; }
-  @media (min-width: 500px) { .ramu-kat-card { min-width: 220px; height: 90px; } }
+  .ramu-kat-card { min-width: 200px; height: 100px; flex-shrink: 0; scroll-snap-align: start; background: #fff; border: 1.5px solid var(--cream-mid); border-radius: 14px; padding: 1rem 1.25rem; cursor: pointer; transition: all 0.2s; display: flex; flex-direction: row; align-items: center; gap: 12px; }
+  @media (min-width: 500px) { .ramu-kat-card { min-width: 220px; height: 100px; } }
   .ramu-kat-card:hover { border-color: var(--green-bright); }
   .ramu-kat-card.active { border-color: var(--green-mid); background: var(--green-pale); }
   .ramu-kat-emoji { font-size: 28px; display: block; flex-shrink: 0; }
@@ -203,7 +203,7 @@ const RAW_CSS = `
   .ramu-blog-grid { display: flex; flex-direction: column; gap: 12px; }
   .ramu-blog-card { background: #fff; border: 1px solid var(--cream-mid); border-radius: 14px; overflow: hidden; text-decoration: none; display: flex; transition: all 0.2s; }
   .ramu-blog-card:hover { border-color: var(--green-bright); }
-  .ramu-blog-img { width: 90px; min-height: 90px; background: var(--green-pale); display: flex; align-items: center; justify-content: center; font-size: 32px; flex-shrink: 0; }
+  .ramu-blog-img { width: 90px; min-height: 100px; background: var(--green-pale); display: flex; align-items: center; justify-content: center; font-size: 32px; flex-shrink: 0; }
   .ramu-blog-info { padding: 12px; flex: 1; }
   .ramu-blog-tag { display: inline-block; background: var(--green-pale); color: var(--green-mid); font-size: 9px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; padding: 2px 8px; border-radius: 8px; margin-bottom: 6px; }
   .ramu-blog-title { font-family: 'Playfair Display', serif; font-size: 13px; color: var(--text-dark); line-height: 1.4; margin-bottom: 6px; }
@@ -263,6 +263,9 @@ const RAW_CSS = `
     .ramu-wa-float:hover { transform: scale(1.1); }
     .ramu-wa-float svg { width: 24px; height: 24px; fill: #fff; }
   }
+  @media (max-width: 640px) {
+    .ramu-hamburger { display: flex; }
+  }  
 `;
 
 export default function Home() {
@@ -330,7 +333,7 @@ export default function Home() {
           {/* KEUNGGULAN */}
           <section className="ramu-section" id="tentang" style={{background:"#EFF5E6"}}>
             <div className="ramu-eyebrow" style={{display:"inline-block", background:"#C5DC8E", color:"#2D4A1A", padding:"2px 10px", borderRadius:"10px"}}>Mengapa Ramudjitu</div>
-            <p style={{fontSize:"13px", fontWeight:"300", color:"var(--text-dark)", lineHeight:"1.8", textAlign:"justify", marginBottom:"1.25rem"}}>Di tengah banyaknya pilihan produk kesehatan dan wellness, memilih yang tepat tidak selalu mudah. RamuDjitu hadir untuk menghadirkan produk health & wellness pilihan dari berbagai brand terpercaya yang memiliki standar legalitas dan kualitas yang jelas, dan relevansinya dengan gaya hidup sehat modern. Bagi kami, kesehatan bukan sekadar tentang banyaknya pilihan, tetapi tentang menemukan pilihan yang tepat dan memberikan manfaat yang nyata. Itulah semangat yang menjadi dasar hadirnya RamuDjitu.</p>
+            <p style={{fontSize:"13px", fontWeight:"300", color:"var(--text-dark)", lineHeight:"1.8", textAlign:"justify", marginBottom:"1.25rem"}}>Di tengah banyaknya pilihan produk kesehatan dan wellness, memilih yang tepat tidak selalu mudah. RamuDjitu menghadirkan produk health & wellness pilihan dari berbagai brand terpercaya yang memiliki standar legalitas dan kualitas yang jelas. Bagi kami, kesehatan bukan sekadar tentang banyaknya pilihan, tetapi tentang menemukan yang tepat dan memberikan manfaat yang nyata. Itulah semangat yang menjadi dasar hadirnya RamuDjitu.</p>
             <div className="ramu-k-grid">
               {[
                 { title: "Produk Pilihan", desc: "Kami menghadirkan produk yang dipilih dengan mempertimbangkan kualitas dan kepercayaan." },
@@ -357,10 +360,10 @@ export default function Home() {
               <div ref={katGridRef} style={{display:"flex", gap:"10px", overflowX:"auto", scrollBehavior:"smooth", WebkitOverflowScrolling:"touch", scrollbarWidth:"none", msOverflowStyle:"none"}}>
                 {kategoriList.map((kat) => (
                   <div key={kat.key} className={`ramu-kat-card${aktifKategori === kat.key ? " active" : ""}`} onClick={() => setAktifKategori(kat.key)}>
-                    <span className="ramu-kat-emoji">{kat.emoji}</span>
+                    
                     <div>
                       <div className="ramu-kat-name">{kat.nama}</div>
-                      <div className="ramu-kat-count">{kat.count}</div>
+                      
                     </div>
                   </div>
                 ))}
