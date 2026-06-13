@@ -36,11 +36,11 @@ const produkData: Record<KategoriKey, Produk[]> = {
   ],
 };
 
-const kategoriList: { key: KategoriKey; emoji: string; nama: string; count: string }[] = [
-  { key: "nutrisi", emoji: "🥤", nama: "Fondasi", count: "6 produk" },
-  { key: "stamina", emoji: "⚡", nama: "Regenerasi", count: "5 produk" },
-  { key: "amino", emoji: "💪", nama: "Perlindungan", count: "4 produk" },
-  { key: "antioksidan", emoji: "🛡️", nama: "Performa", count: "4 produk" },
+const kategoriList: { key: KategoriKey; emoji: string; nama: string; count: string; img: string }[] = [
+  { key: "nutrisi", emoji: "🥤", nama: "Fondasi", count: "6 produk", img: "/kategori-fondasi.png" },
+  { key: "stamina", emoji: "⚡", nama: "Regenerasi", count: "5 produk", img: "/kategori-regenerasi.png" },
+  { key: "amino", emoji: "💪", nama: "Perlindungan", count: "4 produk", img: "/kategori-perlindungan.png" },
+  { key: "antioksidan", emoji: "🛡️", nama: "Performa", count: "4 produk", img: "/kategori-performa.png" },
 ];
 
 const blogPreviews = [
@@ -171,7 +171,7 @@ const RAW_CSS = `
   .ramu-kat-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; width: 100%; scrollbar-width: none; }
   .ramu-kat-scroll::-webkit-scrollbar { display: none; }
   .ramu-kat-card { min-width: 200px; height: 100px; flex-shrink: 0; scroll-snap-align: start; background: #fff; border: 1.5px solid var(--cream-mid); border-radius: 14px; padding: 1rem 1.25rem; cursor: pointer; transition: all 0.2s; display: flex; flex-direction: row; align-items: center; gap: 12px; }
-  @media (min-width: 500px) { .ramu-kat-card { min-width: 220px; height: 100px; } }
+  @media (min-width: 500px) { .ramu-kat-card { min-width: 220px; height: 110px; } }
   .ramu-kat-card:hover { border-color: var(--green-bright); }
   .ramu-kat-card.active { border-color: var(--green-mid); background: var(--green-pale); }
   .ramu-kat-emoji { font-size: 28px; display: block; flex-shrink: 0; }
@@ -359,11 +359,10 @@ export default function Home() {
               <button onClick={() => { scrollKat(1); setBtnActive('right'); setTimeout(()=>setBtnActive(''),300); }} style={{position:"absolute", right:"0", top:"50%", transform:"translateY(-50%)", zIndex:10, background: btnActive==='right' ? '#4A7A25' : '#fff', border:"1.5px solid #EDE0C8", borderRadius:"50%", width:"36px", height:"36px", fontSize:"20px", lineHeight:"1", cursor:"pointer", boxShadow:"0 2px 8px rgba(0,0,0,0.1)", display:"flex", alignItems:"center", justifyContent:"center", transition:"background 0.2s", color: btnActive==='right' ? '#fff' : '#1E1208'}}>›</button>
               <div ref={katGridRef} style={{display:"flex", gap:"10px", overflowX:"auto", scrollBehavior:"smooth", WebkitOverflowScrolling:"touch", scrollbarWidth:"none", msOverflowStyle:"none"}}>
                 {kategoriList.map((kat) => (
-                  <div key={kat.key} className={`ramu-kat-card${aktifKategori === kat.key ? " active" : ""}`} onClick={() => setAktifKategori(kat.key)}>
-                    
-                    <div>
-                      <div className="ramu-kat-name">{kat.nama}</div>
-                      
+                  <div key={kat.key} className={`ramu-kat-card${aktifKategori === kat.key ? " active" : ""}`} onClick={() => setAktifKategori(kat.key)} style={{position:"relative", overflow:"hidden", padding:0}}>
+                    <img src={kat.img} alt={kat.nama} style={{position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", borderRadius:"12px"}} />
+                    <div style={{position:"absolute", bottom:"10px", left:"12px", zIndex:2}}>
+                      <div style={{background:"rgba(0,0,0,0.08)", backdropFilter:"blur(6px)", color:"#fff", fontSize:"12px", fontWeight:500, padding:"4px 14px", borderRadius:"999px", textShadow:"0 1px 3px rgba(0,0,0,0.5)"}}>{kat.nama}</div>
                     </div>
                   </div>
                 ))}
