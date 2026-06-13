@@ -182,7 +182,8 @@ const RAW_CSS = `
   /* PRODUK */
   .ramu-filter-label { font-size: 12px; color: var(--text-muted); margin-bottom: 1rem; }
   .ramu-filter-label strong { color: var(--text-dark); }
-  .ramu-produk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .ramu-produk-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 480px) { .ramu-produk-grid { grid-template-columns: 1fr 1fr; } }
   .ramu-p-card { background: #fff; border: 1px solid var(--cream-mid); border-radius: 14px; overflow: hidden; cursor: pointer; transition: all 0.2s; }
   .ramu-p-card:hover { border-color: var(--green-bright); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(74,122,37,0.1); }
   .ramu-p-img { height: 320px; background: var(--green-pale); display: flex; align-items: center; justify-content: center; font-size: 40px; position: relative; overflow: hidden; }
