@@ -186,8 +186,9 @@ const RAW_CSS = `
 @media (min-width: 480px) { .ramu-produk-grid { grid-template-columns: 1fr 1fr; } }
   .ramu-p-card { background: #fff; border: 1px solid var(--cream-mid); border-radius: 14px; overflow: hidden; cursor: pointer; transition: all 0.2s; }
   .ramu-p-card:hover { border-color: var(--green-bright); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(74,122,37,0.1); }
-  .ramu-p-img { height: 420px; background: var(--green-pale); display: flex; align-items: center; justify-content: center; font-size: 40px; position: relative; overflow: hidden; }
-.ramu-p-img img { width: 100%; height: 100%; object-fit: cover; }
+  .ramu-p-img { position: relative; width: 100%; padding-bottom: 100%; overflow: hidden; background: var(--green-pale); }
+.ramu-p-img img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; background: var(--cream-light); }
+.ramu-p-img img { width: 100%; height: 100%; object-fit: contain; background: var(--cream-light); }
   .ramu-p-lp-tag { position: absolute; top: 8px; left: 8px; background: rgba(255,255,255,0.92); border: 1px solid var(--amber); color: var(--amber); font-size: 9px; font-weight: 500; padding: 2px 7px; border-radius: 8px; }
   .ramu-p-info { padding: 10px; }
   .ramu-p-name { font-size: 12px; font-weight: 500; color: var(--text-dark); margin-bottom: 4px; line-height: 1.4; }
