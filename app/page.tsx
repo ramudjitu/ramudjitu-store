@@ -16,7 +16,7 @@ type KategoriKey = "nutrisi" | "stamina" | "amino" | "antioksidan";
 
 const produkData: Record<KategoriKey, Produk[]> = {
   nutrisi: [
-    { nama: "GetAmor Superfood Premium Nutrisi Lengkap untuk Semua Keluarga Sehat Setiap Hari", desc: "Menjaga kesehatan keluarga bukan hal yang mudah di.", harga: "Rp 375.000", emoji: "🥤", lp: "#", img: "/GetAmor.png" },
+    { nama: "GetAmor Superfood Premium Nutrisi Lengkap untuk Semua Keluarga Sehat Setiap Hari", desc: "Menjaga kesehatan keluarga bukan hal yang mudah di.", harga: "Rp 375.000", emoji: "🥤", lp: "/produk/getamor-superfood", img: "/GetAmor.png" },
   ],
   stamina: [
     { nama: "Ramu Stamina Plus", desc: "Temulawak & jahe merah untuk vitalitas harian", harga: "Rp 89.000", emoji: "⚡", lp: "#" },
@@ -385,7 +385,7 @@ export default function Home() {
 <div className="ramu-filter-label">Menampilkan: <strong>{kategoriList.find((k) => k.key === aktifKategori)?.nama}</strong></div>
             <div className="ramu-produk-grid">
               {produkData[aktifKategori].map((p, i) => (
-                <div key={i} className="ramu-p-card" onClick={() => (window.location.href = p.lp)}>
+                <Link key={i} className="ramu-p-card" href={p.lp}>
                   <div className="ramu-p-img">
                     {p.img && <img src={p.img} alt={p.nama} />}
                     </div>
@@ -397,7 +397,7 @@ export default function Home() {
                     </div>
                     <button className="ramu-p-btn" style={{width:"100%", marginTop:"8px", padding:"8px", borderRadius:"999px"}}>Pelajari →</button>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </section>
