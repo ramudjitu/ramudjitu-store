@@ -21,7 +21,7 @@ const produkData: Record<string, {
     img: "/GetAmor.png",
     lp: "#", // Ganti dengan URL LP Scalev
     checkout: "#", // Ganti dengan URL checkout Scalev
-    deskripsiSingkat: "Menjaga kesehatan keluarga bukan hal yang mudah di tengah aktivitas yang padat.",
+    deskripsiSingkat: "Menjaga kesehatan keluarga bukan hal yang mudah di tengah aktivitas yang padat. GetAmor hadir sebagai solusi praktis dengan kombinasi superfood alami pilihan dalam satu sajian — cukup 10 detik, siap dinikmati seluruh keluarga.",
     deskripsi: [
       "Menjaga kesehatan keluarga bukan hal yang mudah di tengah aktivitas yang padat. Mulai dari anak-anak, orang tua, hingga kamu sendiri — semuanya butuh asupan nutrisi yang cukup setiap hari.",
       "GetAmor hadir sebagai solusi praktis dengan kombinasi superfood alami pilihan dalam satu sajian. Dirancang untuk membantu memenuhi kebutuhan nutrisi harian keluarga, menjaga energi tetap stabil, serta mendukung daya tahan tubuh tanpa ribet.",
@@ -74,7 +74,14 @@ const PRODUK_CSS = `
     font-family: 'DM Sans', sans-serif;
     color: var(--text-dark);
     overflow-x: hidden;
-    padding-bottom: 120px;
+    padding-bottom: 84px;
+  }
+
+  @media (min-width: 700px) {
+    .pd-wrapper { max-width: 900px; padding-bottom: 40px; }
+    .pd-main { display: flex; gap: 2rem; padding: 1.5rem; align-items: flex-start; }
+    .pd-img-wrap { width: 360px; flex-shrink: 0; padding-bottom: 0; height: 360px; border-radius: 16px; }
+    .pd-info { flex: 1; padding: 0; }
   }
 
   /* HEADER */
@@ -111,24 +118,36 @@ const PRODUK_CSS = `
 
   /* INFO */
   .pd-info { padding: 1.25rem; }
-  .pd-harga { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 500; color: var(--green-mid); margin-bottom: 0.75rem; }
+  .pd-harga { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 500; color: var(--green-mid); margin-bottom: 0.5rem; }
   .pd-nama { font-size: 15px; font-weight: 500; color: var(--text-dark); line-height: 1.5; margin-bottom: 1.25rem; }
 
   /* JUMLAH */
-  .pd-jumlah-label { font-size: 12px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
-  .pd-jumlah { display: flex; align-items: center; gap: 0; margin-bottom: 1.25rem; border: 1.5px solid var(--cream-mid); border-radius: 999px; width: fit-content; overflow: hidden; }
-  .pd-jumlah-btn { width: 40px; height: 40px; background: none; border: none; font-size: 20px; cursor: pointer; color: var(--text-dark); transition: background 0.2s; display: flex; align-items: center; justify-content: center; font-family: 'DM Sans', sans-serif; }
+  .pd-jumlah-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 10px; }
+  .pd-jumlah-label { font-size: 11px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .pd-jumlah { display: flex; align-items: center; gap: 0; border: 1.5px solid var(--cream-mid); border-radius: 999px; width: fit-content; overflow: hidden; }
+  .pd-jumlah-btn { width: 38px; height: 38px; background: none; border: none; font-size: 18px; cursor: pointer; color: var(--text-dark); transition: background 0.2s; display: flex; align-items: center; justify-content: center; font-family: 'DM Sans', sans-serif; }
   .pd-jumlah-btn:hover { background: var(--cream-mid); }
-  .pd-jumlah-num { min-width: 40px; text-align: center; font-size: 15px; font-weight: 500; color: var(--text-dark); }
-  .pd-total { font-size: 13px; color: var(--text-muted); margin-bottom: 1.5rem; }
-  .pd-total strong { color: var(--green-mid); font-size: 15px; }
+  .pd-jumlah-num { min-width: 38px; text-align: center; font-size: 14px; font-weight: 500; color: var(--text-dark); }
+  .pd-total { font-size: 12px; color: var(--text-muted); }
+  .pd-total strong { color: var(--green-mid); font-size: 15px; display: block; margin-top: 2px; }
 
-  /* CTA BUTTONS */
-  .pd-cta-group { display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.5rem; }
+  /* CTA ROW */
+  .pd-cta-row { display: flex; gap: 10px; margin-bottom: 10px; }
+  .pd-btn-keranjang {
+    flex-shrink: 0;
+    width: 48px; height: 48px;
+    background: transparent; color: var(--green-mid);
+    border: 2px solid var(--green-mid); border-radius: 14px;
+    cursor: pointer; transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .pd-btn-keranjang:hover { background: var(--green-pale); }
+  .pd-btn-keranjang svg { width: 20px; height: 20px; fill: none; stroke: var(--green-mid); stroke-width: 2; }
+  .pd-btn-keranjang.added { background: var(--green-pale); border-color: var(--green-bright); }
   .pd-btn-beli {
-    width: 100%; padding: 14px;
+    flex: 1; padding: 13px;
     background: var(--green-mid); color: #fff;
-    border: none; border-radius: 999px;
+    border: none; border-radius: 14px;
     font-size: 15px; font-weight: 500;
     cursor: pointer; font-family: 'DM Sans', sans-serif;
     transition: background 0.2s;
@@ -136,44 +155,30 @@ const PRODUK_CSS = `
   }
   .pd-btn-beli:hover { background: var(--green-deep); }
   .pd-btn-beli svg { width: 18px; height: 18px; fill: none; stroke: #fff; stroke-width: 2; }
-  .pd-btn-keranjang {
-    width: 100%; padding: 13px;
-    background: transparent; color: var(--green-mid);
-    border: 2px solid var(--green-mid); border-radius: 999px;
-    font-size: 15px; font-weight: 500;
-    cursor: pointer; font-family: 'DM Sans', sans-serif;
-    transition: all 0.2s;
-    display: flex; align-items: center; justify-content: center; gap: 8px;
-  }
-  .pd-btn-keranjang:hover { background: var(--green-pale); }
-  .pd-btn-keranjang svg { width: 18px; height: 18px; fill: none; stroke: var(--green-mid); stroke-width: 2; }
-  .pd-btn-keranjang.added { background: var(--green-pale); border-color: var(--green-bright); color: var(--green-deep); }
 
-  /* DIVIDER */
-  .pd-divider { height: 1px; background: var(--cream-mid); margin: 1.5rem 0; }
-
-  /* PELAJARI */
-  .pd-pelajari-label { font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--green-mid); margin-bottom: 0.75rem; }
-  .pd-deskripsi p { font-size: 14px; font-weight: 300; color: var(--text-mid); line-height: 1.9; margin-bottom: 1rem; }
-  .pd-fitur { display: flex; flex-direction: column; gap: 8px; margin: 1.25rem 0 1.5rem; }
-  .pd-fitur-item { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 400; color: var(--text-dark); }
-  .pd-fitur-check { width: 20px; height: 20px; background: var(--green-pale); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .pd-fitur-check svg { width: 12px; height: 12px; fill: none; stroke: var(--green-mid); stroke-width: 2.5; }
   .pd-btn-lp {
     display: flex; align-items: center; justify-content: center; gap: 8px;
     width: 100%; padding: 13px;
     background: var(--brown-dark); color: var(--cream);
-    border: none; border-radius: 999px;
+    border: none; border-radius: 14px;
     font-size: 14px; font-weight: 500;
     cursor: pointer; font-family: 'DM Sans', sans-serif;
     text-decoration: none; transition: all 0.2s;
+    margin-bottom: 1.5rem;
   }
-  .pd-btn-lp:hover { background: var(--brown-dark); opacity: 0.85; }
+  .pd-btn-lp:hover { opacity: 0.85; }
   .pd-btn-lp svg { width: 16px; height: 16px; fill: none; stroke: var(--cream); stroke-width: 2; }
+
+  /* DIVIDER */
+  .pd-divider { height: 1px; background: var(--cream-mid); margin-bottom: 1.25rem; }
+
+  /* DESKRIPSI SINGKAT (teaser) */
+  .pd-teaser-label { font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--green-mid); margin-bottom: 0.6rem; }
+  .pd-teaser-text { font-size: 13px; font-weight: 300; color: var(--text-mid); line-height: 1.8; }
 
   /* TOAST */
   .pd-toast {
-    position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%);
+    position: fixed; bottom: 70px; left: 50%; transform: translateX(-50%);
     background: var(--green-deep); color: #fff;
     padding: 10px 24px; border-radius: 999px;
     font-size: 13px; font-weight: 500;
@@ -248,6 +253,7 @@ export default function ProdukClient({ slug }: { slug: string }) {
             </Link>
           </header>
 
+          <div className="pd-main">
           {/* FOTO */}
           <div className="pd-img-wrap">
             <img src={produk.img} alt={produk.nama} />
@@ -259,60 +265,48 @@ export default function ProdukClient({ slug }: { slug: string }) {
             <div className="pd-nama">{produk.nama}</div>
 
             {/* JUMLAH */}
-            <div className="pd-jumlah-label">Jumlah</div>
-            <div className="pd-jumlah">
-              <button className="pd-jumlah-btn" onClick={() => setJumlah(Math.max(1, jumlah - 1))}>−</button>
-              <span className="pd-jumlah-num">{jumlah}</span>
-              <button className="pd-jumlah-btn" onClick={() => setJumlah(jumlah + 1)}>+</button>
+            <div className="pd-jumlah-row">
+              <div>
+                <div className="pd-jumlah-label">Jumlah</div>
+                <div className="pd-jumlah">
+                  <button className="pd-jumlah-btn" onClick={() => setJumlah(Math.max(1, jumlah - 1))}>−</button>
+                  <span className="pd-jumlah-num">{jumlah}</span>
+                  <button className="pd-jumlah-btn" onClick={() => setJumlah(jumlah + 1)}>+</button>
+                </div>
+              </div>
+              <div className="pd-total">
+                Total
+                <strong>{formatHarga(produk.hargaNum)}</strong>
+              </div>
             </div>
-            <div className="pd-total">Total: <strong>{formatHarga(produk.hargaNum)}</strong></div>
 
-            {/* CTA */}
-            <div className="pd-cta-group">
+            {/* CTA: keranjang icon + beli sekarang */}
+            <div className="pd-cta-row">
+              <button className={`pd-btn-keranjang${keranjangAdded ? " added" : ""}`} onClick={tambahKeranjang} aria-label="Tambah ke Keranjang">
+                {keranjangAdded ? (
+                  <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                ) : (
+                  <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6"/></svg>
+                )}
+              </button>
               <button className="pd-btn-beli" onClick={() => window.open(produk.checkout, "_blank")}>
                 <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6"/></svg>
                 Beli Sekarang
               </button>
-              <button className={`pd-btn-keranjang${keranjangAdded ? " added" : ""}`} onClick={tambahKeranjang}>
-                {keranjangAdded ? (
-                  <>
-                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-                    Ditambahkan ke Keranjang
-                  </>
-                ) : (
-                  <>
-                    <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6"/></svg>
-                    Tambah ke Keranjang
-                  </>
-                )}
-              </button>
             </div>
+
+            {/* CTA: Pelajari Selengkapnya -> LP Scalev */}
+            <a href={produk.lp} target="_blank" rel="noopener noreferrer" className="pd-btn-lp">
+              Pelajari Selengkapnya
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
 
             <div className="pd-divider"></div>
 
-            {/* PELAJARI SELENGKAPNYA */}
-            <div className="pd-pelajari-label">Pelajari Selengkapnya</div>
-            <div className="pd-deskripsi">
-              {produk.deskripsi.map((p, i) => <p key={i}>{p}</p>)}
-            </div>
-
-            {/* FITUR */}
-            <div className="pd-fitur">
-              {produk.fitur.map((f, i) => (
-                <div className="pd-fitur-item" key={i}>
-                  <div className="pd-fitur-check">
-                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-                  </div>
-                  {f}
-                </div>
-              ))}
-            </div>
-
-            {/* TOMBOL LP */}
-            <a href={produk.lp} target="_blank" rel="noopener noreferrer" className="pd-btn-lp">
-              Baca Ulasan & Penjelasan Lengkap
-              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
+            {/* DESKRIPSI SINGKAT (teaser) */}
+            <div className="pd-teaser-label">Tentang Produk</div>
+            <p className="pd-teaser-text">{produk.deskripsiSingkat}</p>
+          </div>
           </div>
 
           {/* FOOTER */}
