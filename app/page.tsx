@@ -427,7 +427,7 @@ export default function Home() {
 
           {/* FOOTER */}
           <footer className="ramu-footer">
-            <div className="ramu-footer-logo"><img src="/logo.png" style={{width:"56px", height:"56px", borderRadius:"50%", objectFit:"cover", marginRight:"8px", verticalAlign:"middle"}} /><span style={{fontFamily:"'Playfair Display', serif", fontWeight:"700"}}><span style={{color:"#C5DC8E"}}>Ramu</span><span style={{color:"#F5ECD7"}}>Djitu</span></span></div>
+            <div className="ramu-footer-logo"><span style={{fontFamily:"'Playfair Display', serif", fontWeight:"700"}}><span style={{color:"#C5DC8E"}}>Ramu</span><span style={{color:"#F5ECD7"}}>Djitu</span></span></div>
             <div className="ramu-footer-tagline">Herbal pilihan, kesehatan terjaga</div>
             <div className="ramu-footer-sosmed">
               <a href="https://facebook.com/ramudjitu" target="_blank" rel="noopener noreferrer" className="ramu-sosmed-btn ramu-sosmed-fb">
