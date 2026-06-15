@@ -74,8 +74,9 @@ const PRODUK_CSS = `
     font-family: 'DM Sans', sans-serif;
     color: var(--text-dark);
     overflow-x: clip;
-    padding-bottom: 84px;
+    padding-bottom: 160px;
   }
+  @media (min-width: 700px) { .pd-wrapper { padding-bottom: 84px; } }
 
   /* HEADER */
   .pd-header {
@@ -126,6 +127,17 @@ const PRODUK_CSS = `
 
   /* CTA ROW */
   .pd-cta-row { display: flex; gap: 10px; margin-bottom: 10px; }
+  .pd-cta-sticky {
+    position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 100%; max-width: 660px; z-index: 100;
+    background: var(--cream-light); border-top: 1px solid var(--cream-mid);
+    padding: 10px 1.25rem; box-shadow: 0 -4px 16px rgba(30,18,8,0.08);
+  }
+  .pd-cta-sticky .pd-btn-lp { margin-bottom: 0; }
+  @media (min-width: 700px) {
+    .pd-cta-sticky { position: static; max-width: none; box-shadow: none; border-top: none; padding: 0; background: none; }
+    .pd-cta-sticky .pd-btn-lp { margin-bottom: 1.5rem; }
+  }
   .pd-btn-keranjang {
     flex-shrink: 0;
     width: 48px; height: 48px;
@@ -311,7 +323,8 @@ export default function ProdukClient({ slug }: { slug: string }) {
               
             </div>
 
-            {/* CTA: keranjang icon + beli sekarang */}
+            {/* CTA: keranjang icon + beli sekarang - STICKY mobile */}
+            <div className="pd-cta-sticky">
             <div className="pd-cta-row">
               <button className={`pd-btn-keranjang${keranjangAdded ? " added" : ""}`} onClick={tambahKeranjang} aria-label="Tambah ke Keranjang">
                 {keranjangAdded ? (
@@ -330,6 +343,7 @@ export default function ProdukClient({ slug }: { slug: string }) {
               Pelajari Selengkapnya
               <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </a>
+            </div>
 
             <div className="pd-divider"></div>
 
