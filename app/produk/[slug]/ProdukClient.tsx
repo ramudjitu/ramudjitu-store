@@ -161,7 +161,7 @@ const PRODUK_CSS = `
     display: flex; align-items: center; justify-content: center; gap: 6px;
     width: 100%; padding: 13px;
     background: #FFF7ED; color: #EA580C;
-    border: 1px solid #FED7AA; border-radius: 14px;
+    border: 2px solid #FED7AA; border-radius: 14px;
     font-size: 13px; font-weight: 500;
     cursor: pointer; font-family: 'DM Sans', sans-serif;
     text-decoration: none; transition: all 0.2s;
