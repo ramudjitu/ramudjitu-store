@@ -8,6 +8,7 @@ const produkData: Record<string, {
   harga: string;
   hargaNum: number;
   img: string;
+    imgs?: string[];
   lp: string;
   checkout: string;
   deskripsiSingkat: string;
@@ -18,7 +19,12 @@ const produkData: Record<string, {
     nama: "GetAmor Superfood Premium Nutrisi Lengkap untuk Semua Keluarga Sehat Setiap Hari",
     harga: "Rp 375.000",
     hargaNum: 375000,
-    img: "/GetAmor.png",
+    img: "https://res.cloudinary.com/dzg25zm9i/image/upload/v1781696979/GetAmor_square_1024_tl2fgz.png",
+    imgs: [
+      "https://res.cloudinary.com/dzg25zm9i/image/upload/v1781696979/GetAmor_square_1024_tl2fgz.png",
+      "https://res.cloudinary.com/dzg25zm9i/image/upload/v1781696978/GetAmor_Keluarga_oubgx4.png",
+      "https://res.cloudinary.com/dzg25zm9i/image/upload/v1781696977/GetAmor_Olah_raga_p9mnwf.png",
+    ],
     lp: "#", // Ganti dengan URL LP Scalev
     checkout: "#", // Ganti dengan URL checkout Scalev
     deskripsiSingkat: "Menjaga kesehatan keluarga bukan hal yang mudah di tengah aktivitas yang padat. GetAmor hadir sebagai solusi praktis dengan kombinasi superfood alami pilihan dalam satu sajian — cukup 10 detik, siap dinikmati seluruh keluarga.",
@@ -94,6 +100,7 @@ const PRODUK_CSS = `
   .pd-back svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; }
 
   /* FOTO PRODUK */
+  .pd-foto-col { width: 100%; }
   .pd-img-wrap {
     width: 100%;
     position: relative;
@@ -108,6 +115,10 @@ const PRODUK_CSS = `
     object-fit: contain;
     background: var(--cream-light);
   }
+  .pd-thumb-row { display: flex; gap: 8px; padding: 10px 1.25rem; overflow-x: auto; }
+  .pd-thumb { width: 64px; height: 64px; flex-shrink: 0; border-radius: 10px; overflow: hidden; border: 2px solid #E5E7EB; cursor: pointer; }
+  .pd-thumb.active { border-color: #16A34A; }
+  .pd-thumb img { width: 100%; height: 100%; object-fit: cover; }
 
   /* INFO */
   .pd-info { padding: 1.25rem; display: flex; flex-direction: column; }
@@ -202,7 +213,9 @@ const PRODUK_CSS = `
   @media (min-width: 700px) {
     .pd-wrapper { max-width: 660px; padding-bottom: 84px; }
     .pd-main { display: flex; gap: 2rem; padding: 1.5rem; align-items: flex-start; }
-    .pd-img-wrap { width: 360px; flex-shrink: 0; padding-bottom: 0; height: 360px; border-radius: 16px; }
+    .pd-foto-col { width: 360px; flex-shrink: 0; }
+    .pd-img-wrap { width: 100%; padding-bottom: 0; height: 360px; border-radius: 16px; }
+    .pd-thumb-row { padding: 10px 0; }
     .pd-info { flex: 1; padding: 0; }
     .pd-teaser-full { padding: 0 1.5rem 1.5rem; }
 
@@ -243,6 +256,7 @@ const PRODUK_CSS = `
 export default function ProdukClient({ slug }: { slug: string }) {
   const produk = produkData[slug];
   const [jumlah, setJumlah] = useState(1);
+  const [aktifFoto, setAktifFoto] = useState(0);
   const [keranjangAdded, setKeranjangAdded] = useState(false);
   const [showToast, setShowToast] = useState(false);
 
@@ -297,9 +311,20 @@ export default function ProdukClient({ slug }: { slug: string }) {
           </header>
 
           <div className="pd-main">
-            {/* FOTO */}
-            <div className="pd-img-wrap">
-              <img src={produk.img} alt={produk.nama} />
+            {/* FOTO + THUMBNAIL - kolom kiri */}
+            <div className="pd-foto-col">
+              <div className="pd-img-wrap">
+                <img src={produk.imgs ? produk.imgs[aktifFoto] : produk.img} alt={produk.nama} />
+              </div>
+              {produk.imgs && produk.imgs.length > 1 && (
+                <div className="pd-thumb-row">
+                  {produk.imgs.map((foto, i) => (
+                    <div key={i} onClick={() => setAktifFoto(i)} className={`pd-thumb${aktifFoto === i ? " active" : ""}`}>
+                      <img src={foto} alt={`foto ${i+1}`} />
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* INFO */}

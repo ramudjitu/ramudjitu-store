@@ -16,7 +16,7 @@ type KategoriKey = "nutrisi" | "stamina" | "amino" | "antioksidan";
 
 const produkData: Record<KategoriKey, Produk[]> = {
   nutrisi: [
-    { nama: "GetAmor Superfood Premium Nutrisi Lengkap untuk Semua Keluarga Sehat Setiap Hari", desc: "Menjaga kesehatan keluarga bukan hal yang mudah di.", harga: "Rp 375.000", emoji: "🥤", lp: "/produk/getamor-superfood", img: "/GetAmor.png" },
+    { nama: "GetAmor Superfood Premium Nutrisi Lengkap untuk Semua Keluarga Sehat Setiap Hari", desc: "Menjaga kesehatan keluarga bukan hal yang mudah di.", harga: "Rp 375.000", emoji: "🥤", lp: "/produk/getamor-superfood", img: "https://res.cloudinary.com/dzg25zm9i/image/upload/v1781696979/GetAmor_square_1024_tl2fgz.png" },
   ],
   stamina: [
     { nama: "Ramu Stamina Plus", desc: "Temulawak & jahe merah untuk vitalitas harian", harga: "Rp 89.000", emoji: "⚡", lp: "#" },
@@ -36,7 +36,7 @@ const produkData: Record<KategoriKey, Produk[]> = {
 };
 
 const kategoriList: { key: KategoriKey; emoji: string; nama: string; count: string; img: string }[] = [
-  { key: "nutrisi", emoji: "🥤", nama: "Fondasi", count: "6 produk", img: "/kategori-fondasi.png" },
+  { key: "nutrisi", emoji: "🥤", nama: "Fondasi", count: "6 produk", img: "https://res.cloudinary.com/dzg25zm9i/image/upload/v1781697490/kategori-fondasi.png_ufrw0h.png" },
   { key: "stamina", emoji: "⚡", nama: "Regenerasi", count: "5 produk", img: "/kategori-regenerasi.png" },
   { key: "amino", emoji: "💪", nama: "Perlindungan", count: "4 produk", img: "/kategori-perlindungan.png" },
   { key: "antioksidan", emoji: "🛡️", nama: "Performa", count: "4 produk", img: "/kategori-performa.png" },
@@ -296,7 +296,7 @@ export default function Home() {
           {/* HEADER */}
           <header className="ramu-header">
             <Link className="ramu-logo" href="/">
-              <img src="/logo.png" alt="Ramudjitu" style={{height:"56px", width:"56px", borderRadius:"50%", objectFit:"cover"}} />
+              <img src="https://res.cloudinary.com/dzg25zm9i/image/upload/v1781697094/RAMUDJITU_sf1t8w.png" alt="Ramudjitu" style={{height:"56px", width:"56px", borderRadius:"50%", objectFit:"cover"}} />
               <span style={{fontFamily:"'Playfair Display', serif", fontSize:"16px", fontWeight:"700", letterSpacing:"0.3px"}}><span style={{color:"#2e3a1f"}}>Ramu</span><span style={{color:"#4a3218"}}>Djitu</span></span>
             </Link>
               
