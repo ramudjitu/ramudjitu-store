@@ -121,12 +121,12 @@ const PRODUK_CSS = `
   .pd-thumb img { width: 100%; height: 100%; object-fit: cover; }
 
   /* INFO */
-  .pd-info { padding: 1.25rem; display: flex; flex-direction: column; }
-  .pd-harga { font-family: 'DM Sans', sans-serif; font-size: 22px; font-weight: 700; color: #111827; margin-bottom: 0.5rem; }
-  .pd-nama { font-size: 15px; font-weight: 500; color: #1F2937; line-height: 1.5; margin-bottom: 1.25rem; }
+  .pd-info { padding: 24px; display: flex; flex-direction: column; }
+  .pd-harga { font-family: 'DM Sans', sans-serif; font-size: 22px; font-weight: 700; color: #111827; margin-bottom: 8px; }
+  .pd-nama { font-size: 15px; font-weight: 500; color: #1F2937; line-height: 1.5; margin-bottom: 20px; }
 
   /* JUMLAH */
-  .pd-jumlah-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 10px; }
+  .pd-jumlah-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 10px; }
   .pd-jumlah-label { font-size: 11px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
   .pd-jumlah { display: flex; align-items: center; gap: 0; border: 1.5px solid #E5E7EB; border-radius: 999px; width: fit-content; overflow: hidden; }
   .pd-jumlah-btn { width: 38px; height: 38px; background: none; border: none; font-size: 18px; cursor: pointer; color: #374151; transition: background 0.2s; display: flex; align-items: center; justify-content: center; font-family: 'DM Sans', sans-serif; }
@@ -134,7 +134,7 @@ const PRODUK_CSS = `
   .pd-jumlah-num { min-width: 38px; text-align: center; font-size: 14px; font-weight: 500; color: #374151; }
 
   /* CTA ROW */
-  .pd-cta-row { display: flex; gap: 10px; margin-bottom: 10px; }
+  .pd-cta-row { display: flex; gap: 12px; align-items: stretch; }
   .pd-cta-sticky {
     position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
     width: 100%; max-width: 660px; z-index: 100;
@@ -146,39 +146,39 @@ const PRODUK_CSS = `
   .pd-btn-keranjang {
     flex-shrink: 0;
     width: 48px; height: 48px;
-    background: #FFFFFF; color: #EA580C;
-    border: 2px solid #D1D5DB; border-radius: 14px;
+    background: #FFFFFF; color: #F97316;
+    border: 1.5px solid #E5E7EB; border-radius: 12px;
     cursor: pointer; transition: all 0.2s;
     display: flex; align-items: center; justify-content: center;
   }
   .pd-btn-keranjang:hover { background: #F9FAFB; }
-  .pd-btn-keranjang svg { width: 20px; height: 20px; fill: none; stroke: #EA580C; stroke-width: 2; }
-  .pd-btn-keranjang.added { background: #FFF5F0; border-color: #EA580C; }
-  .pd-btn-keranjang.added svg { stroke: #EA580C; }
+  .pd-btn-keranjang svg { width: 20px; height: 20px; fill: none; stroke: #F97316; stroke-width: 2; }
+  .pd-btn-keranjang.added { background: #FFF5F0; border-color: #F97316; }
+  .pd-btn-keranjang.added svg { stroke: #F97316; }
 
   .pd-btn-beli {
-    flex: 1; padding: 13px;
+    flex: 1; height: 56px; padding: 0 24px;
     background: #16A34A; color: #FFFFFF;
     border: none; border-radius: 14px;
-    font-size: 15px; font-weight: 600;
+    font-size: 16px; font-weight: 600; line-height: 1; letter-spacing: 0.2px;
     cursor: pointer; font-family: 'DM Sans', sans-serif;
     transition: all 0.2s;
     display: flex; align-items: center; justify-content: center; gap: 8px;
-    box-shadow: 0 4px 12px rgba(22,163,74,0.3);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
   }
-  .pd-btn-beli:hover { background: #15803D; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(22,163,74,0.4); }
+  .pd-btn-beli:hover { background: #15803D; }
+  .pd-btn-beli-full { width: 100%; margin-bottom: 16px; }
 
   .pd-btn-lp {
+    flex: 1; height: 48px; padding: 0 20px;
     display: flex; align-items: center; justify-content: center; gap: 6px;
-    width: 100%; padding: 13px;
-    background: #FFF7ED; color: #EA580C;
-    border: 2px solid #FED7AA; border-radius: 14px;
-    font-size: 13px; font-weight: 500;
+    background: #E8F5E9; color: #16A34A;
+    border: none; border-radius: 12px;
+    font-size: 14px; font-weight: 500;
     cursor: pointer; font-family: 'DM Sans', sans-serif;
     text-decoration: none; transition: all 0.2s;
-    margin-bottom: 1.5rem;
   }
-  .pd-btn-lp:hover { background: #FFEDD5; }
+  .pd-btn-lp:hover { background: #D4EDDA; }
   .pd-btn-lp svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; }
 
   /* DIVIDER */
@@ -347,6 +347,10 @@ export default function ProdukClient({ slug }: { slug: string }) {
 
               {/* CTA: keranjang icon + beli sekarang - STICKY mobile */}
               <div className="pd-cta-sticky">
+                <button className="pd-btn-beli pd-btn-beli-full" onClick={() => window.open(produk.checkout, "_blank")}>
+                  Beli Sekarang
+                </button>
+
                 <div className="pd-cta-row">
                   <button className={`pd-btn-keranjang${keranjangAdded ? " added" : ""}`} onClick={tambahKeranjang} aria-label="Tambah ke Keranjang">
                     {keranjangAdded ? (
@@ -355,15 +359,10 @@ export default function ProdukClient({ slug }: { slug: string }) {
                       <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6"/></svg>
                     )}
                   </button>
-                  <button className="pd-btn-beli" onClick={() => window.open(produk.checkout, "_blank")}>
-                    Beli Sekarang
-                  </button>
+                  <a href={produk.lp} target="_blank" rel="noopener noreferrer" className="pd-btn-lp">
+                    Kenali Produknya →
+                  </a>
                 </div>
-
-                {/* CTA: Pelajari Selengkapnya -> LP Scalev */}
-                <a href={produk.lp} target="_blank" rel="noopener noreferrer" className="pd-btn-lp">
-                  Kenali Produknya →
-                </a>
               </div>
             </div>
           </div>
