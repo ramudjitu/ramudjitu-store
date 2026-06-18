@@ -274,7 +274,7 @@ export default function ProdukClient({ slug }: { slug: string }) {
           <div className="pd-wrapper">
             <header className="pd-header">
               <Link className="pd-logo" href="/">
-                <img src="/logo.png" alt="RamuDjitu" />
+                <img src="https://res.cloudinary.com/dzg25zm9i/image/upload/v1781697094/RAMUDJITU_sf1t8w.png" alt="RamuDjitu" style={{height:"44px", width:"44px", borderRadius:"50%", objectFit:"cover"}} />
               </Link>
               <Link href="/" className="pd-back">← Kembali</Link>
             </header>
@@ -298,7 +298,7 @@ export default function ProdukClient({ slug }: { slug: string }) {
           {/* HEADER */}
           <header className="pd-header">
             <Link className="pd-logo" href="/">
-              <img src="/logo.png" alt="RamuDjitu" style={{height:"44px", width:"44px", borderRadius:"50%", objectFit:"cover"}} />
+              <img src="https://res.cloudinary.com/dzg25zm9i/image/upload/v1781697094/RAMUDJITU_sf1t8w.png" alt="RamuDjitu" style={{height:"44px", width:"44px", borderRadius:"50%", objectFit:"cover"}} />
               <span className="pd-logo-name">
                 <span style={{color:"#2e3a1f"}}>Ramu</span>
                 <span style={{color:"#4a3218"}}>Djitu</span>

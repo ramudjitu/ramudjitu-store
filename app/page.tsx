@@ -37,9 +37,9 @@ const produkData: Record<KategoriKey, Produk[]> = {
 
 const kategoriList: { key: KategoriKey; emoji: string; nama: string; count: string; img: string }[] = [
   { key: "nutrisi", emoji: "🥤", nama: "Fondasi", count: "6 produk", img: "https://res.cloudinary.com/dzg25zm9i/image/upload/v1781697490/kategori-fondasi.png_ufrw0h.png" },
-  { key: "stamina", emoji: "⚡", nama: "Regenerasi", count: "5 produk", img: "/kategori-regenerasi.png" },
-  { key: "amino", emoji: "💪", nama: "Perlindungan", count: "4 produk", img: "/kategori-perlindungan.png" },
-  { key: "antioksidan", emoji: "🛡️", nama: "Performa", count: "4 produk", img: "/kategori-performa.png" },
+  { key: "stamina", emoji: "⚡", nama: "Regenerasi", count: "5 produk", img: "https://res.cloudinary.com/dzg25zm9i/image/upload/v1781697483/kategori-regenerasi.png_pnfzjl.png" },
+  { key: "amino", emoji: "💪", nama: "Perlindungan", count: "4 produk", img: "https://res.cloudinary.com/dzg25zm9i/image/upload/v1781697483/kategori-perlindungan.png_c0yxsi.png" },
+  { key: "antioksidan", emoji: "🛡️", nama: "Performa", count: "4 produk", img: "https://res.cloudinary.com/dzg25zm9i/image/upload/v1781697488/kategori-performa.png_ylvhfx.png" },
 ];
 
 const blogPreviews = [
