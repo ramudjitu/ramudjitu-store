@@ -213,9 +213,10 @@ const PRODUK_CSS = `
   @media (min-width: 700px) {
     .pd-wrapper { max-width: 660px; padding-bottom: 84px; }
     .pd-main { display: flex; gap: 2rem; padding: 1.5rem; align-items: flex-start; }
-    .pd-foto-col { width: 360px; flex-shrink: 0; }
-    .pd-img-wrap { width: 100%; padding-bottom: 0; height: 360px; border-radius: 16px; }
+    .pd-foto-col { width: 50%; flex-shrink: 0; }
+    .pd-img-wrap { width: 100%; padding-bottom: 0; height: 320px; border-radius: 16px; }
     .pd-thumb-row { padding: 10px 0; }
+    .pd-info { width: 50%; flex: none; }
     .pd-info { flex: 1; padding: 0; }
     .pd-teaser-full { padding: 0 1.5rem 1.5rem; }
 
@@ -364,9 +365,11 @@ export default function ProdukClient({ slug }: { slug: string }) {
                   Kenali Produknya →
                 </a>
               </div>
-
-              <div className="pd-divider"></div>
             </div>
+          </div>
+
+          <div className="pd-teaser-full" style={{paddingTop:0, paddingBottom:0}}>
+            <div className="pd-divider"></div>
           </div>
 
           {/* DESKRIPSI SINGKAT (teaser) - full width */}
