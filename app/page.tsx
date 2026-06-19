@@ -195,12 +195,15 @@ const RAW_CSS = `
   .ramu-p-name { font-size: 13px; font-weight: 500; color: #1F2937; margin-bottom: 4px; line-height: 1.4; }
   .ramu-p-desc { font-size: 11px; font-weight: 300; color: var(--text-muted); margin-bottom: 10px; line-height: 1.5; }
   .ramu-p-btn {
-    background: #16A34A; color: #fff; border: none; border-radius: 14px;
-    padding: 12px; font-size: 13px; font-weight: 600; cursor: pointer;
-    font-family: 'DM Sans', sans-serif; transition: all 0.2s; width: 100%; margin-top: 8px;
-    box-shadow: 0 4px 12px rgba(22,163,74,0.3);
+    background: #00AA5B; color: #fff; border: none; border-radius: 12px;
+    width: 100%; height: 42px; padding: 0 12px;
+    font-size: 13px; font-weight: 700; line-height: 1; letter-spacing: 0.1px;
+    cursor: pointer; font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s; margin-top: 8px;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   }
-  .ramu-p-btn:hover { background: #15803D; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(22,163,74,0.4); }
+  .ramu-p-btn:hover { background: #008C4A; }
 
   /* BLOG */
   .ramu-blog-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem; }
