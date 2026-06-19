@@ -79,7 +79,7 @@ const PRODUK_CSS = `
     box-shadow: 0 0 60px rgba(0,0,0,0.2);
     font-family: 'DM Sans', sans-serif;
     color: var(--text-dark);
-    overflow-x: clip;
+    overflow-x: visible;
     padding-bottom: 160px;
   }
 
