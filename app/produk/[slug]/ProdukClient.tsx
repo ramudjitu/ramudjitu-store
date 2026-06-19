@@ -134,7 +134,7 @@ const PRODUK_CSS = `
   .pd-jumlah-num { min-width: 38px; text-align: center; font-size: 14px; font-weight: 500; color: #374151; }
 
   /* CTA ROW */
-  .pd-cta-row { display: flex; gap: 12px; align-items: stretch; }
+  .pd-cta-row { display: flex; gap: 12px; align-items: stretch; margin-bottom: 8px; }
   .pd-cta-sticky {
     position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
     width: 100%; max-width: 660px; z-index: 100;
@@ -145,40 +145,41 @@ const PRODUK_CSS = `
 
   .pd-btn-keranjang {
     flex-shrink: 0;
-    width: 48px; height: 48px;
-    background: #FFFFFF; color: #F97316;
-    border: 1.5px solid #E5E7EB; border-radius: 12px;
+    width: 52px; height: 52px;
+    background: #FFFFFF; color: #4B5563;
+    border: 1.5px solid #4B5563; border-radius: 14px;
     cursor: pointer; transition: all 0.2s;
     display: flex; align-items: center; justify-content: center;
   }
   .pd-btn-keranjang:hover { background: #F9FAFB; }
-  .pd-btn-keranjang svg { width: 20px; height: 20px; fill: none; stroke: #F97316; stroke-width: 2; }
-  .pd-btn-keranjang.added { background: #FFF5F0; border-color: #F97316; }
-  .pd-btn-keranjang.added svg { stroke: #F97316; }
+  .pd-btn-keranjang svg { width: 22px; height: 22px; fill: none; stroke: #4B5563; stroke-width: 2; }
+  .pd-btn-keranjang.added { background: #F3F4F6; border-color: #4B5563; }
+  .pd-btn-keranjang.added svg { stroke: #4B5563; }
 
   .pd-btn-beli {
-    flex: 1; height: 56px; padding: 0 24px;
-    background: #16A34A; color: #FFFFFF;
+    flex: 1; height: 52px; padding: 0 16px;
+    background: #00AA5B; color: #FFFFFF;
     border: none; border-radius: 14px;
-    font-size: 16px; font-weight: 600; line-height: 1; letter-spacing: 0.2px;
+    font-size: 14px; font-weight: 700; line-height: 1; letter-spacing: 0.2px;
     cursor: pointer; font-family: 'DM Sans', sans-serif;
     transition: all 0.2s;
     display: flex; align-items: center; justify-content: center; gap: 8px;
     box-shadow: 0 6px 14px rgba(0,0,0,0.12);
   }
-  .pd-btn-beli:hover { background: #15803D; }
-  .pd-btn-beli-full { width: 100%; margin-bottom: 16px; }
+  .pd-btn-beli:hover { background: #008C4A; }
 
   .pd-btn-lp {
-    flex: 1; height: 48px; padding: 0 20px;
+    width: 100%; height: 52px; padding: 0 16px;
     display: flex; align-items: center; justify-content: center; gap: 6px;
-    background: #E8F5E9; color: #16A34A;
-    border: none; border-radius: 12px;
-    font-size: 14px; font-weight: 500;
+    background: #0071E3; color: #FFFFFF;
+    border: none; border-radius: 14px;
+    font-size: 14px; font-weight: 700;
     cursor: pointer; font-family: 'DM Sans', sans-serif;
     text-decoration: none; transition: all 0.2s;
+    margin-bottom: 16px;
+    white-space: nowrap;
   }
-  .pd-btn-lp:hover { background: #D4EDDA; }
+  .pd-btn-lp:hover { background: #0058B0; }
   .pd-btn-lp svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; }
 
   /* DIVIDER */
@@ -347,10 +348,6 @@ export default function ProdukClient({ slug }: { slug: string }) {
 
               {/* CTA: keranjang icon + beli sekarang - STICKY mobile */}
               <div className="pd-cta-sticky">
-                <button className="pd-btn-beli pd-btn-beli-full" onClick={() => window.open(produk.checkout, "_blank")}>
-                  Beli Sekarang
-                </button>
-
                 <div className="pd-cta-row">
                   <button className={`pd-btn-keranjang${keranjangAdded ? " added" : ""}`} onClick={tambahKeranjang} aria-label="Tambah ke Keranjang">
                     {keranjangAdded ? (
@@ -359,10 +356,14 @@ export default function ProdukClient({ slug }: { slug: string }) {
                       <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6"/></svg>
                     )}
                   </button>
-                  <a href={produk.lp} target="_blank" rel="noopener noreferrer" className="pd-btn-lp">
-                    Kenali Produknya →
-                  </a>
+                  <button className="pd-btn-beli" onClick={() => window.open(produk.checkout, "_blank")}>
+                    Beli Sekarang
+                  </button>
                 </div>
+
+                <a href={produk.lp} target="_blank" rel="noopener noreferrer" className="pd-btn-lp">
+                  Pelajari Manfaat Lengkapnya →
+                </a>
               </div>
             </div>
           </div>
