@@ -115,7 +115,8 @@ const PRODUK_CSS = `
     object-fit: contain;
     background: var(--cream-light);
   }
-  .pd-thumb-row { display: flex; gap: 8px; padding: 10px 1.25rem; overflow-x: auto; }
+  .pd-thumb-row { display: flex; gap: 8px; padding: 10px 1.25rem; overflow-x: auto; -webkit-overflow-scrolling: touch; scroll-snap-type: x proximity; }
+  .pd-thumb { scroll-snap-align: start; }
   .pd-thumb { width: 64px; height: 64px; flex-shrink: 0; border-radius: 10px; overflow: hidden; border: 2px solid #E5E7EB; cursor: pointer; }
   .pd-thumb.active { border-color: #16A34A; }
   .pd-thumb img { width: 100%; height: 100%; object-fit: cover; }
