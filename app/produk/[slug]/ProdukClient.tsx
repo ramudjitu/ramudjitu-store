@@ -146,8 +146,7 @@ const PRODUK_CSS = `
 
   .pd-btn-keranjang {
     flex-shrink: 0;
-    width: 42px; height: 42px;
-    margin-right: -4px;
+    width: 46px; height: 46px;
     margin-right: -4px;
     background: #FFFFFF; color: #4B5563;
     border: 1.5px solid #4B5563; border-radius: 14px;
@@ -159,10 +158,20 @@ const PRODUK_CSS = `
   .pd-btn-keranjang.added { background: #F3F4F6; border-color: #4B5563; }
   .pd-btn-keranjang.added svg { stroke: #4B5563; }
 
-  .pd-btn-beli {
-    flex: 1; height: 42px; padding: 0 12px;
+  .pd-btn-lp {
+    width: 100%; height: 42px; padding: 0 12px;
     background: #00AA5B; color: #FFFFFF;
     border: none; border-radius: 12px;
+    font-size: 14px; font-weight: 700; line-height: 1; letter-spacing: 0.2px;
+    cursor: pointer; font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+  }
+  .pd-btn-beli {
+    flex: 1; height: 46px; padding: 0 14px;
+    background: #00AA5B; color: #FFFFFF;
+    border: none; border-radius: 14px;
     font-size: 14px; font-weight: 700; line-height: 1; letter-spacing: 0.2px;
     cursor: pointer; font-family: 'DM Sans', sans-serif;
     transition: all 0.2s;
@@ -172,7 +181,7 @@ const PRODUK_CSS = `
   .pd-btn-beli:hover { background: #008C4A; }
 
   .pd-btn-lp {
-    width: 100%; height: 42px; padding: 0 12px;
+    width: 100%; height: 46px; padding: 0 14px;
     display: flex; align-items: center; justify-content: center; gap: 6px;
     background: #0071E3; color: #FFFFFF;
     border: none; border-radius: 14px;
