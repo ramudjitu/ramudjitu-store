@@ -1,19 +1,14 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { getAllArtikel } from "@/sanity/queries";
+import { urlForImage } from "@/sanity/image";
 
 export const metadata: Metadata = {
   title: "Blog Herbal & Tips Kesehatan | Ramudjitu",
   description: "Artikel edukasi seputar herbal, jamu tradisional, dan tips hidup sehat alami dari Ramudjitu.",
 };
 
-const artikelList = [
-  { slug: "manfaat-kunyit-untuk-kesehatan", emoji: "🌿", tag: "Herbal", title: "7 Manfaat Kunyit yang Terbukti Secara Ilmiah", excerpt: "Kunyit bukan sekadar bumbu dapur. Kandungan kurkumin di dalamnya memiliki efek anti-inflamasi yang luar biasa untuk tubuh.", date: "20 Mei 2026", readTime: "5 menit" },
-  { slug: "jahe-merah-vs-jahe-biasa", emoji: "🍵", tag: "Edukasi", title: "Jahe Merah vs Jahe Biasa: Mana yang Lebih Baik?", excerpt: "Banyak yang belum tahu perbedaan jahe merah dan jahe biasa. Simak perbandingan kandungan dan manfaatnya secara lengkap.", date: "15 Mei 2026", readTime: "4 menit" },
-  { slug: "tips-jaga-stamina-alami", emoji: "⚡", tag: "Tips", title: "5 Cara Menjaga Stamina Secara Alami Tanpa Efek Samping", excerpt: "Stamina prima tidak harus mengandalkan suplemen kimia. Ada cara alami yang lebih aman dan berkelanjutan.", date: "10 Mei 2026", readTime: "6 menit" },
-  { slug: "mengenal-temulawak-si-raja-herbal", emoji: "🌱", tag: "Herbal", title: "Mengenal Temulawak: Si Raja Herbal dari Nusantara", excerpt: "Temulawak sudah digunakan sebagai obat tradisional selama ratusan tahun. Kenali kandungan dan manfaatnya.", date: "5 Mei 2026", readTime: "5 menit" },
-  { slug: "antioksidan-penting-untuk-tubuh", emoji: "🍇", tag: "Edukasi", title: "Mengapa Antioksidan Sangat Penting untuk Tubuh Kita?", excerpt: "Radikal bebas ada di mana-mana. Antioksidan adalah tameng alami tubuh. Pelajari cara mendapatkannya dari herbal.", date: "1 Mei 2026", readTime: "4 menit" },
-  { slug: "rutinitas-pagi-dengan-herbal", emoji: "☀️", tag: "Tips", title: "Rutinitas Pagi dengan Herbal untuk Hari yang Lebih Produktif", excerpt: "Mulai hari dengan segelas minuman herbal bisa mengubah kualitas hidupmu. Ini rutinitas pagi sehat yang bisa diterapkan.", date: "25 April 2026", readTime: "3 menit" },
-];
+export const revalidate = 60; // refresh data tiap 60 detik
 
 const BLOG_CSS = `
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap');
@@ -82,19 +77,30 @@ const BLOG_CSS = `
   .blog-grid { display: flex; flex-direction: column; gap: 14px; }
   .blog-card { background: #fff; border: 1px solid var(--cream-mid); border-radius: 14px; overflow: hidden; text-decoration: none; display: flex; transition: all 0.2s; }
   .blog-card:hover { border-color: var(--green-bright); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(74,122,37,0.1); }
-  .blog-card-img { width: 100px; min-height: 100px; background: var(--green-pale); display: flex; align-items: center; justify-content: center; font-size: 36px; flex-shrink: 0; }
+  .blog-card-img { width: 100px; min-height: 100px; background: var(--green-pale); display: flex; align-items: center; justify-content: center; font-size: 36px; flex-shrink: 0; overflow: hidden; }
+  .blog-card-img img { width: 100%; height: 100%; object-fit: cover; }
   .blog-card-body { padding: 14px; flex: 1; }
   .blog-card-tag { display: inline-block; background: var(--green-pale); color: var(--green-mid); font-size: 9px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; padding: 2px 8px; border-radius: 8px; margin-bottom: 7px; }
   .blog-card-title { font-family: 'Playfair Display', serif; font-size: 14px; color: var(--text-dark); line-height: 1.4; margin-bottom: 6px; }
   .blog-card-excerpt { font-size: 12px; font-weight: 300; color: var(--text-muted); line-height: 1.6; margin-bottom: 8px; }
   .blog-card-meta { font-size: 11px; color: var(--text-muted); }
 
+  .blog-empty { text-align: center; padding: 3rem 1rem; color: var(--text-muted); font-size: 13px; }
+
   .blog-footer { background: var(--brown-dark); border-top: 1px solid rgba(245,236,215,0.08); padding: 1.5rem 1.25rem; text-align: center; }
   .blog-footer-text { font-size: 11px; color: rgba(245,236,215,0.4); }
   .blog-footer-text a { color: var(--green-light); text-decoration: none; }
 `;
 
-export default function BlogPage() {
+function formatTanggal(dateString: string) {
+  const bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+  const d = new Date(dateString);
+  return `${d.getDate()} ${bulan[d.getMonth()]} ${d.getFullYear()}`;
+}
+
+export default async function BlogPage() {
+  const artikelList = await getAllArtikel();
+
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: BLOG_CSS }} />
@@ -120,19 +126,32 @@ export default function BlogPage() {
                 <button key={tag} className={`blog-tag-btn${tag === "Semua" ? " active" : ""}`}>{tag}</button>
               ))}
             </div>
-            <div className="blog-grid">
-              {artikelList.map((artikel) => (
-                <Link href={`/blog/${artikel.slug}`} className="blog-card" key={artikel.slug}>
-                  <div className="blog-card-img">{artikel.emoji}</div>
-                  <div className="blog-card-body">
-                    <span className="blog-card-tag">{artikel.tag}</span>
-                    <div className="blog-card-title">{artikel.title}</div>
-                    <div className="blog-card-excerpt">{artikel.excerpt}</div>
-                    <div className="blog-card-meta">{artikel.date} · ⏱ {artikel.readTime} baca</div>
-                  </div>
-                </Link>
-              ))}
-            </div>
+
+            {artikelList.length === 0 ? (
+              <div className="blog-empty">
+                Belum ada artikel. Tulis artikel pertama di Sanity Studio ya! 🌿
+              </div>
+            ) : (
+              <div className="blog-grid">
+                {artikelList.map((artikel: any) => (
+                  <Link href={`/blog/${artikel.slug}`} className="blog-card" key={artikel.slug}>
+                    <div className="blog-card-img">
+                      {artikel.mainImage ? (
+                        <img src={urlForImage(artikel.mainImage).width(200).height(200).url()} alt={artikel.title} />
+                      ) : (
+                        "🌿"
+                      )}
+                    </div>
+                    <div className="blog-card-body">
+                      <span className="blog-card-tag">{artikel.tag}</span>
+                      <div className="blog-card-title">{artikel.title}</div>
+                      <div className="blog-card-excerpt">{artikel.description}</div>
+                      <div className="blog-card-meta">{formatTanggal(artikel.publishedAt)} · ⏱ {artikel.readTime} baca</div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
           </main>
 
           <footer className="blog-footer">
