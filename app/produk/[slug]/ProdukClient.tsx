@@ -288,22 +288,19 @@ export default function ProdukClient({ slug }: { slug: string }) {
   const [jumlahKeranjang, setJumlahKeranjang] = useState(0);
 
   useEffect(() => {
-    const updateBadge = () => {
-      const saved = localStorage.getItem('ramudjitu-cart-count');
-      setJumlahKeranjang(saved ? parseInt(saved) : 0);
-    };
-    updateBadge();
-    window.addEventListener('focus', updateBadge);
-    return () => window.removeEventListener('focus', updateBadge);
+    const saved = localStorage.getItem('ramudjitu-cart-count');
+    setJumlahKeranjang(saved ? parseInt(saved) : 0);
   }, []);
 
   const tambahKeranjang = () => {
     setKeranjangAdded(true);
     setShowToast(true);
     setTimeout(() => setShowToast(false), 2500);
+    setTimeout(() => setKeranjangAdded(false), 1500);
     const current = parseInt(localStorage.getItem('ramudjitu-cart-count') || '0');
     const updated = current + jumlah;
     localStorage.setItem('ramudjitu-cart-count', updated.toString());
+    setJumlahKeranjang(updated);
   };
 
   if (!produk) {
