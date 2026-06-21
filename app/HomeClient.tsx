@@ -239,24 +239,23 @@ const RAW_CSS = `
   }
   .ramu-bottom-nav-inner { display: flex; justify-content: space-around; align-items: center; }
   .ramu-bottom-nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; text-decoration: none; cursor: pointer; background: none; border: none; font-family: 'DM Sans', sans-serif; flex: 1; padding: 4px 0; }
-  .ramu-bottom-nav-item svg { width: 20px; height: 20px; fill: none; stroke: var(--text-muted); stroke-width: 1.8; transition: stroke 0.2s; }
-  .ramu-bottom-nav-item span { font-size: 10px; color: var(--text-muted); transition: color 0.2s; }
-  .ramu-bottom-nav-item.active svg { stroke: var(--green-mid); }
-  .ramu-bottom-nav-item.active span { color: var(--green-mid); font-weight: 500; }
+  .ramu-bottom-nav-item svg { width: 20px; height: 20px; fill: none; stroke: var(--green-deep); stroke-width: 1.8; transition: stroke 0.2s; }
+  .ramu-bottom-nav-item span { font-size: 10px; color: var(--green-deep); transition: color 0.2s; }
+  .ramu-bottom-nav-item.active svg { stroke: var(--green-deep); }
+  .ramu-bottom-nav-item.active span { color: var(--green-deep); font-weight: 500; }
   .ramu-bottom-nav-wa svg { fill: #25D366 !important; stroke: none !important; }
   .ramu-bottom-nav-wa span { color: #25D366 !important; }
-  .ramu-bottom-nav-cart svg { stroke: #EA580C !important; }
-  .ramu-bottom-nav-cart span { color: #EA580C !important; }
   .ramu-bottom-nav-cart { position: relative; }
 .ramu-cart-badge {
-  position: absolute; top: -2px; right: 22px;
-  background: #DC2626; color: #fff;
-  font-size: 10px; font-weight: 700;
-  min-width: 16px; height: 16px;
+  position: absolute; top: -10px; right: -18px;
+  background: #A2B06D; color: #FFFFFF !important;
+  font-size: 11px; font-weight: 700;
+  min-width: 22px; height: 22px;
   border-radius: 999px;
   display: flex; align-items: center; justify-content: center;
-  padding: 0 4px;
+  padding: 0 5px;
   border: 2px solid var(--cream-light);
+  z-index: 5;
 }
 
   .ramu-wa-float { display: none; }
@@ -279,8 +278,13 @@ export default function HomeClient({ blogPreviews }: { blogPreviews: BlogPreview
 const [jumlahKeranjang, setJumlahKeranjang] = useState(0);
 
 useEffect(() => {
-  const saved = localStorage.getItem('ramudjitu-cart-count');
-  if (saved) setJumlahKeranjang(parseInt(saved));
+  const updateBadge = () => {
+    const saved = localStorage.getItem('ramudjitu-cart-count');
+    setJumlahKeranjang(saved ? parseInt(saved) : 0);
+  };
+  updateBadge();
+  window.addEventListener('focus', updateBadge);
+  return () => window.removeEventListener('focus', updateBadge);
 }, []);
 
   const waNumber = "6281234567890";
@@ -466,8 +470,10 @@ useEffect(() => {
                 <span>Produk</span>
               </button>
               <button className="ramu-bottom-nav-item ramu-bottom-nav-cart" onClick={() => {}}>
-  <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6"/></svg>
-  {jumlahKeranjang > 0 && <span className="ramu-cart-badge">{jumlahKeranjang}</span>}
+  <span style={{position:"relative", display:"inline-block"}}>
+    <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6"/></svg>
+    {jumlahKeranjang > 0 && <span className="ramu-cart-badge">{jumlahKeranjang}</span>}
+  </span>
   <span>Keranjang</span>
 </button>
               <button className="ramu-bottom-nav-item ramu-bottom-nav-wa" onClick={() => window.open(`https://wa.me/${waNumber}`, "_blank")}>
