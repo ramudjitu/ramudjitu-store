@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 
 interface Produk {
@@ -150,7 +150,7 @@ const RAW_CSS = `
 
   .ramu-section { padding: 1.75rem 1.25rem; }
   .ramu-section-alt { padding: 1.75rem 1.25rem; background: var(--cream-mid); }
-  .ramu-eyebrow { font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--green-mid); margin-bottom: 0.4rem; }
+  .ramu-eyebrow-besar { font-size: 20px; font-weight: 700; color: var(--green-mid); margin-bottom: 0.75rem; letter-spacing: 0; text-transform: none; }
   .ramu-section-title { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 300; color: var(--text-dark); margin-bottom: 1.25rem; line-height: 1.35; }
 
   .ramu-k-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -247,6 +247,17 @@ const RAW_CSS = `
   .ramu-bottom-nav-wa span { color: #25D366 !important; }
   .ramu-bottom-nav-cart svg { stroke: #EA580C !important; }
   .ramu-bottom-nav-cart span { color: #EA580C !important; }
+  .ramu-bottom-nav-cart { position: relative; }
+.ramu-cart-badge {
+  position: absolute; top: -2px; right: 22px;
+  background: #DC2626; color: #fff;
+  font-size: 10px; font-weight: 700;
+  min-width: 16px; height: 16px;
+  border-radius: 999px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 4px;
+  border: 2px solid var(--cream-light);
+}
 
   .ramu-wa-float { display: none; }
   @media (min-width: 600px) {
@@ -265,6 +276,13 @@ export default function HomeClient({ blogPreviews }: { blogPreviews: BlogPreview
   const katGridRef = useRef<HTMLDivElement>(null);
   const scrollKat = (dir: number) => { katGridRef.current?.scrollBy({left: dir * 200, behavior: 'smooth'}); };
   const [btnActive, setBtnActive] = useState('');
+const [jumlahKeranjang, setJumlahKeranjang] = useState(0);
+
+useEffect(() => {
+  const saved = localStorage.getItem('ramudjitu-cart-count');
+  if (saved) setJumlahKeranjang(parseInt(saved));
+}, []);
+
   const waNumber = "6281234567890";
 
   const scrollTo = (id: string) => {
@@ -321,7 +339,7 @@ export default function HomeClient({ blogPreviews }: { blogPreviews: BlogPreview
 
           {/* KEUNGGULAN */}
           <section className="ramu-section" id="tentang" style={{background:"#EFF5E6"}}>
-            <div className="ramu-eyebrow" style={{display:"inline-block", background:"#C5DC8E", color:"#2D4A1A", padding:"2px 10px", borderRadius:"10px"}}>Mengapa Ramudjitu</div>
+            <div className="ramu-eyebrow-besar">Mengapa RamuDjitu</div>
             <p style={{fontSize:"13px", fontWeight:"300", color:"var(--text-dark)", lineHeight:"1.8", textAlign:"justify", marginBottom:"1.25rem"}}>Di tengah banyaknya pilihan produk kesehatan dan wellness, memilih yang tepat tidak selalu mudah. RamuDjitu menghadirkan produk health & wellness pilihan dari berbagai brand terpercaya yang memiliki standar legalitas dan kualitas yang jelas. Bagi kami, kesehatan bukan sekadar tentang banyaknya pilihan, tetapi tentang menemukan yang tepat dan memberikan manfaat yang nyata. Itulah semangat yang menjadi dasar hadirnya RamuDjitu.</p>
             <div className="ramu-k-grid">
               {[
@@ -448,9 +466,10 @@ export default function HomeClient({ blogPreviews }: { blogPreviews: BlogPreview
                 <span>Produk</span>
               </button>
               <button className="ramu-bottom-nav-item ramu-bottom-nav-cart" onClick={() => {}}>
-                <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6"/></svg>
-                <span>Keranjang</span>
-              </button>
+  <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6"/></svg>
+  {jumlahKeranjang > 0 && <span className="ramu-cart-badge">{jumlahKeranjang}</span>}
+  <span>Keranjang</span>
+</button>
               <button className="ramu-bottom-nav-item ramu-bottom-nav-wa" onClick={() => window.open(`https://wa.me/${waNumber}`, "_blank")}>
                 <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                 <span>Chat</span>
