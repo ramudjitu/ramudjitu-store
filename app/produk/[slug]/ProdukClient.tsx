@@ -80,7 +80,7 @@ const PRODUK_CSS = `
     font-family: 'DM Sans', sans-serif;
     color: var(--text-dark);
     overflow-x: visible;
-    padding-bottom: 160px;
+    padding-bottom: 0;
   }
 
   /* HEADER */
@@ -215,7 +215,7 @@ const PRODUK_CSS = `
   .pd-toast.show { opacity: 1; }
 
   /* FOOTER */
-  .pd-footer { background: var(--brown-dark); border-top: 1px solid rgba(245,236,215,0.08); padding: 1.5rem 1.25rem; text-align: center; }
+  .pd-footer { background: linear-gradient(135deg, #2C1F0E 0%, #3D2E10 60%, #2D4A1A 100%); border-top: 1px solid rgba(245,236,215,0.08); padding: 0.2rem 1.25rem; text-align: center; }
   .pd-footer p { font-size: 11px; color: rgba(245,236,215,0.4); }
   .pd-footer a { color: var(--green-light); text-decoration: none; }
   .pd-footer-desktop { display: none; }
@@ -438,37 +438,7 @@ export default function ProdukClient({ slug }: { slug: string }) {
             </button>
           </nav>
 
-          {/* FOOTER */}
-          <footer className="pd-footer">
-            <div className="pd-footer-desktop">
-              <div className="pd-footer-logo-text"><span style={{color:"#C5DC8E"}}>Ramu</span><span style={{color:"#F5ECD7"}}>Djitu</span></div>
-              <div className="pd-footer-tagline-desktop">Herbal pilihan, kesehatan terjaga</div>
-              <div className="pd-footer-sosmed-desktop">
-                <a href="https://facebook.com/ramudjitu" target="_blank" rel="noopener noreferrer" className="pd-sosmed-btn pd-sosmed-fb">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
-                </a>
-                <a href="https://instagram.com/ramudjitu" target="_blank" rel="noopener noreferrer" className="pd-sosmed-btn pd-sosmed-ig">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153a4.908 4.908 0 011.153 1.772c.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 01-1.153 1.772 4.915 4.915 0 01-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 01-1.772-1.153 4.904 4.904 0 01-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 011.153-1.772A4.897 4.897 0 015.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 5a5 5 0 100 10 5 5 0 000-10zm6.5-.25a1.25 1.25 0 10-2.5 0 1.25 1.25 0 002.5 0zM12 9a3 3 0 110 6 3 3 0 010-6z"/></svg>
-                </a>
-                <a href="https://youtube.com/@ramudjitu" target="_blank" rel="noopener noreferrer" className="pd-sosmed-btn pd-sosmed-yt">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a2.97 2.97 0 00-2.088-2.088C19.692 3.5 12 3.5 12 3.5s-7.692 0-9.41.598A2.97 2.97 0 00.502 6.186C0 7.904 0 12 0 12s0 4.096.502 5.814a2.97 2.97 0 002.088 2.088C4.308 20.5 12 20.5 12 20.5s7.692 0 9.41-.598a2.97 2.97 0 002.088-2.088C24 16.096 24 12 24 12s0-4.096-.502-5.814zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
-                </a>
-                <a href="https://tiktok.com/@ramudjitu" target="_blank" rel="noopener noreferrer" className="pd-sosmed-btn pd-sosmed-tt">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
-                </a>
-              </div>
-              <div className="pd-footer-links-desktop">
-                <a href="#">Syarat & Ketentuan</a>
-                <a href="#">Kebijakan Privasi</a>
-                <a href="#">Kebijakan Pengembalian</a>
-                <a href="#">Hubungi Kami</a>
-                <a href="#">FAQ</a>
-              </div>
-              <div className="pd-footer-copy-desktop">© 2026 RamuDjitu · Semua hak dilindungi</div>
-            </div>
-            <p className="pd-footer-mobile">© 2026 <a href="/">RamuDjitu</a> · Herbal pilihan, kesehatan terjaga</p>
-          </footer>
-
+          
         </div>
       </div>
 
