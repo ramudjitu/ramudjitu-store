@@ -262,6 +262,8 @@ const PRODUK_CSS = `
     .pd-bottom-nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; text-decoration: none; cursor: pointer; background: none; border: none; font-family: 'DM Sans', sans-serif; flex: 1; padding: 4px 0; }
     .pd-bottom-nav-item svg { width: 20px; height: 20px; fill: none; stroke: var(--green-deep); stroke-width: 1.8; }
     .pd-bottom-nav-item span { font-size: 10px; color: var(--green-deep); }
+    .pd-bottom-nav-item:hover svg { stroke: var(--brown-dark); }
+    .pd-bottom-nav-item:hover span { color: var(--brown-dark); }
     .pd-bottom-nav-wa svg { fill: #25D366 !important; stroke: none !important; }
     .pd-bottom-nav-wa span { color: #25D366 !important; }
     .pd-bottom-nav-item:nth-child(3) { position: relative; }
