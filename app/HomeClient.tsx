@@ -150,7 +150,7 @@ const RAW_CSS = `
 
   .ramu-section { padding: 1.75rem 1.25rem; }
   .ramu-section-alt { padding: 1.75rem 1.25rem; background: var(--cream-mid); }
-  .ramu-eyebrow-besar { font-size: 20px; font-weight: 700; color: var(--green-mid); margin-bottom: 0.75rem; letter-spacing: 0; text-transform: none; }
+  .ramu-eyebrow-besar { font-size: 14px; font-weight: 700; color: var(--green-mid); margin-bottom: 0.75rem; letter-spacing: 0; text-transform: none; }
   .ramu-section-title { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 300; color: var(--text-dark); margin-bottom: 1.25rem; line-height: 1.35; }
 
   .ramu-k-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
