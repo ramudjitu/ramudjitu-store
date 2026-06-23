@@ -313,7 +313,7 @@ useEffect(() => {
               
             <nav className="ramu-nav">
               <a onClick={() => scrollTo("produk")}>Produk</a>
-              <a onClick={() => scrollTo("tentang")}>Tentang Kami</a>
+              <Link href="/tentang-kami">Tentang Kami</Link>
               <Link href="/blog">Blog</Link>
             </nav>
             <button className={`ramu-hamburger${menuOpen ? " open" : ""}`} onClick={() => setMenuOpen(!menuOpen)}>
@@ -324,7 +324,8 @@ useEffect(() => {
           {/* MOBILE MENU */}
           <div className={`ramu-mobile-menu${menuOpen ? " open" : ""}`}>
             <a onClick={() => scrollTo("produk")}>Produk</a>
-            <a onClick={() => scrollTo("tentang")}>Tentang Kami</a>
+            <Link href="/tentang-kami">Tentang Kami</Link>
+            <Link href="/tentang-kami" onClick={() => setMenuOpen(false)}>Tentang Kami</Link>
             <Link href="/blog" onClick={() => setMenuOpen(false)}>Blog</Link>
           </div>
 
@@ -342,25 +343,6 @@ useEffect(() => {
               <div className="ramu-stat-pill"><div className="ramu-stat-num">PRODUK PILIHAN</div><div className="ramu-stat-label">Health & Wellness</div></div>
               <div className="ramu-stat-pill"><div className="ramu-stat-num">BPOM</div><div className="ramu-stat-label">Terdaftar</div></div>
               <div className="ramu-stat-pill"><div className="ramu-stat-num">MULTI-BRAND</div><div className="ramu-stat-label">Terpercaya</div></div>
-            </div>
-          </section>
-
-          {/* KEUNGGULAN */}
-          <section className="ramu-section" id="tentang" style={{background:"#EFF5E6"}}>
-            <div className="ramu-eyebrow-besar">Mengapa RamuDjitu</div>
-            <p style={{fontSize:"13px", fontWeight:"300", color:"var(--text-dark)", lineHeight:"1.8", textAlign:"justify", marginBottom:"1.25rem"}}>Di tengah banyaknya pilihan produk kesehatan dan wellness, memilih yang tepat tidak selalu mudah. RamuDjitu menghadirkan produk health & wellness pilihan dari berbagai brand terpercaya yang memiliki standar legalitas dan kualitas yang jelas. Bagi kami, kesehatan bukan sekadar tentang banyaknya pilihan, tetapi tentang menemukan yang tepat dan memberikan manfaat yang nyata. Itulah semangat yang menjadi dasar hadirnya RamuDjitu.</p>
-            <div className="ramu-k-grid">
-              {[
-                { title: "Produk Pilihan", desc: "Kami menghadirkan produk yang dipilih dengan mempertimbangkan kualitas dan kepercayaan." },
-                { title: "Brand Terpercaya", desc: "Berbagai pilihan dari brand yang memiliki komitmen terhadap kualitas dan kepuasan pelanggan." },
-                { title: "Legal & Terdaftar", desc: "Kami mengutamakan produk yang memiliki legalitas dan standar yang jelas." },
-                { title: "Manfaat yang Nyata", desc: "Kami percaya setiap pilihan kesehatan seharusnya memberikan nilai dan manfaat yang dapat dirasakan dalam kehidupan sehari-hari." },
-              ].map((item, i) => (
-                <div className="ramu-k-card" key={i}>
-                  <h4>{item.title}</h4>
-                  <p>{item.desc}</p>
-                </div>
-              ))}
             </div>
           </section>
 
