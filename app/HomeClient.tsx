@@ -324,7 +324,6 @@ useEffect(() => {
           {/* MOBILE MENU */}
           <div className={`ramu-mobile-menu${menuOpen ? " open" : ""}`}>
             <a onClick={() => scrollTo("produk")}>Produk</a>
-            <Link href="/tentang-kami">Tentang Kami</Link>
             <Link href="/tentang-kami" onClick={() => setMenuOpen(false)}>Tentang Kami</Link>
             <Link href="/blog" onClick={() => setMenuOpen(false)}>Blog</Link>
           </div>
