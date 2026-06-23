@@ -245,6 +245,8 @@ const RAW_CSS = `
   .ramu-bottom-nav-item:hover span { color: var(--brown-dark); }
   .ramu-bottom-nav-item.active svg { stroke: var(--green-deep); }
   .ramu-bottom-nav-item.active span { color: var(--green-deep); font-weight: 500; }
+  .ramu-bottom-nav-item.active:hover svg { stroke: var(--brown-dark); }
+  .ramu-bottom-nav-item.active:hover span { color: var(--brown-dark); }
   .ramu-bottom-nav-wa svg { fill: #25D366 !important; stroke: none !important; }
   .ramu-bottom-nav-wa span { color: #25D366 !important; }
   .ramu-bottom-nav-cart { position: relative; }
