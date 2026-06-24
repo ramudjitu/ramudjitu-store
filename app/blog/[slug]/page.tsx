@@ -1,4 +1,4 @@
-import BottomNav from "../components/BottomNav";
+import BottomNav from "../../components/BottomNav";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
