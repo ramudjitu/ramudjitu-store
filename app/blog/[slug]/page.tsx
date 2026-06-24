@@ -1,3 +1,4 @@
+import BottomNav from "../components/BottomNav";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
@@ -61,7 +62,7 @@ const DETAIL_CSS = `
   .det-nav-back { display: flex; align-items: center; gap: 6px; color: var(--text-muted); font-size: 13px; text-decoration: none; transition: color 0.2s; }
   .det-nav-back:hover { color: var(--green-mid); }
 
-  .det-hero { background: var(--brown-dark); padding: 2.5rem 1.25rem 2rem; }
+  .det-hero { background: linear-gradient(135deg, #2C1F0E 0%, #3D2E10 60%, #2D4A1A 100%); border-top: 1px solid rgba(245,236,215,0.08); padding: 2rem 1.25rem 1.5rem; }
   .det-tag { display: inline-block; background: rgba(122,158,78,0.15); border: 1px solid rgba(122,158,78,0.3); color: var(--green-light); font-size: 10px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 1rem; }
   .det-title { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--cream); line-height: 1.3; margin-bottom: 1rem; }
   .det-meta { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
@@ -93,9 +94,21 @@ const DETAIL_CSS = `
   .det-related-tag { font-size: 9px; font-weight: 500; color: var(--green-mid); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
   .det-related-ttl { font-size: 13px; font-weight: 500; color: var(--text-dark); line-height: 1.4; }
 
-  .det-footer { background: var(--brown-dark); border-top: 1px solid rgba(245,236,215,0.08); padding: 1.5rem 1.25rem; text-align: center; }
-  .det-footer p { font-size: 11px; color: rgba(245,236,215,0.4); }
-  .det-footer a { color: var(--green-light); text-decoration: none; }
+  .det-footer { background: linear-gradient(135deg, #2C1F0E 0%, #3D2E10 60%, #2D4A1A 100%); border-top: 1px solid rgba(245,236,215,0.08); padding: 2rem 1.25rem 5rem; }
+  .det-footer-logo { font-family:'Playfair Display',serif; font-size:18px; color:var(--cream); margin-bottom:4px; }
+  .det-footer-tagline { font-size:11px; font-weight:300; color:rgba(245,236,215,0.4); margin-bottom:1.25rem; }
+  .det-footer-sosmed { display:flex; gap:10px; margin-bottom:1.5rem; }
+  .det-sosmed-btn { width:34px; height:34px; border-radius:50%; background:rgba(245,236,215,0.08); border:1px solid rgba(245,236,215,0.15); display:flex; align-items:center; justify-content:center; text-decoration:none; transition:all 0.2s; }
+  .det-sosmed-btn:hover { background:var(--green-mid); border-color:var(--green-mid); }
+  .det-sosmed-btn svg { width:15px; height:15px; fill:rgba(245,236,215,0.7); }
+  .det-sosmed-fb { background: #1877F2 !important; border-color: #1877F2 !important; }
+  .det-sosmed-ig { background: #E1306C !important; border-color: #E1306C !important; }
+  .det-sosmed-yt { background: #FF0000 !important; border-color: #FF0000 !important; }
+  .det-sosmed-tt { background: #010101 !important; border-color: #333 !important; }
+  .det-footer-links { display:flex; flex-wrap:wrap; gap:8px 20px; margin-bottom:1.5rem; }
+  .det-footer-links a { font-size:11px; color:rgba(245,236,215,0.4); text-decoration:none; transition:color 0.2s; }
+  .det-footer-links a:hover { color:var(--green-light); }
+  .det-footer-copy { font-size:10px; color:rgba(245,236,215,0.25); text-align:center; padding-top:1rem; border-top:1px solid rgba(245,236,215,0.08); }
 `;
 
 function formatTanggal(dateString: string) {
@@ -128,7 +141,7 @@ export default async function ArtikelDetailPage({ params }: { params: Promise<{ 
         <div className="det-outer">
           <div className="det-wrapper">
             <header className="det-header">
-              <Link className="det-logo" href="/"><img src="/logo.png" alt="Ramudjitu" style={{height:"40px", width:"40px", borderRadius:"50%", objectFit:"cover"}} /></Link>
+              <Link className="det-logo" href="/" style={{gap:"10px"}}><img src="https://res.cloudinary.com/dzg25zm9i/image/upload/v1781697094/RAMUDJITU_sf1t8w.png" alt="Ramudjitu" style={{height:"56px", width:"56px", borderRadius:"50%", objectFit:"cover"}} /></Link>
               <Link href="/blog" className="det-nav-back">← Blog</Link>
             </header>
             <div style={{textAlign:"center", padding:"6rem 2rem"}}>
@@ -152,7 +165,10 @@ export default async function ArtikelDetailPage({ params }: { params: Promise<{ 
 
           <header className="det-header">
             <Link className="det-logo" href="/">
-              <img src="/logo.png" alt="Ramudjitu" style={{height:"40px", width:"40px", borderRadius:"50%", objectFit:"cover"}} />
+              <img src="https://res.cloudinary.com/dzg25zm9i/image/upload/v1781697094/RAMUDJITU_sf1t8w.png" alt="Ramudjitu" style={{height:"40px", width:"40px", borderRadius:"50%", objectFit:"cover"}} />
+              <span style={{fontFamily:"'Playfair Display',serif", fontSize:"16px", fontWeight:"700"}}>
+                <span style={{color:"#2e3a1f"}}>Ramu</span><span style={{color:"#4a3218"}}>Djitu</span>
+              </span>
             </Link>
             <Link href="/blog" className="det-nav-back">← Kembali ke Blog</Link>
           </header>
@@ -209,12 +225,39 @@ export default async function ArtikelDetailPage({ params }: { params: Promise<{ 
             </section>
           )}
 
+           {/* FOOTER sama dengan home */}
           <footer className="det-footer">
-            <p>© 2026 <a href="/">Ramudjitu</a> · <a href="/blog">Blog</a> · Herbal pilihan, kesehatan terjaga</p>
+            <div className="t-footer-logo"><span style={{fontFamily:"'Playfair Display', serif", fontWeight:"700"}}><span style={{color:"#C5DC8E"}}>Ramu</span><span style={{color:"#F5ECD7"}}>Djitu</span></span></div>
+            <div className="det-footer-tagline">Herbal pilihan, kesehatan terjaga</div>
+            <div className="det-footer-sosmed">
+              <a href="https://facebook.com/ramudjitu" target="_blank" rel="noopener noreferrer" className="det-sosmed-btn det-sosmed-fb">
+                <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+              </a>
+              <a href="https://instagram.com/ramudjitu" target="_blank" rel="noopener noreferrer" className="det-sosmed-btn det-sosmed-ig">
+                <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              </a>
+              <a href="https://youtube.com/@ramudjitu" target="_blank" rel="noopener noreferrer" className="det-sosmed-btn det-sosmed-yt">
+                <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" style={{fill:"#1E1208"}}/></svg>
+              </a>
+              <a href="https://tiktok.com/@ramudjitu" target="_blank" rel="noopener noreferrer" className="det-sosmed-btn det-sosmed-tt">
+                <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+              </a>
+            </div>
+            <div className="det-footer-links">
+              <Link href="/" style={{fontSize:"11px",color:"rgba(245,236,215,0.4)",textDecoration:"none"}}>Beranda</Link>
+              <Link href="/blog" style={{fontSize:"11px",color:"rgba(245,236,215,0.4)",textDecoration:"none"}}>Blog</Link>
+              <a href="#">Syarat & Ketentuan</a>
+              <a href="#">Kebijakan Privasi</a>
+              <a href="#">FAQ</a>
+              <a href="#">Hubungi Kami</a>
+            </div>
+            <div className="det-footer-copy">© 2026 RamuDjitu · Semua hak dilindungi</div>
           </footer>
 
         </div>
       </div>
+      <BottomNav activeTab="beranda" />
     </>
   );
 }
+

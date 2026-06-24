@@ -1,3 +1,4 @@
+import BottomNav from "../components/BottomNav";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { getAllArtikel } from "@/sanity/queries";
@@ -62,7 +63,7 @@ const BLOG_CSS = `
   .blog-nav-back { display: flex; align-items: center; gap: 6px; color: var(--text-muted); font-size: 13px; text-decoration: none; transition: color 0.2s; }
   .blog-nav-back:hover { color: var(--green-mid); }
 
-  .blog-hero { background: var(--brown-dark); padding: 2.5rem 1.25rem; text-align: center; }
+  .blog-hero { background: linear-gradient(135deg, #2C1F0E 0%, #3D2E10 60%, #2D4A1A 100%); border-top: 1px solid rgba(245,236,215,0.08); padding: 2rem 1.25rem 1.5rem; }
   .blog-eyebrow { display: inline-flex; align-items: center; gap: 6px; background: rgba(122,158,78,0.15); border: 1px solid rgba(122,158,78,0.3); color: var(--green-light); font-size: 10px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 1rem; }
   .blog-hero-title { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--cream); line-height: 1.3; margin-bottom: 0.75rem; }
   .blog-hero-title em { font-style: italic; color: var(--green-light); }
@@ -87,9 +88,21 @@ const BLOG_CSS = `
 
   .blog-empty { text-align: center; padding: 3rem 1rem; color: var(--text-muted); font-size: 13px; }
 
-  .blog-footer { background: var(--brown-dark); border-top: 1px solid rgba(245,236,215,0.08); padding: 1.5rem 1.25rem; text-align: center; }
-  .blog-footer-text { font-size: 11px; color: rgba(245,236,215,0.4); }
-  .blog-footer-text a { color: var(--green-light); text-decoration: none; }
+  .blog-footer { background: linear-gradient(135deg, #2C1F0E 0%, #3D2E10 60%, #2D4A1A 100%); border-top: 1px solid rgba(245,236,215,0.08); padding: 2rem 1.25rem 5rem; }
+  .blog-footer-logo { font-family:'Playfair Display',serif; font-size:18px; color:var(--cream); margin-bottom:4px; }
+  .blog-footer-tagline { font-size:11px; font-weight:300; color:rgba(245,236,215,0.4); margin-bottom:1.25rem; }
+  .blog-footer-sosmed { display:flex; gap:10px; margin-bottom:1.5rem; }
+  .blog-sosmed-btn { width:34px; height:34px; border-radius:50%; background:rgba(245,236,215,0.08); border:1px solid rgba(245,236,215,0.15); display:flex; align-items:center; justify-content:center; text-decoration:none; transition:all 0.2s; }
+  .blog-sosmed-btn:hover { background:var(--green-mid); border-color:var(--green-mid); }
+  .blog-sosmed-btn svg { width:15px; height:15px; fill:rgba(245,236,215,0.7); }
+  .blog-sosmed-fb { background: #1877F2 !important; border-color: #1877F2 !important; }
+  .blog-sosmed-ig { background: #E1306C !important; border-color: #E1306C !important; }
+  .blog-sosmed-yt { background: #FF0000 !important; border-color: #FF0000 !important; }
+  .blog-sosmed-tt { background: #010101 !important; border-color: #333 !important; }
+  .blog-footer-links { display:flex; flex-wrap:wrap; gap:8px 20px; margin-bottom:1.5rem; }
+  .blog-footer-links a { font-size:11px; color:rgba(245,236,215,0.4); text-decoration:none; transition:color 0.2s; }
+  .blog-footer-links a:hover { color:var(--green-light); }
+  .blog-footer-copy { font-size:10px; color:rgba(245,236,215,0.25); text-align:center; padding-top:1rem; border-top:1px solid rgba(245,236,215,0.08); }
 `;
 
 function formatTanggal(dateString: string) {
@@ -108,8 +121,11 @@ export default async function BlogPage() {
         <div className="blog-wrapper">
 
           <header className="blog-header">
-            <Link className="blog-logo" href="/">
-              <img src="/logo.png" alt="Ramudjitu" style={{height:"40px", width:"40px", borderRadius:"50%", objectFit:"cover"}} />
+            <Link className="blog-logo" href="/" style={{gap:"10px"}}>
+              <img src="https://res.cloudinary.com/dzg25zm9i/image/upload/v1781697094/RAMUDJITU_sf1t8w.png" alt="Ramudjitu" style={{height:"56px", width:"56px", borderRadius:"50%", objectFit:"cover"}} />
+              <span style={{fontFamily:"'Playfair Display',serif", fontSize:"16px", fontWeight:"700"}}>
+                <span style={{color:"#2e3a1f"}}>Ramu</span><span style={{color:"#4a3218"}}>Djitu</span>
+              </span>
             </Link>
             <Link href="/" className="blog-nav-back">← Kembali ke Toko</Link>
           </header>
@@ -154,12 +170,39 @@ export default async function BlogPage() {
             )}
           </main>
 
+           {/* FOOTER sama dengan home */}
           <footer className="blog-footer">
-            <p className="blog-footer-text">© 2026 <a href="/">Ramudjitu</a> · Herbal pilihan, kesehatan terjaga</p>
+            <div className="t-footer-logo"><span style={{fontFamily:"'Playfair Display', serif", fontWeight:"700"}}><span style={{color:"#C5DC8E"}}>Ramu</span><span style={{color:"#F5ECD7"}}>Djitu</span></span></div>
+            <div className="blog-footer-tagline">Herbal pilihan, kesehatan terjaga</div>
+            <div className="blog-footer-sosmed">
+              <a href="https://facebook.com/ramudjitu" target="_blank" rel="noopener noreferrer" className="blog-sosmed-btn blog-sosmed-fb">
+                <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+              </a>
+              <a href="https://instagram.com/ramudjitu" target="_blank" rel="noopener noreferrer" className="blog-sosmed-btn blog-sosmed-ig">
+                <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              </a>
+              <a href="https://youtube.com/@ramudjitu" target="_blank" rel="noopener noreferrer" className="blog-sosmed-btn blog-sosmed-yt">
+                <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" style={{fill:"#1E1208"}}/></svg>
+              </a>
+              <a href="https://tiktok.com/@ramudjitu" target="_blank" rel="noopener noreferrer" className="blog-sosmed-btn blog-sosmed-tt">
+                <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+              </a>
+            </div>
+            <div className="blog-footer-links">
+              <Link href="/" style={{fontSize:"11px",color:"rgba(245,236,215,0.4)",textDecoration:"none"}}>Beranda</Link>
+              <Link href="/blog" style={{fontSize:"11px",color:"rgba(245,236,215,0.4)",textDecoration:"none"}}>Blog</Link>
+              <a href="#">Syarat & Ketentuan</a>
+              <a href="#">Kebijakan Privasi</a>
+              <a href="#">FAQ</a>
+              <a href="#">Hubungi Kami</a>
+            </div>
+            <div className="blog-footer-copy">© 2026 RamuDjitu · Semua hak dilindungi</div>
           </footer>
 
         </div>
       </div>
+      <BottomNav activeTab="beranda" />
     </>
   );
 }
+

@@ -1,3 +1,4 @@
+import BottomNav from "../components/BottomNav";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -21,7 +22,7 @@ const CSS = `
   .t-back:hover { color:var(--green-mid); }
 
   /* HERO sama dengan home ada gradasi green */
-  .t-hero { background:var(--brown-dark); padding:2.5rem 1.25rem; text-align:center; position:relative; overflow:hidden; }
+  .t-hero { background: linear-gradient(135deg, #2C1F0E 0%, #3D2E10 60%, #2D4A1A 100%); padding:2.5rem 1.25rem; text-align:left; position:relative; overflow:hidden; }
   .t-hero::before { content:''; position:absolute; top:-60px; right:-60px; width:280px; height:280px; background:radial-gradient(circle, rgba(74,122,37,0.18) 0%, transparent 70%); pointer-events:none; }
   .t-hero::after { content:''; position:absolute; bottom:-40px; left:-40px; width:200px; height:200px; background:radial-gradient(circle, rgba(74,122,37,0.12) 0%, transparent 70%); pointer-events:none; }
   .t-eyebrow { display:inline-flex; align-items:center; background:rgba(122,158,78,0.15); border:1px solid rgba(122,158,78,0.3); color:var(--green-light); font-size:10px; font-weight:500; letter-spacing:1.5px; text-transform:uppercase; padding:4px 12px; border-radius:20px; margin-bottom:1rem; position:relative; z-index:1; }
@@ -44,20 +45,23 @@ const CSS = `
   .t-visi-text { font-family:'Playfair Display',serif; font-size:15px; color:var(--text-dark); line-height:1.6; font-style:italic; }
 
   /* CTA gradasi green */
-  .t-cta { background:linear-gradient(135deg, var(--green-deep) 0%, var(--green-mid) 60%, var(--green-bright) 100%); border-radius:14px; padding:1.5rem 1.25rem; text-align:center; margin-top:2rem; position:relative; overflow:hidden; }
-  .t-cta::before { content:''; position:absolute; top:-40px; right:-40px; width:160px; height:160px; background:rgba(255,255,255,0.06); border-radius:50%; pointer-events:none; }
+  .t-cta { background: linear-gradient(135deg, #2C1F0E 0%, #3D2E10 60%, #2D4A1A 100%); border-radius:14px; padding:1.5rem 1.25rem; text-align:center; margin-top:2rem; position:relative; overflow:hidden; }
   .t-cta p { font-size:13px; font-weight:300; color:rgba(245,236,215,0.9); line-height:1.7; margin-bottom:1rem; position:relative; z-index:1; }
-  .t-cta-btn { display:inline-block; background:#fff; color:var(--green-deep); font-family:'DM Sans',sans-serif; font-size:13px; font-weight:500; padding:10px 24px; border-radius:999px; text-decoration:none; transition:all 0.2s; position:relative; z-index:1; }
-  .t-cta-btn:hover { background:var(--cream); }
+  .t-cta-btn {display:inline-flex; align-items:center; gap:8px; background:var(--green-mid); color:#fff; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:500; padding:11px 24px; border-radius:32px; text-decoration:none; transition:all 0.2s; position:relative; z-index:1; }
+  .t-cta-btn:hover { background: var(--green-deep); }
 
   /* FOOTER sama dengan home */
-  .t-footer { background:var(--brown-dark); border-top:1px solid rgba(245,236,215,0.08); padding:3rem 1.25rem 2rem; }
+  .t-footer { background: linear-gradient(135deg, #2C1F0E 0%, #3D2E10 60%, #2D4A1A 100%); border-top: 1px solid rgba(245,236,215,0.08); padding: 2rem 1.25rem 5rem; }
   .t-footer-logo { font-family:'Playfair Display',serif; font-size:18px; color:var(--cream); margin-bottom:4px; }
   .t-footer-tagline { font-size:11px; font-weight:300; color:rgba(245,236,215,0.4); margin-bottom:1.25rem; }
   .t-footer-sosmed { display:flex; gap:10px; margin-bottom:1.5rem; }
   .t-sosmed-btn { width:34px; height:34px; border-radius:50%; background:rgba(245,236,215,0.08); border:1px solid rgba(245,236,215,0.15); display:flex; align-items:center; justify-content:center; text-decoration:none; transition:all 0.2s; }
   .t-sosmed-btn:hover { background:var(--green-mid); border-color:var(--green-mid); }
   .t-sosmed-btn svg { width:15px; height:15px; fill:rgba(245,236,215,0.7); }
+  .t-sosmed-fb { background: #1877F2 !important; border-color: #1877F2 !important; }
+  .t-sosmed-ig { background: #E1306C !important; border-color: #E1306C !important; }
+  .t-sosmed-yt { background: #FF0000 !important; border-color: #FF0000 !important; }
+  .t-sosmed-tt { background: #010101 !important; border-color: #333 !important; }
   .t-footer-links { display:flex; flex-wrap:wrap; gap:8px 20px; margin-bottom:1.5rem; }
   .t-footer-links a { font-size:11px; color:rgba(245,236,215,0.4); text-decoration:none; transition:color 0.2s; }
   .t-footer-links a:hover { color:var(--green-light); }
@@ -127,37 +131,37 @@ export default function TentangKamiPage() {
 
           </main>
 
-          {/* FOOTER sama dengan home */}
+          {/* FOOTER */}
           <footer className="t-footer">
-            <div className="t-footer-logo">RamuDjitu</div>
+            <div className="t-footer-logo"><span style={{fontFamily:"'Playfair Display', serif", fontWeight:"700"}}><span style={{color:"#C5DC8E"}}>Ramu</span><span style={{color:"#F5ECD7"}}>Djitu</span></span></div>
             <div className="t-footer-tagline">Herbal pilihan, kesehatan terjaga</div>
             <div className="t-footer-sosmed">
-              <a href="https://facebook.com/ramudjitu" target="_blank" rel="noopener noreferrer" className="t-sosmed-btn">
+              <a href="https://facebook.com/ramudjitu" target="_blank" rel="noopener noreferrer" className="t-sosmed-btn t-sosmed-fb">
                 <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
               </a>
-              <a href="https://instagram.com/ramudjitu" target="_blank" rel="noopener noreferrer" className="t-sosmed-btn">
+              <a href="https://instagram.com/ramudjitu" target="_blank" rel="noopener noreferrer" className="t-sosmed-btn t-sosmed-ig">
                 <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
               </a>
-              <a href="https://youtube.com/@ramudjitu" target="_blank" rel="noopener noreferrer" className="t-sosmed-btn">
-                <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" style={{fill:"#1E1208"}}/></svg>
+              <a href="https://youtube.com/@ramudjitu" target="_blank" rel="noopener noreferrer" className="t-sosmed-btn t-sosmed-yt">
+                <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" style={{fill:"var(--brown-dark)"}}/></svg>
               </a>
-              <a href="https://tiktok.com/@ramudjitu" target="_blank" rel="noopener noreferrer" className="t-sosmed-btn">
+              <a href="https://tiktok.com/@ramudjitu" target="_blank" rel="noopener noreferrer" className="t-sosmed-btn t-sosmed-tt">
                 <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
               </a>
             </div>
             <div className="t-footer-links">
-              <Link href="/" style={{fontSize:"11px",color:"rgba(245,236,215,0.4)",textDecoration:"none"}}>Beranda</Link>
-              <Link href="/blog" style={{fontSize:"11px",color:"rgba(245,236,215,0.4)",textDecoration:"none"}}>Blog</Link>
               <a href="#">Syarat & Ketentuan</a>
               <a href="#">Kebijakan Privasi</a>
-              <a href="#">FAQ</a>
+              <a href="#">Kebijakan Pengembalian</a>
               <a href="#">Hubungi Kami</a>
+              <a href="#">FAQ</a>
             </div>
-            <div className="t-footer-copy">© 2026 RamuDjitu · Semua hak dilindungi</div>
+            <div className="t-footer-copy">© 2026 Ramudjitu · Semua hak dilindungi</div>
           </footer>
 
         </div>
       </div>
+      <BottomNav activeTab="beranda" />
     </>
   );
 }
