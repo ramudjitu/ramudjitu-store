@@ -115,7 +115,7 @@ export default async function BlogPage() {
           </header>
 
           <section className="blog-hero">
-            <div className="blog-eyebrow">📝 Blog & Edukasi</div>
+            <div className="blog-eyebrow">Blog & Edukasi</div>
             <h1 className="blog-hero-title">Tips & Wawasan <em>Herbal</em> untuk Hidupmu</h1>
             <p className="blog-hero-sub">Artikel edukasi seputar tanaman herbal, manfaat jamu, dan gaya hidup sehat alami.</p>
           </section>
