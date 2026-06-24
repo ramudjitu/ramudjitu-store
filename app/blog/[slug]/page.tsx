@@ -53,7 +53,6 @@ const DETAIL_CSS = `
     box-shadow: 0 0 60px rgba(0,0,0,0.2);
     font-family: 'DM Sans', sans-serif;
     color: var(--text-dark);
-    overflow-x: hidden;
   }
 
   .det-header { background: var(--cream-light); padding: 0 1.25rem; height: 60px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--cream-mid); box-shadow: 0 2px 8px rgba(30,18,8,0.06); }
