@@ -57,8 +57,8 @@ const BLOG_CSS = `
     border-bottom: 1px solid var(--cream-mid);
     box-shadow: 0 2px 8px rgba(30,18,8,0.06);
   }
-  .blog-logo { display: flex; align-items: center; text-decoration: none; }
-  .blog-logo img { height: 40px; width: 40px; border-radius: 50%; object-fit: cover; }
+  .blog-logo { display: flex; align-items: center; gap:10px; text-decoration: none; }
+  .blog-logo img { height: 44px; width: 44px; border-radius: 50%; object-fit: cover; }
   .blog-nav-back { display: flex; align-items: center; gap: 6px; color: var(--text-muted); font-size: 13px; text-decoration: none; transition: color 0.2s; }
   .blog-nav-back:hover { color: var(--green-mid); }
 
@@ -120,12 +120,11 @@ export default async function BlogPage() {
         <div className="blog-wrapper">
 
           <header className="blog-header">
-            <Link className="blog-logo" href="/" style={{gap:"10px"}}>
+            <Link className="blog-logo" href="/">
               <img src="https://res.cloudinary.com/dzg25zm9i/image/upload/v1781697094/RAMUDJITU_sf1t8w.png" alt="Ramudjitu" style={{height:"56px", width:"56px", borderRadius:"50%", objectFit:"cover"}} />
-              <span style={{fontFamily:"'Playfair Display',serif", fontSize:"16px", fontWeight:"700"}}>
-                <span style={{color:"#2e3a1f"}}>Ramu</span><span style={{color:"#4a3218"}}>Djitu</span>
-              </span>
+              <span style={{fontFamily:"'Playfair Display', serif", fontSize:"16px", fontWeight:"700", letterSpacing:"0.3px"}}><span style={{color:"#2e3a1f"}}>Ramu</span><span style={{color:"#4a3218"}}>Djitu</span></span>
             </Link>
+                 
             <Link href="/" className="blog-nav-back">← Kembali ke Toko</Link>
           </header>
 

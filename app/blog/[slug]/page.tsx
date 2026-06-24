@@ -56,8 +56,8 @@ const DETAIL_CSS = `
   }
 
   .det-header { background: var(--cream-light); padding: 0 1.25rem; height: 60px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--cream-mid); box-shadow: 0 2px 8px rgba(30,18,8,0.06); }
-  .det-logo { display: flex; align-items: center; text-decoration: none; }
-  .det-logo img { height: 40px; width: 40px; border-radius: 50%; object-fit: cover; }
+  .det-logo { display: flex; align-items: center; gap:10px; text-decoration: none; }
+  .det-logo img { height: 44px; width: 44px; border-radius: 50%; object-fit: cover; }
   .det-nav-back { display: flex; align-items: center; gap: 6px; color: var(--text-muted); font-size: 13px; text-decoration: none; transition: color 0.2s; }
   .det-nav-back:hover { color: var(--green-mid); }
 
@@ -164,11 +164,10 @@ export default async function ArtikelDetailPage({ params }: { params: Promise<{ 
 
           <header className="det-header">
             <Link className="det-logo" href="/">
-              <img src="https://res.cloudinary.com/dzg25zm9i/image/upload/v1781697094/RAMUDJITU_sf1t8w.png" alt="Ramudjitu" style={{height:"40px", width:"40px", borderRadius:"50%", objectFit:"cover"}} />
-              <span style={{fontFamily:"'Playfair Display',serif", fontSize:"16px", fontWeight:"700"}}>
-                <span style={{color:"#2e3a1f"}}>Ramu</span><span style={{color:"#4a3218"}}>Djitu</span>
-              </span>
+              <img src="https://res.cloudinary.com/dzg25zm9i/image/upload/v1781697094/RAMUDJITU_sf1t8w.png" alt="Ramudjitu" style={{height:"56px", width:"56px", borderRadius:"50%", objectFit:"cover"}} />
+              <span style={{fontFamily:"'Playfair Display', serif", fontSize:"16px", fontWeight:"700", letterSpacing:"0.3px"}}><span style={{color:"#2e3a1f"}}>Ramu</span><span style={{color:"#4a3218"}}>Djitu</span></span>
             </Link>
+
             <Link href="/blog" className="det-nav-back">← Kembali ke Blog</Link>
           </header>
 

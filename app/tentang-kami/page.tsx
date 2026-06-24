@@ -16,8 +16,8 @@ const CSS = `
 
   /* HEADER sama dengan home */
   .t-header { background:var(--cream-light); padding:0 1.25rem; height:68px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; border-bottom:1px solid var(--cream-mid); box-shadow:0 2px 8px rgba(30,18,8,0.06); }
-  .t-logo { display:flex; align-items:center; gap:8px; text-decoration:none; }
-  .t-logo img { height:56px; width:56px; border-radius:50%; object-fit:cover; }
+  .t-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+  .t-logo img { height:44px; width:44px; border-radius:50%; object-fit:cover; }
   .t-back { display:flex; align-items:center; gap:6px; color:var(--text-muted); font-size:13px; text-decoration:none; transition:color 0.2s; }
   .t-back:hover { color:var(--green-mid); }
 
@@ -78,11 +78,10 @@ export default function TentangKamiPage() {
           {/* HEADER */}
           <header className="t-header">
             <Link className="t-logo" href="/">
-              <img src="https://res.cloudinary.com/dzg25zm9i/image/upload/v1781697094/RAMUDJITU_sf1t8w.png" alt="Ramudjitu" />
-              <span style={{fontFamily:"'Playfair Display',serif", fontSize:"16px", fontWeight:"700"}}>
-                <span style={{color:"#2e3a1f"}}>Ramu</span><span style={{color:"#4a3218"}}>Djitu</span>
-              </span>
+              <img src="https://res.cloudinary.com/dzg25zm9i/image/upload/v1781697094/RAMUDJITU_sf1t8w.png" alt="Ramudjitu" style={{height:"56px", width:"56px", borderRadius:"50%", objectFit:"cover"}} />
+              <span style={{fontFamily:"'Playfair Display', serif", fontSize:"16px", fontWeight:"700", letterSpacing:"0.3px"}}><span style={{color:"#2e3a1f"}}>Ramu</span><span style={{color:"#4a3218"}}>Djitu</span></span>
             </Link>
+                 
             <Link href="/" className="t-back">← Kembali ke Toko</Link>
           </header>
 
