@@ -51,7 +51,7 @@ const BLOG_CSS = `
 
   .blog-header {
     background: var(--cream-light);
-    padding: 0 1.25rem; height: 60px;
+    padding: 0 1.25rem; height: 68px;
     display: flex; align-items: center; justify-content: space-between;
     position: sticky; top: 0; z-index: 100;
     border-bottom: 1px solid var(--cream-mid);
