@@ -3,44 +3,17 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
-const produkData: Record<string, {
+interface ProdukData {
   nama: string;
   harga: string;
   hargaNum: number;
-  img: string;
-    imgs?: string[];
-  lp: string;
-  checkout: string;
+  gambar?: string;
+  imgs?: string[];
+  urlLP?: string;
+  urlCheckout?: string;
   deskripsiSingkat: string;
   deskripsi: string[];
-  fitur: string[];
-}> = {
-  "getamor-superfood": {
-    nama: "GetAmor Superfood Premium Nutrisi Lengkap untuk Semua Keluarga Sehat Setiap Hari",
-    harga: "Rp 375.000",
-    hargaNum: 375000,
-    img: "https://res.cloudinary.com/dzg25zm9i/image/upload/v1781696979/GetAmor_square_1024_tl2fgz.png",
-    imgs: [
-      "https://res.cloudinary.com/dzg25zm9i/image/upload/v1781696979/GetAmor_square_1024_tl2fgz.png",
-      "https://res.cloudinary.com/dzg25zm9i/image/upload/v1781696978/GetAmor_Keluarga_oubgx4.png",
-      "https://res.cloudinary.com/dzg25zm9i/image/upload/v1781696977/GetAmor_Olah_raga_p9mnwf.png",
-    ],
-    lp: "#", // Ganti dengan URL LP Scalev
-    checkout: "#", // Ganti dengan URL checkout Scalev
-    deskripsiSingkat: "Menjaga kesehatan keluarga bukan hal yang mudah di tengah aktivitas yang padat. GetAmor hadir sebagai solusi praktis dengan kombinasi superfood alami pilihan dalam satu sajian — cukup 10 detik, siap dinikmati seluruh keluarga.",
-    deskripsi: [
-      "Menjaga kesehatan keluarga bukan hal yang mudah di tengah aktivitas yang padat. Mulai dari anak-anak, orang tua, hingga kamu sendiri — semuanya butuh asupan nutrisi yang cukup setiap hari.",
-      "GetAmor hadir sebagai solusi praktis dengan kombinasi superfood alami pilihan dalam satu sajian. Dirancang untuk membantu memenuhi kebutuhan nutrisi harian keluarga, menjaga energi tetap stabil, serta mendukung daya tahan tubuh tanpa ribet.",
-      "Cukup dalam beberapa detik, satu gelas GetAmor siap dinikmati oleh seluruh anggota keluarga — kapan saja, di mana saja.",
-    ],
-    fitur: [
-      "Nutrisi lengkap dari bahan alami pilihan",
-      "Praktis, hanya 10 detik siap minum",
-      "Cocok untuk anak-anak hingga orang tua",
-      "Mendukung energi & daya tahan tubuh setiap hari",
-    ],
-  },
-};
+}
 
 const PRODUK_CSS = `
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap');
@@ -281,8 +254,8 @@ const PRODUK_CSS = `
   }
 `;
 
-export default function ProdukClient({ slug }: { slug: string }) {
-  const produk = produkData[slug];
+export default function ProdukClient({ slug, produk }: { slug: string, produk: ProdukData | null }) {
+  console.log("PRODUK DATA:", produk);
   const [jumlah, setJumlah] = useState(1);
   const [aktifFoto, setAktifFoto] = useState(0);
   const [keranjangAdded, setKeranjangAdded] = useState(false);
@@ -372,7 +345,7 @@ export default function ProdukClient({ slug }: { slug: string }) {
             {/* FOTO + THUMBNAIL - kolom kiri */}
             <div className="pd-foto-col">
               <div className="pd-img-wrap">
-                <img src={produk.imgs ? produk.imgs[aktifFoto] : produk.img} alt={produk.nama} />
+                <img src={produk.imgs ? produk.imgs[aktifFoto] : produk.gambar} alt={produk.nama} />
               </div>
               {produk.imgs && produk.imgs.length > 1 && (
                 <div className="pd-thumb-row">
@@ -412,12 +385,12 @@ export default function ProdukClient({ slug }: { slug: string }) {
                       <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6"/></svg>
                     )}
                   </button>
-                  <button className="pd-btn-beli" onClick={() => window.open(produk.checkout, "_blank")}>
+                  <button className="pd-btn-beli" onClick={() => window.open(produk.urlCheckout || "#", "_blank")}>
                     Beli Sekarang
                   </button>
                 </div>
 
-                <a href={produk.lp} target="_blank" rel="noopener noreferrer" className="pd-btn-lp">
+                <a href={produk.urlLP || "#"} target="_blank" rel="noopener noreferrer" className="pd-btn-lp">
                   Pelajari Manfaat Lengkapnya →
                 </a>
               </div>
@@ -431,7 +404,7 @@ export default function ProdukClient({ slug }: { slug: string }) {
           {/* DESKRIPSI SINGKAT (teaser) - full width */}
           <div className="pd-teaser-full">
             <div className="pd-teaser-label">Tentang Produk</div>
-            {produk.deskripsi.map((p, i) => <p className="pd-teaser-text" key={i}>{p}</p>)}
+            {produk.deskripsi && produk.deskripsi.map((p: string, i: number) => <p className="pd-teaser-text" key={i}>{p}</p>)}
           </div>
 
           {/* BOTTOM NAV - desktop only */}

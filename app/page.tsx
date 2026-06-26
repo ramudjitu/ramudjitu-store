@@ -1,4 +1,4 @@
-import { getLatestArtikel } from "@/sanity/queries";
+import { getLatestArtikel, getAllProduk } from "@/sanity/queries";
 import { urlForImage } from "@/sanity/image";
 import HomeClient from "./HomeClient";
 
@@ -12,6 +12,7 @@ function formatTanggal(dateString: string) {
 
 export default async function Home() {
   const artikelRaw = await getLatestArtikel(3);
+  const produkRaw = await getAllProduk();
 
   const blogPreviews = artikelRaw.map((a: any) => ({
     slug: a.slug,
@@ -23,5 +24,5 @@ export default async function Home() {
     imageUrl: a.mainImage ? urlForImage(a.mainImage).width(180).height(180).url() : undefined,
   }));
 
-  return <HomeClient blogPreviews={blogPreviews} />;
+  return <HomeClient blogPreviews={blogPreviews} produkList={produkRaw} />;
 }
