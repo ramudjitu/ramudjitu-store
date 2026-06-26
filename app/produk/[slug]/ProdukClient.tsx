@@ -71,9 +71,9 @@ const PRODUK_CSS = `
     align-items: flex-start;
   }
 
-  .pd-wrapper {
+ .pd-wrapper {
     width: 100%;
-    max-width: 660px;
+    max-width: 690px;
     background: var(--cream-light);
     min-height: 100vh;
     box-shadow: 0 0 60px rgba(0,0,0,0.2);
@@ -138,7 +138,7 @@ const PRODUK_CSS = `
   .pd-cta-row { display: flex; gap: 12px; align-items: stretch; margin-bottom: 8px; }
   .pd-cta-sticky {
     position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
-    width: 100%; max-width: 660px; z-index: 100;
+    width: 100%; max-width: 690px; z-index: 100;
     background: var(--cream-light); border-top: 1px solid var(--cream-mid);
     padding: 10px 1.25rem; box-shadow: 0 -4px 16px rgba(30,18,8,0.08);
   }
@@ -224,7 +224,7 @@ const PRODUK_CSS = `
 
   /* ===== DESKTOP MEDIA QUERY (single block, placed last for priority) ===== */
   @media (min-width: 700px) {
-    .pd-wrapper { max-width: 660px; padding-bottom: 84px; }
+    .pd-wrapper { max-width: 690px; padding-bottom: 84px; }
     .pd-main { display: flex; gap: 2rem; padding: 1.5rem; align-items: flex-start; }
     .pd-foto-col { width: 50%; flex-shrink: 0; }
     .pd-img-wrap { width: 100%; padding-bottom: 0; height: 320px; border-radius: 16px; }
@@ -254,7 +254,7 @@ const PRODUK_CSS = `
 
     .pd-bottom-nav {
       display: flex; position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
-      width: 100%; max-width: 660px; z-index: 100;
+      width: 100%; max-width: 690px; z-index: 100;
       background: var(--cream-light); border-top: 1px solid var(--cream-mid);
       padding: 8px 0 10px; box-shadow: 0 -4px 16px rgba(30,18,8,0.08);
       justify-content: space-around; align-items: center;

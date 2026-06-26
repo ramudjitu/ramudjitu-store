@@ -12,7 +12,7 @@ const CSS = `
   :root { --brown-dark:#1E1208; --cream:#F5ECD7; --cream-light:#FAF7F2; --cream-mid:#EDE0C8; --green-deep:#2D4A1A; --green-mid:#4A7A25; --green-bright:#7A9E4E; --green-light:#C5DC8E; --green-pale:#EFF5E6; --text-dark:#1E1208; --text-muted:#8A7060; }
   * { box-sizing:border-box; margin:0; padding:0; }
   .t-outer { background:#d6cfc4; min-height:100vh; display:flex; justify-content:center; align-items:flex-start; }
-  .t-wrapper { width:100%; max-width:660px; background:var(--cream-light); min-height:100vh; box-shadow:0 0 60px rgba(0,0,0,0.2); font-family:'DM Sans',sans-serif; color:var(--text-dark); }
+  .t-wrapper { width:100%; max-width:690px; background:var(--cream-light); min-height:100vh; box-shadow:0 0 60px rgba(0,0,0,0.2); font-family:'DM Sans',sans-serif; color:var(--text-dark); }
 
   /* HEADER sama dengan home */
   .t-header { background:var(--cream-light); padding:0 1.25rem; height:68px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; border-bottom:1px solid var(--cream-mid); box-shadow:0 2px 8px rgba(30,18,8,0.06); }

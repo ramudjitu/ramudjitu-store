@@ -84,7 +84,7 @@ const RAW_CSS = `
 
   .ramu-wrapper {
     width: 100%;
-    max-width: 660px;
+    max-width: 690px;
     background: var(--cream-light);
     min-height: 100vh;
     position: relative;
@@ -232,7 +232,7 @@ const RAW_CSS = `
 
   .ramu-bottom-nav {
     position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
-    width: 100%; max-width: 660px; z-index: 100;
+    width: 100%; max-width: 690px; z-index: 100;
     background: var(--cream-light); border-top: 1px solid var(--cream-mid);
     padding: 8px 0 10px;
     box-shadow: 0 -4px 16px rgba(30,18,8,0.08);

@@ -12,13 +12,15 @@ const CSS = `
     --cream-mid: #EDE0C8;
     --green-deep: #2D4A1A;
   }
+    
   .ramu-bottom-nav {
     position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
-    width: 100%; max-width: 660px; z-index: 100;
+    width: 100%; max-width: 690px; z-index: 100;
     background: var(--cream-light); border-top: 1px solid var(--cream-mid);
     padding: 8px 0 10px;
     box-shadow: 0 -4px 16px rgba(30,18,8,0.08);
   }
+
   .ramu-bottom-nav-inner { display: flex; justify-content: space-around; align-items: center; }
   .ramu-bottom-nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; text-decoration: none; cursor: pointer; background: none; border: none; font-family: 'DM Sans', sans-serif; flex: 1; padding: 4px 0; }
   .ramu-bottom-nav-item svg { width: 20px; height: 20px; fill: none; stroke: var(--green-deep); stroke-width: 1.8; transition: stroke 0.2s; }

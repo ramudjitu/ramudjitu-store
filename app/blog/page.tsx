@@ -41,7 +41,7 @@ const BLOG_CSS = `
 
   .blog-wrapper {
     width: 100%;
-    max-width: 660px;
+    max-width: 690px;
     background: var(--cream-light);
     min-height: 100vh;
     box-shadow: 0 0 60px rgba(0,0,0,0.2);
