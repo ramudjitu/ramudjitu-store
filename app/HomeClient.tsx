@@ -3,6 +3,11 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 
+function optimasiCloudinary(url: string, width: number = 400) {
+  if (!url || !url.includes('cloudinary.com')) return url;
+  return url.replace('/image/upload/', `/image/upload/f_auto,q_auto,w_${width}/`);
+}
+
 interface Produk {
   nama: string;
   desc: string;
@@ -272,7 +277,7 @@ const RAW_CSS = `
   }  
 `;
 
-export default function HomeClient({ blogPreviews }: { blogPreviews: BlogPreview[] }) {
+export default function HomeClient({ blogPreviews, produkList }: { blogPreviews: BlogPreview[], produkList: any[] }) {
   const [aktifKategori, setAktifKategori] = useState<KategoriKey>("nutrisi");
   const [menuOpen, setMenuOpen] = useState(false);
   const katGridRef = useRef<HTMLDivElement>(null);
@@ -369,19 +374,25 @@ useEffect(() => {
             <div className="ramu-eyebrow">Produk</div>
             <div className="ramu-filter-label">Menampilkan: <strong>{kategoriList.find((k) => k.key === aktifKategori)?.nama}</strong></div>
             <div className="ramu-produk-grid">
-              {produkData[aktifKategori].map((p, i) => (
-                <Link key={i} className="ramu-p-card" href={p.lp} style={{textDecoration:"none"}}>
-                  <div className="ramu-p-img">
-                    {p.img && <img src={p.img} alt={p.nama} />}
-                  </div>
-                  <div className="ramu-p-info">
-                    <span className="ramu-p-price">{p.harga}</span>
-                    <div className="ramu-p-name">{p.nama}</div>
-                    <div className="ramu-p-desc">{p.desc}</div>
-                    <span className="ramu-p-btn-detail">Lihat Detail Produk →</span>
-                  </div>
-                </Link>
-              ))}
+             {produkList.filter(p => p.kategori === aktifKategori).length === 0 ? (
+  <div style={{gridColumn:"1/-1", textAlign:"center", padding:"2rem", color:"var(--text-muted)"}}>
+    Belum ada produk di kategori ini 🌿
+  </div>
+) : (
+  produkList.filter(p => p.kategori === aktifKategori).map((p, i) => (
+    <Link key={i} className="ramu-p-card" href={`/produk/${p.slug}`} style={{textDecoration:"none"}}>
+      <div className="ramu-p-img">
+        {p.gambar && <img src={optimasiCloudinary(p.gambar)} alt={p.nama} />}
+      </div>
+      <div className="ramu-p-info">
+        <span className="ramu-p-price">{p.harga}</span>
+        <div className="ramu-p-name">{p.nama}</div>
+        <div className="ramu-p-desc">{p.deskripsiSingkat}</div>
+        <span className="ramu-p-btn-detail">Lihat Detail Produk →</span>
+      </div>
+    </Link>
+  ))
+)}
             </div>
           </section>
 
