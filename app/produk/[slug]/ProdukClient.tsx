@@ -20,11 +20,11 @@ const produkData: Record<string, {
     nama: "GetAmor Superfood Premium Nutrisi Lengkap untuk Semua Keluarga Sehat Setiap Hari",
     harga: "Rp 375.000",
     hargaNum: 375000,
-    img: "https://res.cloudinary.com/dzg25zm9i/image/upload/v1781696979/GetAmor_square_1024_tl2fgz.png",
+    img: "https://res.cloudinary.com/dzg25zm9i/image/upload/f_auto,q_auto,w_600/v1781696979/GetAmor_square_1024_tl2fgz.png",
     imgs: [
-      "https://res.cloudinary.com/dzg25zm9i/image/upload/v1781696979/GetAmor_square_1024_tl2fgz.png",
-      "https://res.cloudinary.com/dzg25zm9i/image/upload/v1781696978/GetAmor_Keluarga_oubgx4.png",
-      "https://res.cloudinary.com/dzg25zm9i/image/upload/v1781696977/GetAmor_Olah_raga_p9mnwf.png",
+      "https://res.cloudinary.com/dzg25zm9i/image/upload/f_auto,q_auto,w_600/v1781696979/GetAmor_square_1024_tl2fgz.png",
+      "https://res.cloudinary.com/dzg25zm9i/image/upload/f_auto,q_auto,w_600/v1781696978/GetAmor_Keluarga_oubgx4.png",
+      "https://res.cloudinary.com/dzg25zm9i/image/upload/f_auto,q_auto,w_600/v1781696977/GetAmor_Olah_raga_p9mnwf.png",
     ],
     lp: "#", // Ganti dengan URL LP Scalev
     checkout: "#", // Ganti dengan URL checkout Scalev
@@ -44,7 +44,6 @@ const produkData: Record<string, {
 };
 
 const PRODUK_CSS = `
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap');
 
   :root {
     --brown-dark: #1E1208;
@@ -349,7 +348,7 @@ export default function ProdukClient({ slug }: { slug: string }) {
           <div className="pd-wrapper">
             <header className="pd-header">
               <Link className="pd-logo" href="/">
-                <img src="https://res.cloudinary.com/dzg25zm9i/image/upload/v1781697094/RAMUDJITU_sf1t8w.png" alt="RamuDjitu" style={{height:"44px", width:"44px", borderRadius:"50%", objectFit:"cover"}} />
+                <img src="https://res.cloudinary.com/dzg25zm9i/image/upload/f_auto,q_auto,w_80/v1781697094/RAMUDJITU_sf1t8w.png" alt="RamuDjitu" style={{height:"44px", width:"44px", borderRadius:"50%", objectFit:"cover"}} />
               </Link>
             </header>
             <div style={{textAlign:"center", padding:"6rem 2rem", color:"var(--text-muted)"}}>
@@ -370,7 +369,7 @@ export default function ProdukClient({ slug }: { slug: string }) {
           <div className="pd-wrapper">
             <header className="pd-header">
               <Link className="pd-logo" href="/">
-                <img src="https://res.cloudinary.com/dzg25zm9i/image/upload/v1781697094/RAMUDJITU_sf1t8w.png" alt="RamuDjitu" style={{height:"44px", width:"44px", borderRadius:"50%", objectFit:"cover"}} />
+                <img src="https://res.cloudinary.com/dzg25zm9i/image/upload/f_auto,q_auto,w_80/v1781697094/RAMUDJITU_sf1t8w.png" alt="RamuDjitu" style={{height:"44px", width:"44px", borderRadius:"50%", objectFit:"cover"}} />
               </Link>
               <Link href="/" className="pd-back">← Kembali</Link>
             </header>
@@ -394,7 +393,7 @@ export default function ProdukClient({ slug }: { slug: string }) {
           {/* HEADER */}
           <header className="pd-header">
             <Link className="pd-logo" href="/">
-              <img src="https://res.cloudinary.com/dzg25zm9i/image/upload/v1781697094/RAMUDJITU_sf1t8w.png" alt="RamuDjitu" style={{height:"44px", width:"44px", borderRadius:"50%", objectFit:"cover"}} />
+              <img src="https://res.cloudinary.com/dzg25zm9i/image/upload/f_auto,q_auto,w_80/v1781697094/RAMUDJITU_sf1t8w.png" alt="RamuDjitu" style={{height:"44px", width:"44px", borderRadius:"50%", objectFit:"cover"}} />
               <span className="pd-logo-name">
                 <span style={{color:"#2e3a1f"}}>Ramu</span>
                 <span style={{color:"#4a3218"}}>Djitu</span>
@@ -469,7 +468,7 @@ export default function ProdukClient({ slug }: { slug: string }) {
           {/* DESKRIPSI SINGKAT (teaser) - full width */}
           <div className="pd-teaser-full">
             <div className="pd-teaser-label">Tentang Produk</div>
-            {produk.deskripsi.map((p: string, i: number) => <p className="pd-teaser-text" key={i}>{p}</p>)}
+            {produk.deskripsi.map((p, i) => <p className="pd-teaser-text" key={i}>{p}</p>)}
           </div>
 
           {/* BOTTOM NAV - desktop only */}

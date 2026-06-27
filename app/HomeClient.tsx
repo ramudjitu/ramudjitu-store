@@ -5,12 +5,11 @@ import Link from "next/link";
 
 interface Produk {
   nama: string;
-  deskripsiSingkat: string;
+  desc: string;
   harga: string;
-  kategori: string;
-  slug: string;
-  gambar?: string;
-  urlLP?: string;
+  emoji: string;
+  lp: string;
+  img?: string;
 }
 
 interface BlogPreview {
@@ -25,15 +24,35 @@ interface BlogPreview {
 
 type KategoriKey = "nutrisi" | "stamina" | "amino" | "antioksidan";
 
+const produkData: Record<KategoriKey, Produk[]> = {
+  nutrisi: [
+    { nama: "GetAmor Superfood Premium Nutrisi Lengkap untuk Semua Keluarga Sehat Setiap Hari", desc: "Menjaga kesehatan keluarga bukan hal yang mudah di.", harga: "Rp 375.000", emoji: "🥤", lp: "/produk/getamor-superfood", img: "https://res.cloudinary.com/dzg25zm9i/image/upload/f_auto,q_auto,w_400/v1781696979/GetAmor_square_1024_tl2fgz.png" },
+  ],
+  stamina: [
+    { nama: "Ramu Stamina Plus", desc: "Temulawak & jahe merah untuk vitalitas harian", harga: "Rp 89.000", emoji: "⚡", lp: "#" },
+    { nama: "Herbal Energi Pria", desc: "Pasak bumi & ginseng untuk stamina prima", harga: "Rp 120.000", emoji: "💥", lp: "#" },
+    { nama: "Ramu Aktif Sport", desc: "Untuk performa fisik sebelum & sesudah olahraga", harga: "Rp 99.000", emoji: "🏃", lp: "#" },
+  ],
+  amino: [
+    { nama: "Amino Complex Herbal", desc: "Asam amino esensial dari bahan nabati pilihan", harga: "Rp 135.000", emoji: "💪", lp: "#" },
+    { nama: "Plant Protein Blend", desc: "Protein nabati lengkap dengan 9 asam amino", harga: "Rp 149.000", emoji: "🌱", lp: "#" },
+    { nama: "Recovery Amino", desc: "Pemulihan otot pasca aktivitas berat", harga: "Rp 115.000", emoji: "🔄", lp: "#" },
+  ],
+  antioksidan: [
+    { nama: "Ramu Imun Defense", desc: "Sambiloto & meniran untuk daya tahan tubuh", harga: "Rp 79.000", emoji: "🛡️", lp: "#" },
+    { nama: "Vitamin C Herbal", desc: "Ekstrak camu-camu & rosehip alami", harga: "Rp 85.000", emoji: "🍊", lp: "#" },
+    { nama: "Antox Herbal Blend", desc: "Polifenol tinggi dari teh hijau & grape seed", harga: "Rp 99.000", emoji: "🍇", lp: "#" },
+  ],
+};
+
 const kategoriList: { key: KategoriKey; emoji: string; nama: string; count: string; img: string }[] = [
-  { key: "nutrisi", emoji: "🥤", nama: "Fondasi", count: "6 produk", img: "https://res.cloudinary.com/dzg25zm9i/image/upload/v1781697490/kategori-fondasi.png_ufrw0h.png" },
-  { key: "stamina", emoji: "⚡", nama: "Regenerasi", count: "5 produk", img: "https://res.cloudinary.com/dzg25zm9i/image/upload/v1781697483/kategori-regenerasi.png_pnfzjl.png" },
-  { key: "amino", emoji: "💪", nama: "Perlindungan", count: "4 produk", img: "https://res.cloudinary.com/dzg25zm9i/image/upload/v1781697483/kategori-perlindungan.png_c0yxsi.png" },
-  { key: "antioksidan", emoji: "🛡️", nama: "Performa", count: "4 produk", img: "https://res.cloudinary.com/dzg25zm9i/image/upload/v1781697488/kategori-performa.png_ylvhfx.png" },
+  { key: "nutrisi", emoji: "🥤", nama: "Fondasi", count: "6 produk", img: "https://res.cloudinary.com/dzg25zm9i/image/upload/f_auto,q_auto,w_300/v1781697490/kategori-fondasi.png_ufrw0h.png" },
+  { key: "stamina", emoji: "⚡", nama: "Regenerasi", count: "5 produk", img: "https://res.cloudinary.com/dzg25zm9i/image/upload/f_auto,q_auto,w_300/v1781697483/kategori-regenerasi.png_pnfzjl.png" },
+  { key: "amino", emoji: "💪", nama: "Perlindungan", count: "4 produk", img: "https://res.cloudinary.com/dzg25zm9i/image/upload/f_auto,q_auto,w_300/v1781697483/kategori-perlindungan.png_c0yxsi.png" },
+  { key: "antioksidan", emoji: "🛡️", nama: "Performa", count: "4 produk", img: "https://res.cloudinary.com/dzg25zm9i/image/upload/f_auto,q_auto,w_300/v1781697488/kategori-performa.png_ylvhfx.png" },
 ];
 
 const RAW_CSS = `
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap');
 
   :root {
     --brown-dark: #1E1208;
@@ -64,7 +83,7 @@ const RAW_CSS = `
 
   .ramu-wrapper {
     width: 100%;
-    max-width: 690px;
+    max-width: 660px;
     background: var(--cream-light);
     min-height: 100vh;
     position: relative;
@@ -212,7 +231,7 @@ const RAW_CSS = `
 
   .ramu-bottom-nav {
     position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
-    width: 100%; max-width: 690px; z-index: 100;
+    width: 100%; max-width: 660px; z-index: 100;
     background: var(--cream-light); border-top: 1px solid var(--cream-mid);
     padding: 8px 0 10px;
     box-shadow: 0 -4px 16px rgba(30,18,8,0.08);
@@ -253,7 +272,7 @@ const RAW_CSS = `
   }  
 `;
 
-export default function HomeClient({ blogPreviews, produkList }: { blogPreviews: BlogPreview[], produkList: Produk[] }) {
+export default function HomeClient({ blogPreviews }: { blogPreviews: BlogPreview[] }) {
   const [aktifKategori, setAktifKategori] = useState<KategoriKey>("nutrisi");
   const [menuOpen, setMenuOpen] = useState(false);
   const katGridRef = useRef<HTMLDivElement>(null);
@@ -287,7 +306,7 @@ useEffect(() => {
           {/* HEADER */}
           <header className="ramu-header">
             <Link className="ramu-logo" href="/">
-              <img src="https://res.cloudinary.com/dzg25zm9i/image/upload/v1781697094/RAMUDJITU_sf1t8w.png" alt="Ramudjitu" style={{height:"56px", width:"56px", borderRadius:"50%", objectFit:"cover"}} />
+              <img src="https://res.cloudinary.com/dzg25zm9i/image/upload/f_auto,q_auto,w_80/v1781697094/RAMUDJITU_sf1t8w.png" alt="Ramudjitu" style={{height:"56px", width:"56px", borderRadius:"50%", objectFit:"cover"}} />
               <span style={{fontFamily:"'Playfair Display', serif", fontSize:"16px", fontWeight:"700", letterSpacing:"0.3px"}}><span style={{color:"#2e3a1f"}}>Ramu</span><span style={{color:"#4a3218"}}>Djitu</span></span>
             </Link>
               
@@ -350,25 +369,19 @@ useEffect(() => {
             <div className="ramu-eyebrow">Produk</div>
             <div className="ramu-filter-label">Menampilkan: <strong>{kategoriList.find((k) => k.key === aktifKategori)?.nama}</strong></div>
             <div className="ramu-produk-grid">
-              {produkList.filter(p => p.kategori === aktifKategori).length === 0 ? (
-                <div style={{gridColumn:"1/-1", textAlign:"center", padding:"2rem", color:"var(--text-muted)", fontSize:"13px"}}>
-                  Belum ada produk di kategori ini 🌿
-                </div>
-              ) : (
-                produkList.filter(p => p.kategori === aktifKategori).map((p, i) => (
-                  <Link key={i} className="ramu-p-card" href={`/produk/${p.slug}`} style={{textDecoration:"none"}}>
-                    <div className="ramu-p-img">
-                      {p.gambar && <img src={p.gambar} alt={p.nama} />}
-                    </div>
-                    <div className="ramu-p-info">
-                      <span className="ramu-p-price">{p.harga}</span>
-                      <div className="ramu-p-name">{p.nama}</div>
-                      <div className="ramu-p-desc">{p.deskripsiSingkat}</div>
-                      <span className="ramu-p-btn-detail">Lihat Detail Produk →</span>
-                    </div>
-                  </Link>
-                ))
-              )}
+              {produkData[aktifKategori].map((p, i) => (
+                <Link key={i} className="ramu-p-card" href={p.lp} style={{textDecoration:"none"}}>
+                  <div className="ramu-p-img">
+                    {p.img && <img src={p.img} alt={p.nama} />}
+                  </div>
+                  <div className="ramu-p-info">
+                    <span className="ramu-p-price">{p.harga}</span>
+                    <div className="ramu-p-name">{p.nama}</div>
+                    <div className="ramu-p-desc">{p.desc}</div>
+                    <span className="ramu-p-btn-detail">Lihat Detail Produk →</span>
+                  </div>
+                </Link>
+              ))}
             </div>
           </section>
 
