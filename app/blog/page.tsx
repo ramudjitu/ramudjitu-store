@@ -155,7 +155,7 @@ export default async function BlogPage() {
                   <Link href={`/blog/${artikel.slug}`} className="blog-card" key={artikel.slug}>
                     <div className="blog-card-img">
                       {artikel.mainImage ? (
-                        <img src={optimasiCloudinary(artikel.mainImage)} alt={artikel.title} />
+                        <img src={optimasiCloudinary(artikel.imageUrl)} alt={artikel.title} />
                       ) : (
                         "🌿"
                       )}

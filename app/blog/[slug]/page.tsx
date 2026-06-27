@@ -129,11 +129,11 @@ const ptComponents: PortableTextComponents = {
   },
   types: {
     image: ({ value }) => (
-      <img src={optimasiCloudinary(artikel.mainImage)} alt={artikel.title} />
+      <img src={value?.asset?.url || ''} alt={value?.alt || ''} />
     ),
-  },
-};
-
+   },
+ };
+ 
 export default async function ArtikelDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const artikel = await getArtikelBySlug(slug);
