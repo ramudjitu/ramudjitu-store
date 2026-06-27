@@ -4,6 +4,11 @@ import type { Metadata } from "next";
 import { getAllArtikel } from "@/sanity/queries";
 import { urlForImage } from "@/sanity/image";
 
+function optimasiCloudinary(url: string, width: number = 600) {
+  if (!url || !url.includes('cloudinary.com')) return url;
+  return url.replace('/image/upload/', `/image/upload/f_auto,q_auto,w_${width}/`);
+}
+
 export const metadata: Metadata = {
   title: "Blog Herbal & Tips Kesehatan | Ramudjitu",
   description: "Artikel edukasi seputar herbal, jamu tradisional, dan tips hidup sehat alami dari Ramudjitu.",
@@ -150,7 +155,7 @@ export default async function BlogPage() {
                   <Link href={`/blog/${artikel.slug}`} className="blog-card" key={artikel.slug}>
                     <div className="blog-card-img">
                       {artikel.mainImage ? (
-                        <img src={urlForImage(artikel.mainImage).width(200).height(200).url()} alt={artikel.title} />
+                        <img src={optimasiCloudinary(artikel.mainImage)} alt={artikel.title} />
                       ) : (
                         "🌿"
                       )}

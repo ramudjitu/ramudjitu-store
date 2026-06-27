@@ -3,20 +3,6 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 
-function optimasiCloudinary(url: string, width: number = 400) {
-  if (!url || !url.includes('cloudinary.com')) return url;
-  return url.replace('/image/upload/', `/image/upload/f_auto,q_auto,w_${width}/`);
-}
-
-interface Produk {
-  nama: string;
-  desc: string;
-  harga: string;
-  emoji: string;
-  lp: string;
-  img?: string;
-}
-
 interface BlogPreview {
   slug: string;
   title: string;
@@ -29,26 +15,10 @@ interface BlogPreview {
 
 type KategoriKey = "nutrisi" | "stamina" | "amino" | "antioksidan";
 
-const produkData: Record<KategoriKey, Produk[]> = {
-  nutrisi: [
-    { nama: "GetAmor Superfood Premium Nutrisi Lengkap untuk Semua Keluarga Sehat Setiap Hari", desc: "Menjaga kesehatan keluarga bukan hal yang mudah di.", harga: "Rp 375.000", emoji: "🥤", lp: "/produk/getamor-superfood", img: "https://res.cloudinary.com/dzg25zm9i/image/upload/f_auto,q_auto,w_400/v1781696979/GetAmor_square_1024_tl2fgz.png" },
-  ],
-  stamina: [
-    { nama: "Ramu Stamina Plus", desc: "Temulawak & jahe merah untuk vitalitas harian", harga: "Rp 89.000", emoji: "⚡", lp: "#" },
-    { nama: "Herbal Energi Pria", desc: "Pasak bumi & ginseng untuk stamina prima", harga: "Rp 120.000", emoji: "💥", lp: "#" },
-    { nama: "Ramu Aktif Sport", desc: "Untuk performa fisik sebelum & sesudah olahraga", harga: "Rp 99.000", emoji: "🏃", lp: "#" },
-  ],
-  amino: [
-    { nama: "Amino Complex Herbal", desc: "Asam amino esensial dari bahan nabati pilihan", harga: "Rp 135.000", emoji: "💪", lp: "#" },
-    { nama: "Plant Protein Blend", desc: "Protein nabati lengkap dengan 9 asam amino", harga: "Rp 149.000", emoji: "🌱", lp: "#" },
-    { nama: "Recovery Amino", desc: "Pemulihan otot pasca aktivitas berat", harga: "Rp 115.000", emoji: "🔄", lp: "#" },
-  ],
-  antioksidan: [
-    { nama: "Ramu Imun Defense", desc: "Sambiloto & meniran untuk daya tahan tubuh", harga: "Rp 79.000", emoji: "🛡️", lp: "#" },
-    { nama: "Vitamin C Herbal", desc: "Ekstrak camu-camu & rosehip alami", harga: "Rp 85.000", emoji: "🍊", lp: "#" },
-    { nama: "Antox Herbal Blend", desc: "Polifenol tinggi dari teh hijau & grape seed", harga: "Rp 99.000", emoji: "🍇", lp: "#" },
-  ],
-};
+function optimasiCloudinary(url: string, width: number = 400) {
+  if (!url || !url.includes('cloudinary.com')) return url;
+  return url.replace('/image/upload/', `/image/upload/f_auto,q_auto,w_${width}/`);
+}
 
 const kategoriList: { key: KategoriKey; emoji: string; nama: string; count: string; img: string }[] = [
   { key: "nutrisi", emoji: "🥤", nama: "Fondasi", count: "6 produk", img: "https://res.cloudinary.com/dzg25zm9i/image/upload/f_auto,q_auto,w_300/v1781697490/kategori-fondasi.png_ufrw0h.png" },

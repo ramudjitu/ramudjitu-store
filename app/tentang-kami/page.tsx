@@ -1,3 +1,4 @@
+import BottomNav from "../components/BottomNav";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -35,7 +36,7 @@ const CSS = `
 
   .tentang-wrapper {
     width: 100%;
-    max-width: 660px;
+    max-width: 690px;
     background: var(--cream-light);
     min-height: 100vh;
     box-shadow: 0 0 60px rgba(0,0,0,0.2);
@@ -349,9 +350,20 @@ export default function TentangKamiPage() {
           </main>
 
           {/* FOOTER */}
-          <footer className="tentang-footer">
-            <p className="tentang-footer-text">© 2026 <a href="/">Ramudjitu</a> · Herbal pilihan, kesehatan terjaga</p>
+          <footer style={{background:"linear-gradient(135deg, #2C1F0E 0%, #3D2E10 60%, #2D4A1A 100%)", borderTop:"1px solid rgba(245,236,215,0.08)", padding:"2rem 1.25rem 1.5rem"}}>
+            <div style={{fontFamily:"'Playfair Display', serif", fontSize:"18px", color:"var(--cream)", marginBottom:"4px"}}>
+              <span style={{color:"#C5DC8E"}}>Ramu</span><span style={{color:"#F5ECD7"}}>Djitu</span>
+            </div>
+            <div style={{fontSize:"11px", fontWeight:300, color:"rgba(245,236,215,0.4)", marginBottom:"1.5rem"}}>Herbal pilihan, kesehatan terjaga</div>
+            <div style={{display:"flex", flexWrap:"wrap", gap:"8px 20px", marginBottom:"1.5rem"}}>
+              {["Syarat & Ketentuan","Kebijakan Privasi","Kebijakan Pengembalian","Hubungi Kami","FAQ"].map(l => (
+                <a key={l} href="#" style={{fontSize:"11px", color:"rgba(245,236,215,0.4)", textDecoration:"none"}}>{l}</a>
+              ))}
+            </div>
+            <div style={{fontSize:"10px", color:"rgba(245,236,215,0.25)", textAlign:"center", paddingTop:"1rem", borderTop:"1px solid rgba(245,236,215,0.08)"}}>© 2026 Ramudjitu · Semua hak dilindungi</div>
           </footer>
+
+          <BottomNav activeTab="beranda" />
 
         </div>
       </div>

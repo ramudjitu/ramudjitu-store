@@ -4,6 +4,11 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { getProdukBySlug } from "@/sanity/queries";
 
+function optimasiCloudinary(url: string, width: number = 600) {
+  if (!url || !url.includes('cloudinary.com')) return url;
+  return url.replace('/image/upload/', `/image/upload/f_auto,q_auto,w_${width}/`);
+}
+
 const produkData: Record<string, {
   nama: string;
   harga: string;
@@ -331,7 +336,7 @@ export default function ProdukClient({ slug }: { slug: string }) {
     ? {
         nama: sanityProduk.nama,
         harga: sanityProduk.harga,
-        img: sanityProduk.gambar,
+        img: optimasiCloudinary(sanityProduk.gambar, 600),
         imgs: undefined,
         lp: sanityProduk.urlLP || "#",
         checkout: sanityProduk.urlCheckout || "#",

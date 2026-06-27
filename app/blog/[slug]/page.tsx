@@ -5,6 +5,11 @@ import { PortableText, PortableTextComponents } from "@portabletext/react";
 import { getArtikelBySlug } from "@/sanity/queries";
 import { urlForImage } from "@/sanity/image";
 
+function optimasiCloudinary(url: string, width: number = 600) {
+  if (!url || !url.includes('cloudinary.com')) return url;
+  return url.replace('/image/upload/', `/image/upload/f_auto,q_auto,w_${width}/`);
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const artikel = await getArtikelBySlug(slug);
@@ -124,7 +129,7 @@ const ptComponents: PortableTextComponents = {
   },
   types: {
     image: ({ value }) => (
-      <img src={urlForImage(value).width(640).url()} alt="" />
+      <img src={optimasiCloudinary(artikel.mainImage)} alt={artikel.title} />
     ),
   },
 };
