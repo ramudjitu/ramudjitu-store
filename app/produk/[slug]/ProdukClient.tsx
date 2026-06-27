@@ -468,7 +468,7 @@ export default function ProdukClient({ slug }: { slug: string }) {
           {/* DESKRIPSI SINGKAT (teaser) - full width */}
           <div className="pd-teaser-full">
             <div className="pd-teaser-label">Tentang Produk</div>
-            {produk.deskripsi.map((p, i) => <p className="pd-teaser-text" key={i}>{p}</p>)}
+            {produk.deskripsi.map((p: string, i: number) => <p className="pd-teaser-text" key={i}>{p}</p>)}
           </div>
 
           {/* BOTTOM NAV - desktop only */}
