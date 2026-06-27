@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { getProdukBySlug } from "@/sanity/queries";
 
 function optimasiCloudinary(url: string, width: number = 600) {
   if (!url || !url.includes('cloudinary.com')) return url;
@@ -286,29 +285,18 @@ const PRODUK_CSS = `
   }
 `;
 
-export default function ProdukClient({ slug }: { slug: string }) {
+export default function ProdukClient({ slug, sanityProduk }: { slug: string; sanityProduk: any }) {
   const produkHardcoded = produkData[slug];
   const [jumlah, setJumlah] = useState(1);
   const [aktifFoto, setAktifFoto] = useState(0);
   const [keranjangAdded, setKeranjangAdded] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [jumlahKeranjang, setJumlahKeranjang] = useState(0);
-  const [sanityProduk, setSanityProduk] = useState<any>(null);
-  const [loading, setLoading] = useState(!produkHardcoded);
 
   useEffect(() => {
     const saved = localStorage.getItem('ramudjitu-cart-count');
     setJumlahKeranjang(saved ? parseInt(saved) : 0);
   }, []);
-
-  useEffect(() => {
-    if (!produkHardcoded) {
-      getProdukBySlug(slug).then((data) => {
-        setSanityProduk(data);
-        setLoading(false);
-      });
-    }
-  }, [slug, produkHardcoded]);
 
   const tambahKeranjang = () => {
     setKeranjangAdded(true);
@@ -343,28 +331,6 @@ export default function ProdukClient({ slug }: { slug: string }) {
         deskripsi: sanityProduk.deskripsi || [sanityProduk.deskripsiSingkat],
       }
     : null;
-
-  // Loading state
-  if (loading) {
-    return (
-      <>
-        <style dangerouslySetInnerHTML={{ __html: PRODUK_CSS }} />
-        <div className="pd-outer">
-          <div className="pd-wrapper">
-            <header className="pd-header">
-              <Link className="pd-logo" href="/">
-                <img src="https://res.cloudinary.com/dzg25zm9i/image/upload/f_auto,q_auto,w_80/v1781697094/RAMUDJITU_sf1t8w.png" alt="RamuDjitu" style={{height:"44px", width:"44px", borderRadius:"50%", objectFit:"cover"}} />
-              </Link>
-            </header>
-            <div style={{textAlign:"center", padding:"6rem 2rem", color:"var(--text-muted)"}}>
-              <div style={{fontSize:40, marginBottom:16}}>🌿</div>
-              <p style={{fontSize:14}}>Memuat produk...</p>
-            </div>
-          </div>
-        </div>
-      </>
-    );
-  }
 
   if (!produk) {
     return (
