@@ -2,18 +2,46 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { getProdukBySlug } from "@/sanity/queries";
 
-interface ProdukData {
+const produkData: Record<string, {
   nama: string;
   harga: string;
   hargaNum: number;
-  gambar?: string;
-  imgs?: string[];
-  urlLP?: string;
-  urlCheckout?: string;
+  img: string;
+    imgs?: string[];
+  lp: string;
+  checkout: string;
   deskripsiSingkat: string;
   deskripsi: string[];
-}
+  fitur: string[];
+}> = {
+  "getamor-superfood": {
+    nama: "GetAmor Superfood Premium Nutrisi Lengkap untuk Semua Keluarga Sehat Setiap Hari",
+    harga: "Rp 375.000",
+    hargaNum: 375000,
+    img: "https://res.cloudinary.com/dzg25zm9i/image/upload/v1781696979/GetAmor_square_1024_tl2fgz.png",
+    imgs: [
+      "https://res.cloudinary.com/dzg25zm9i/image/upload/v1781696979/GetAmor_square_1024_tl2fgz.png",
+      "https://res.cloudinary.com/dzg25zm9i/image/upload/v1781696978/GetAmor_Keluarga_oubgx4.png",
+      "https://res.cloudinary.com/dzg25zm9i/image/upload/v1781696977/GetAmor_Olah_raga_p9mnwf.png",
+    ],
+    lp: "#", // Ganti dengan URL LP Scalev
+    checkout: "#", // Ganti dengan URL checkout Scalev
+    deskripsiSingkat: "Menjaga kesehatan keluarga bukan hal yang mudah di tengah aktivitas yang padat. GetAmor hadir sebagai solusi praktis dengan kombinasi superfood alami pilihan dalam satu sajian — cukup 10 detik, siap dinikmati seluruh keluarga.",
+    deskripsi: [
+      "Menjaga kesehatan keluarga bukan hal yang mudah di tengah aktivitas yang padat. Mulai dari anak-anak, orang tua, hingga kamu sendiri — semuanya butuh asupan nutrisi yang cukup setiap hari.",
+      "GetAmor hadir sebagai solusi praktis dengan kombinasi superfood alami pilihan dalam satu sajian. Dirancang untuk membantu memenuhi kebutuhan nutrisi harian keluarga, menjaga energi tetap stabil, serta mendukung daya tahan tubuh tanpa ribet.",
+      "Cukup dalam beberapa detik, satu gelas GetAmor siap dinikmati oleh seluruh anggota keluarga — kapan saja, di mana saja.",
+    ],
+    fitur: [
+      "Nutrisi lengkap dari bahan alami pilihan",
+      "Praktis, hanya 10 detik siap minum",
+      "Cocok untuk anak-anak hingga orang tua",
+      "Mendukung energi & daya tahan tubuh setiap hari",
+    ],
+  },
+};
 
 const PRODUK_CSS = `
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap');
@@ -44,7 +72,7 @@ const PRODUK_CSS = `
     align-items: flex-start;
   }
 
- .pd-wrapper {
+  .pd-wrapper {
     width: 100%;
     max-width: 690px;
     background: var(--cream-light);
@@ -254,18 +282,29 @@ const PRODUK_CSS = `
   }
 `;
 
-export default function ProdukClient({ slug, produk }: { slug: string, produk: ProdukData | null }) {
-  console.log("PRODUK DATA:", produk);
+export default function ProdukClient({ slug }: { slug: string }) {
+  const produkHardcoded = produkData[slug];
   const [jumlah, setJumlah] = useState(1);
   const [aktifFoto, setAktifFoto] = useState(0);
   const [keranjangAdded, setKeranjangAdded] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [jumlahKeranjang, setJumlahKeranjang] = useState(0);
+  const [sanityProduk, setSanityProduk] = useState<any>(null);
+  const [loading, setLoading] = useState(!produkHardcoded);
 
   useEffect(() => {
     const saved = localStorage.getItem('ramudjitu-cart-count');
     setJumlahKeranjang(saved ? parseInt(saved) : 0);
   }, []);
+
+  useEffect(() => {
+    if (!produkHardcoded) {
+      getProdukBySlug(slug).then((data) => {
+        setSanityProduk(data);
+        setLoading(false);
+      });
+    }
+  }, [slug, produkHardcoded]);
 
   const tambahKeranjang = () => {
     setKeranjangAdded(true);
@@ -278,19 +317,61 @@ export default function ProdukClient({ slug, produk }: { slug: string, produk: P
     setJumlahKeranjang(updated);
   };
 
+  // Normalize data — baik dari hardcoded maupun Sanity pakai format yang sama
+  const produk = produkHardcoded
+    ? {
+        nama: produkHardcoded.nama,
+        harga: produkHardcoded.harga,
+        img: produkHardcoded.img,
+        imgs: produkHardcoded.imgs,
+        lp: produkHardcoded.lp,
+        checkout: produkHardcoded.checkout,
+        deskripsi: produkHardcoded.deskripsi,
+      }
+    : sanityProduk
+    ? {
+        nama: sanityProduk.nama,
+        harga: sanityProduk.harga,
+        img: sanityProduk.gambar,
+        imgs: undefined,
+        lp: sanityProduk.urlLP || "#",
+        checkout: sanityProduk.urlCheckout || "#",
+        deskripsi: sanityProduk.deskripsi || [sanityProduk.deskripsiSingkat],
+      }
+    : null;
+
+  // Loading state
+  if (loading) {
+    return (
+      <>
+        <style dangerouslySetInnerHTML={{ __html: PRODUK_CSS }} />
+        <div className="pd-outer">
+          <div className="pd-wrapper">
+            <header className="pd-header">
+              <Link className="pd-logo" href="/">
+                <img src="https://res.cloudinary.com/dzg25zm9i/image/upload/v1781697094/RAMUDJITU_sf1t8w.png" alt="RamuDjitu" style={{height:"44px", width:"44px", borderRadius:"50%", objectFit:"cover"}} />
+              </Link>
+            </header>
+            <div style={{textAlign:"center", padding:"6rem 2rem", color:"var(--text-muted)"}}>
+              <div style={{fontSize:40, marginBottom:16}}>🌿</div>
+              <p style={{fontSize:14}}>Memuat produk...</p>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
   if (!produk) {
     return (
       <>
         <style dangerouslySetInnerHTML={{ __html: PRODUK_CSS }} />
         <div className="pd-outer">
           <div className="pd-wrapper">
-
-           <header className="pd-header">
-            <Link className="pd-logo" href="/">
-              <img src="https://res.cloudinary.com/dzg25zm9i/image/upload/v1781697094/RAMUDJITU_sf1t8w.png" alt="Ramudjitu" style={{height:"56px", width:"56px", borderRadius:"50%", objectFit:"cover"}} />
-              <span style={{fontFamily:"'Playfair Display', serif", fontSize:"16px", fontWeight:"700", letterSpacing:"0.3px"}}><span style={{color:"#2e3a1f"}}>Ramu</span><span style={{color:"#4a3218"}}>Djitu</span></span>
-            </Link>
-                 
+            <header className="pd-header">
+              <Link className="pd-logo" href="/">
+                <img src="https://res.cloudinary.com/dzg25zm9i/image/upload/v1781697094/RAMUDJITU_sf1t8w.png" alt="RamuDjitu" style={{height:"44px", width:"44px", borderRadius:"50%", objectFit:"cover"}} />
+              </Link>
               <Link href="/" className="pd-back">← Kembali</Link>
             </header>
             <div style={{textAlign:"center", padding:"6rem 2rem"}}>
@@ -312,29 +393,13 @@ export default function ProdukClient({ slug, produk }: { slug: string, produk: P
 
           {/* HEADER */}
           <header className="pd-header">
-  <Link className="pd-logo" href="/">
-    <img
-      src="https://res.cloudinary.com/dzg25zm9i/image/upload/v1781697094/RAMUDJITU_sf1t8w.png"
-      alt="Ramudjitu"
-      style={{
-        height: "56px",
-        width: "56px",
-        borderRadius: "50%",
-        objectFit: "cover"
-      }}
-    />
-    <span
-      style={{
-        fontFamily: "'Playfair Display', serif",
-        fontSize: "16px",
-        fontWeight: "700",
-        letterSpacing: "0.3px"
-      }}
-    >
-      <span style={{ color: "#2e3a1f" }}>Ramu</span>
-      <span style={{ color: "#4a3218" }}>Djitu</span>
-    </span>
-  </Link>
+            <Link className="pd-logo" href="/">
+              <img src="https://res.cloudinary.com/dzg25zm9i/image/upload/v1781697094/RAMUDJITU_sf1t8w.png" alt="RamuDjitu" style={{height:"44px", width:"44px", borderRadius:"50%", objectFit:"cover"}} />
+              <span className="pd-logo-name">
+                <span style={{color:"#2e3a1f"}}>Ramu</span>
+                <span style={{color:"#4a3218"}}>Djitu</span>
+              </span>
+            </Link>
             <Link className="pd-back" href="/">
               <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
               Kembali
@@ -345,7 +410,7 @@ export default function ProdukClient({ slug, produk }: { slug: string, produk: P
             {/* FOTO + THUMBNAIL - kolom kiri */}
             <div className="pd-foto-col">
               <div className="pd-img-wrap">
-                <img src={produk.imgs ? produk.imgs[aktifFoto] : produk.gambar} alt={produk.nama} />
+                <img src={produk.imgs ? produk.imgs[aktifFoto] : produk.img} alt={produk.nama} />
               </div>
               {produk.imgs && produk.imgs.length > 1 && (
                 <div className="pd-thumb-row">
@@ -385,12 +450,12 @@ export default function ProdukClient({ slug, produk }: { slug: string, produk: P
                       <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6"/></svg>
                     )}
                   </button>
-                  <button className="pd-btn-beli" onClick={() => window.open(produk.urlCheckout || "#", "_blank")}>
+                  <button className="pd-btn-beli" onClick={() => window.open(produk.checkout, "_blank")}>
                     Beli Sekarang
                   </button>
                 </div>
 
-                <a href={produk.urlLP || "#"} target="_blank" rel="noopener noreferrer" className="pd-btn-lp">
+                <a href={produk.lp} target="_blank" rel="noopener noreferrer" className="pd-btn-lp">
                   Pelajari Manfaat Lengkapnya →
                 </a>
               </div>
@@ -404,7 +469,7 @@ export default function ProdukClient({ slug, produk }: { slug: string, produk: P
           {/* DESKRIPSI SINGKAT (teaser) - full width */}
           <div className="pd-teaser-full">
             <div className="pd-teaser-label">Tentang Produk</div>
-            {produk.deskripsi && produk.deskripsi.map((p: string, i: number) => <p className="pd-teaser-text" key={i}>{p}</p>)}
+            {produk.deskripsi.map((p, i) => <p className="pd-teaser-text" key={i}>{p}</p>)}
           </div>
 
           {/* BOTTOM NAV - desktop only */}

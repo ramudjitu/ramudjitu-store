@@ -38,26 +38,9 @@ export async function getArtikelBySlug(slug: string) {
   )
 }
 
-export async function getAllProduk() {
-  return client.fetch(`
-    *[_type == "produk" && aktif == true] | order(urutan asc) {
-      nama,
-      "slug": slug.current,
-      harga,
-      hargaNum,
-      kategori,
-      deskripsiSingkat,
-      deskripsi,
-      gambar,
-      urlLP,
-      urlCheckout,
-    }
-  `)
-}
-
 export async function getProdukBySlug(slug: string) {
   return client.fetch(
-    `*[_type == "produk" && slug.current == $slug][0] {
+    `*[_type == "produk" && slug.current == $slug && aktif == true][0] {
       nama,
       "slug": slug.current,
       harga,
@@ -73,9 +56,9 @@ export async function getProdukBySlug(slug: string) {
   )
 }
 
-export async function getProdukByKategori(kategori: string) {
-  return client.fetch(
-    `*[_type == "produk" && aktif == true && kategori == $kategori] | order(urutan asc) {
+export async function getAllProduk() {
+  return client.fetch(`
+    *[_type == "produk" && aktif == true] | order(urutan asc) {
       nama,
       "slug": slug.current,
       harga,
@@ -85,9 +68,8 @@ export async function getProdukByKategori(kategori: string) {
       gambar,
       urlLP,
       urlCheckout,
-    }`,
-    { kategori }
-  )
+    }
+  `)
 }
 
 export async function getLatestArtikel(limit: number = 3) {
