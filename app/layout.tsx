@@ -31,17 +31,9 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          rel="preload"
+          rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap"
-          as="style"
-          onLoad={(e) => { (e.target as HTMLLinkElement).rel = 'stylesheet'; }}
         />
-        <noscript>
-          <link
-  rel="stylesheet"
-  href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap"
-/>
-        </noscript>
       </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
