@@ -41,14 +41,13 @@ const CSS = `
     min-height: 100vh;
     box-shadow: 0 0 60px rgba(0,0,0,0.2);
     font-family: 'DM Sans', sans-serif;
-    color: var(--text-dark);
-    overflow-x: hidden;
+    color: var(--text-dark); 
   }
 
   .tentang-header {
     background: var(--cream-light);
     padding: 0 1.25rem;
-    height: 60px;
+    height: 68px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -62,13 +61,13 @@ const CSS = `
   .tentang-logo {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     text-decoration: none;
   }
 
   .tentang-logo img {
-    height: 40px;
-    width: 40px;
+    height: 44px;
+    width: 44px;
     border-radius: 50%;
     object-fit: cover;
   }
@@ -85,11 +84,7 @@ const CSS = `
 
   .tentang-nav-back:hover { color: var(--green-mid); }
 
-  .tentang-hero {
-    background: var(--brown-dark);
-    padding: 2.5rem 1.25rem;
-    text-align: center;
-  }
+   .tentang-hero { background: linear-gradient(135deg, #2C1F0E 0%, #3D2E10 60%, #2D4A1A 100%); border-top: 1px solid rgba(245,236,215,0.08); padding: 2rem 1.25rem 1.5rem; }
 
   .tentang-eyebrow {
     display: inline-flex;
@@ -229,13 +224,10 @@ const CSS = `
     font-style: italic;
   }
 
-  .tentang-cta {
-    background: var(--brown-dark);
-    border-radius: 14px;
+  .tentang-cta { background: linear-gradient(135deg, #2C1F0E 0%, #3D2E10 60%, #2D4A1A 100%); border-top: 1px solid rgba(245,236,215,0.08); border-radius: 14px;
     padding: 1.5rem 1.25rem;
     text-align: center;
-    margin-top: 2rem;
-  }
+    margin-top: 2rem; }
 
   .tentang-cta p {
     font-size: 13px;
@@ -260,22 +252,21 @@ const CSS = `
 
   .tentang-cta-btn:hover { background: var(--green-deep); }
 
-  .tentang-footer {
-    background: var(--brown-dark);
-    border-top: 1px solid rgba(245,236,215,0.08);
-    padding: 1.5rem 1.25rem;
-    text-align: center;
-  }
-
-  .tentang-footer-text {
-    font-size: 11px;
-    color: rgba(245,236,215,0.4);
-  }
-
-  .tentang-footer-text a {
-    color: var(--green-light);
-    text-decoration: none;
-  }
+  .tentang-footer { background: linear-gradient(135deg, #2C1F0E 0%, #3D2E10 60%, #2D4A1A 100%); border-top: 1px solid rgba(245,236,215,0.08); padding: 2rem 1.25rem 5rem; }
+  .tentang-footer-logo { font-family:'Playfair Display',serif; font-size:18px; color:var(--cream); margin-bottom:4px; }
+  .tentang-footer-tagline { font-size:11px; font-weight:300; color:rgba(245,236,215,0.4); margin-bottom:1.25rem; }
+  .tentang-footer-sosmed { display:flex; gap:10px; margin-bottom:1.5rem; }
+  .tentang-sosmed-btn { width:34px; height:34px; border-radius:50%; background:rgba(245,236,215,0.08); border:1px solid rgba(245,236,215,0.15); display:flex; align-items:center; justify-content:center; text-decoration:none; transition:all 0.2s; }
+  .tentang-sosmed-btn:hover { background:var(--green-mid); border-color:var(--green-mid); }
+  .tentang-sosmed-btn svg { width:15px; height:15px; fill:rgba(245,236,215,0.7); }
+  .tentang-sosmed-fb { background: #1877F2 !important; border-color: #1877F2 !important; }
+  .tentang-sosmed-ig { background: #E1306C !important; border-color: #E1306C !important; }
+  .tentang-sosmed-yt { background: #FF0000 !important; border-color: #FF0000 !important; }
+  .tentang-sosmed-tt { background: #010101 !important; border-color: #333 !important; }
+  .tentang-footer-links { display:flex; flex-wrap:wrap; gap:8px 20px; margin-bottom:1.5rem; }
+  .tentang-footer-links a { font-size:11px; color:rgba(245,236,215,0.4); text-decoration:none; transition:color 0.2s; }
+  .tentang-footer-links a:hover { color:var(--green-light); }
+  .tentang-footer-copy { font-size:10px; color:rgba(245,236,215,0.25); text-align:center; padding-top:1rem; border-top:1px solid rgba(245,236,215,0.08); }
 `;
 
 export default function TentangKamiPage() {
@@ -286,23 +277,18 @@ export default function TentangKamiPage() {
         <div className="tentang-wrapper">
 
           {/* HEADER */}
-          <header className="tentang-header">
+        <header className="tentang-header">
             <Link className="tentang-logo" href="/">
-              <img
-                src="https://res.cloudinary.com/dzg25zm9i/image/upload/f_auto,q_auto,w_80/v1781697094/RAMUDJITU_sf1t8w.png"
-                alt="Ramudjitu"
-              />
-              <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "16px", fontWeight: "700" }}>
-                <span style={{ color: "#2e3a1f" }}>Ramu</span>
-                <span style={{ color: "#4a3218" }}>Djitu</span>
-              </span>
+              <img src="https://res.cloudinary.com/dzg25zm9i/image/upload/v1781697094/RAMUDJITU_sf1t8w.png" alt="Ramudjitu" style={{height:"56px", width:"56px", borderRadius:"50%", objectFit:"cover"}} />
+              <span style={{fontFamily:"'Playfair Display', serif", fontSize:"16px", fontWeight:"700", letterSpacing:"0.3px"}}><span style={{color:"#2e3a1f"}}>Ramu</span><span style={{color:"#4a3218"}}>Djitu</span></span>
             </Link>
+                 
             <Link href="/" className="tentang-nav-back">← Kembali ke Toko</Link>
           </header>
 
           {/* HERO */}
           <section className="tentang-hero">
-            <div className="tentang-eyebrow">🌿 Tentang Kami</div>
+            <div className="tentang-eyebrow">Tentang Kami</div>
             <h1 className="tentang-hero-title">Mengapa <em>RamuDjitu</em></h1>
             <p className="tentang-hero-sub">Semangat, nilai, dan komitmen kami dalam menghadirkan produk health & wellness terpercaya.</p>
           </section>
@@ -322,13 +308,13 @@ export default function TentangKamiPage() {
             <div className="tentang-keunggulan-title">Keunggulan Kami</div>
             <div className="tentang-k-grid">
               {[
-                { icon: "🎯", title: "Produk Pilihan", desc: "Kami menghadirkan produk yang dipilih dengan mempertimbangkan kualitas dan kepercayaan." },
-                { icon: "🤝", title: "Brand Terpercaya", desc: "Berbagai pilihan dari brand yang memiliki komitmen terhadap kualitas dan kepuasan pelanggan." },
-                { icon: "✅", title: "Legal & Terdaftar", desc: "Kami mengutamakan produk yang memiliki legalitas dan standar yang jelas." },
-                { icon: "💚", title: "Manfaat yang Nyata", desc: "Kami percaya setiap pilihan kesehatan seharusnya memberikan nilai dan manfaat yang dapat dirasakan sehari-hari." },
+                { title: "Produk Pilihan", desc: "Kami menghadirkan produk yang dipilih dengan mempertimbangkan kualitas dan kepercayaan." },
+                { title: "Brand Terpercaya", desc: "Berbagai pilihan dari brand yang memiliki komitmen terhadap kualitas dan kepuasan pelanggan." },
+                { title: "Legal & Terdaftar", desc: "Kami mengutamakan produk yang memiliki legalitas dan standar yang jelas." },
+                { title: "Manfaat yang Nyata", desc: "Kami percaya setiap pilihan kesehatan seharusnya memberikan nilai dan manfaat yang dapat dirasakan sehari-hari." },
               ].map((item, i) => (
                 <div className="tentang-k-card" key={i}>
-                  <div className="tentang-k-icon">{item.icon}</div>
+                 
                   <h4>{item.title}</h4>
                   <p>{item.desc}</p>
                 </div>
@@ -350,23 +336,36 @@ export default function TentangKamiPage() {
           </main>
 
           {/* FOOTER */}
-          <footer style={{background:"linear-gradient(135deg, #2C1F0E 0%, #3D2E10 60%, #2D4A1A 100%)", borderTop:"1px solid rgba(245,236,215,0.08)", padding:"2rem 1.25rem 1.5rem"}}>
-            <div style={{fontFamily:"'Playfair Display', serif", fontSize:"18px", color:"var(--cream)", marginBottom:"4px"}}>
-              <span style={{color:"#C5DC8E"}}>Ramu</span><span style={{color:"#F5ECD7"}}>Djitu</span>
+          <footer className="tentang-footer">
+            <div className="tentang-footer-logo"><span style={{fontFamily:"'Playfair Display', serif", fontWeight:"700"}}><span style={{color:"#C5DC8E"}}>Ramu</span><span style={{color:"#F5ECD7"}}>Djitu</span></span></div>
+            <div className="tentang-footer-tagline">Herbal pilihan, kesehatan terjaga</div>
+            <div className="tentang-footer-sosmed">
+              <a href="https://facebook.com/ramudjitu" target="_blank" rel="noopener noreferrer" className="tentang-sosmed-btn tentang-sosmed-fb">
+                <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+              </a>
+              <a href="https://instagram.com/ramudjitu" target="_blank" rel="noopener noreferrer" className="tentang-sosmed-btn tentang-sosmed-ig">
+                <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              </a>
+              <a href="https://youtube.com/@ramudjitu" target="_blank" rel="noopener noreferrer" className="tentang-sosmed-btn tentang-sosmed-yt">
+                <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" style={{fill:"#1E1208"}}/></svg>
+              </a>
+              <a href="https://tiktok.com/@ramudjitu" target="_blank" rel="noopener noreferrer" className="tentang-sosmed-btn tentang-sosmed-tt">
+                <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+              </a>
             </div>
-            <div style={{fontSize:"11px", fontWeight:300, color:"rgba(245,236,215,0.4)", marginBottom:"1.5rem"}}>Herbal pilihan, kesehatan terjaga</div>
-            <div style={{display:"flex", flexWrap:"wrap", gap:"8px 20px", marginBottom:"1.5rem"}}>
-              {["Syarat & Ketentuan","Kebijakan Privasi","Kebijakan Pengembalian","Hubungi Kami","FAQ"].map(l => (
-                <a key={l} href="#" style={{fontSize:"11px", color:"rgba(245,236,215,0.4)", textDecoration:"none"}}>{l}</a>
-              ))}
+           <div className="tentang-footer-links">
+              <a href="#">Syarat & Ketentuan</a>
+              <a href="#">Kebijakan Privasi</a>
+              <a href="#">Kebijakan Pengembalian</a>
+              <a href="#">Hubungi Kami</a>
+              <a href="#">FAQ</a>
             </div>
-            <div style={{fontSize:"10px", color:"rgba(245,236,215,0.25)", textAlign:"center", paddingTop:"1rem", borderTop:"1px solid rgba(245,236,215,0.08)"}}>© 2026 Ramudjitu · Semua hak dilindungi</div>
+            <div className="tentang-footer-copy">© 2026 RamuDjitu · Semua hak dilindungi</div>
           </footer>
-
-          <BottomNav activeTab="beranda" />
 
         </div>
       </div>
+      <BottomNav activeTab="beranda" />
     </>
   );
 }

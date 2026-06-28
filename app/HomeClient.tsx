@@ -329,10 +329,11 @@ useEffect(() => {
               <div ref={katGridRef} style={{display:"flex", gap:"10px", overflowX:"auto", scrollBehavior:"smooth", WebkitOverflowScrolling:"touch", scrollbarWidth:"none", msOverflowStyle:"none"}}>
                 {kategoriList.map((kat) => (
                   <div key={kat.key} className={`ramu-kat-card${aktifKategori === kat.key ? " active" : ""}`} onClick={() => setAktifKategori(kat.key)} style={{position:"relative", overflow:"hidden", padding:0}}>
-                    <img src={kat.img} alt={kat.nama} style={{position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", borderRadius:"12px"}} />
+                    <img  src={kat.img} alt={kat.nama} fetchPriority={kat.key === "nutrisi" ? "high" : "low"} loading={kat.key === "nutrisi" ? "eager" : "lazy"} style={{position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", borderRadius:"12px"}} />
                     <div style={{position:"absolute", bottom:"10px", left:"12px", zIndex:2}}>
-                      <div style={{background:"rgba(0,0,0,0.08)", backdropFilter:"blur(6px)", color:"#fff", fontSize:"12px", fontWeight:500, padding:"4px 14px", borderRadius:"999px", textShadow:"0 1px 3px rgba(0,0,0,0.5)"}}>{kat.nama}</div>
-                    </div>
+                     <div style={{background:"rgba(0,0,0,0.08)", backdropFilter:"blur(6px)", color:"#fff", fontSize:"12px", fontWeight:500, padding:"4px 14px", borderRadius:"999px", textShadow:"0 1px 3px rgba(0,0,0,0.5)"}}>{kat.nama}</div>
+                     </div>
+                     
                   </div>
                 ))}
               </div>

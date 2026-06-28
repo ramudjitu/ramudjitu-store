@@ -174,7 +174,7 @@ export default async function BlogPage() {
 
            {/* FOOTER sama dengan home */}
           <footer className="blog-footer">
-            <div className="t-footer-logo"><span style={{fontFamily:"'Playfair Display', serif", fontWeight:"700"}}><span style={{color:"#C5DC8E"}}>Ramu</span><span style={{color:"#F5ECD7"}}>Djitu</span></span></div>
+            <div className="blog-footer-logo"><span style={{fontFamily:"'Playfair Display', serif", fontWeight:"700"}}><span style={{color:"#C5DC8E"}}>Ramu</span><span style={{color:"#F5ECD7"}}>Djitu</span></span></div>
             <div className="blog-footer-tagline">Herbal pilihan, kesehatan terjaga</div>
             <div className="blog-footer-sosmed">
               <a href="https://facebook.com/ramudjitu" target="_blank" rel="noopener noreferrer" className="blog-sosmed-btn blog-sosmed-fb">
@@ -191,12 +191,11 @@ export default async function BlogPage() {
               </a>
             </div>
             <div className="blog-footer-links">
-              <Link href="/" style={{fontSize:"11px",color:"rgba(245,236,215,0.4)",textDecoration:"none"}}>Beranda</Link>
-              <Link href="/blog" style={{fontSize:"11px",color:"rgba(245,236,215,0.4)",textDecoration:"none"}}>Blog</Link>
               <a href="#">Syarat & Ketentuan</a>
               <a href="#">Kebijakan Privasi</a>
-              <a href="#">FAQ</a>
+              <a href="#">Kebijakan Pengembalian</a>
               <a href="#">Hubungi Kami</a>
+              <a href="#">FAQ</a>
             </div>
             <div className="blog-footer-copy">© 2026 RamuDjitu · Semua hak dilindungi</div>
           </footer>

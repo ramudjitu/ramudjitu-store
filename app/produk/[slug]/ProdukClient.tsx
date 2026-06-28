@@ -338,10 +338,13 @@ export default function ProdukClient({ slug, sanityProduk }: { slug: string; san
         <style dangerouslySetInnerHTML={{ __html: PRODUK_CSS }} />
         <div className="pd-outer">
           <div className="pd-wrapper">
-            <header className="pd-header">
-              <Link className="pd-logo" href="/">
-                <img src="https://res.cloudinary.com/dzg25zm9i/image/upload/f_auto,q_auto,w_80/v1781697094/RAMUDJITU_sf1t8w.png" alt="RamuDjitu" style={{height:"44px", width:"44px", borderRadius:"50%", objectFit:"cover"}} />
-              </Link>
+
+             <header className="pd-header">
+            <Link className="pd-logo" href="/">
+              <img src="https://res.cloudinary.com/dzg25zm9i/image/upload/v1781697094/RAMUDJITU_sf1t8w.png" alt="Ramudjitu" style={{height:"56px", width:"56px", borderRadius:"50%", objectFit:"cover"}} />
+              <span style={{fontFamily:"'Playfair Display', serif", fontSize:"16px", fontWeight:"700", letterSpacing:"0.3px"}}><span style={{color:"#2e3a1f"}}>Ramu</span><span style={{color:"#4a3218"}}>Djitu</span></span>
+            </Link>
+
               <Link href="/" className="pd-back">← Kembali</Link>
             </header>
             <div style={{textAlign:"center", padding:"6rem 2rem"}}>
@@ -364,11 +367,8 @@ export default function ProdukClient({ slug, sanityProduk }: { slug: string; san
           {/* HEADER */}
           <header className="pd-header">
             <Link className="pd-logo" href="/">
-              <img src="https://res.cloudinary.com/dzg25zm9i/image/upload/f_auto,q_auto,w_80/v1781697094/RAMUDJITU_sf1t8w.png" alt="RamuDjitu" style={{height:"44px", width:"44px", borderRadius:"50%", objectFit:"cover"}} />
-              <span className="pd-logo-name">
-                <span style={{color:"#2e3a1f"}}>Ramu</span>
-                <span style={{color:"#4a3218"}}>Djitu</span>
-              </span>
+              <img src="https://res.cloudinary.com/dzg25zm9i/image/upload/f_auto,q_auto,w_80/v1781697094/RAMUDJITU_sf1t8w.png" alt="RamuDjitu" style={{height:"56px", width:"56px", borderRadius:"50%", objectFit:"cover"}} />
+             <span style={{fontFamily:"'Playfair Display', serif", fontSize:"16px", fontWeight:"700", letterSpacing:"0.3px"}}><span style={{color:"#2e3a1f"}}>Ramu</span><span style={{color:"#4a3218"}}>Djitu</span></span>
             </Link>
             <Link className="pd-back" href="/">
               <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
