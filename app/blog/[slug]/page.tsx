@@ -191,8 +191,8 @@ export default async function ArtikelDetailPage({ params }: { params: Promise<{ 
               <Link href="/#produk">Produk</Link>
               <Link href="/tentang-kami">Tentang Kami</Link>
               <Link href="/blog">Blog</Link>
-              <HamburgerMenu prefix="det" />
             </nav>
+            <HamburgerMenu prefix="det" />
           </header>
 
           <section className="det-hero">

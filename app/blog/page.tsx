@@ -147,8 +147,8 @@ export default async function BlogPage() {
               <Link href="/#produk">Produk</Link>
               <Link href="/tentang-kami">Tentang Kami</Link>
               <Link href="/blog">Blog</Link>
-              <HamburgerMenu prefix="blog" />
             </nav>
+             <HamburgerMenu prefix="blog" />
           </header>
 
           <section className="blog-hero">
