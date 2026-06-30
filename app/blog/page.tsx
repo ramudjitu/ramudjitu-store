@@ -1,4 +1,3 @@
-import BottomNav from "../components/BottomNav";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { getAllArtikel } from "@/sanity/queries";
@@ -47,7 +46,7 @@ const BLOG_CSS = `
     width: 100%;
     max-width: 690px;
     background: var(--cream-light);
-    min-height: 100vh;
+    min-height: auto;
     box-shadow: 0 0 60px rgba(0,0,0,0.2);
     font-family: 'DM Sans', sans-serif;
     color: var(--text-dark);
@@ -63,8 +62,22 @@ const BLOG_CSS = `
   }
   .blog-logo { display: flex; align-items: center; gap:10px; text-decoration: none; }
   .blog-logo img { height: 44px; width: 44px; border-radius: 50%; object-fit: cover; }
-  .blog-nav-back { display: flex; align-items: center; gap: 6px; color: var(--text-muted); font-size: 13px; text-decoration: none; transition: color 0.2s; }
-  .blog-nav-back:hover { color: var(--green-mid); }
+  .blog-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .blog-nav a {
+    color: var(--text-mid);
+    font-size: 13px;
+    font-weight: 400;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .blog-nav a:hover { color: var(--green-mid); }
+  .blog-nav a.active { color: var(--green-mid); font-weight: 500; }
 
   .blog-hero { background: linear-gradient(135deg, #2C1F0E 0%, #3D2E10 60%, #2D4A1A 100%); border-top: 1px solid rgba(245,236,215,0.08); padding: 2rem 1.25rem 1.5rem; }
   .blog-eyebrow { display: inline-flex; align-items: center; gap: 6px; background: rgba(122,158,78,0.15); border: 1px solid rgba(122,158,78,0.3); color: var(--green-light); font-size: 10px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 1rem; }
@@ -91,7 +104,7 @@ const BLOG_CSS = `
 
   .blog-empty { text-align: center; padding: 3rem 1rem; color: var(--text-muted); font-size: 13px; }
 
-  .blog-footer { background: linear-gradient(135deg, #2C1F0E 0%, #3D2E10 60%, #2D4A1A 100%); border-top: 1px solid rgba(245,236,215,0.08); padding: 2rem 1.25rem 5rem; }
+  .blog-footer { background: linear-gradient(135deg, #2C1F0E 0%, #3D2E10 60%, #2D4A1A 100%); border-top: 1px solid rgba(245,236,215,0.08); padding: 2rem 1.25rem 1.5rem; }
   .blog-footer-logo { font-family:'Playfair Display',serif; font-size:18px; color:var(--cream); margin-bottom:4px; }
   .blog-footer-tagline { font-size:11px; font-weight:300; color:rgba(245,236,215,0.4); margin-bottom:1.25rem; }
   .blog-footer-sosmed { display:flex; gap:10px; margin-bottom:1.5rem; }
@@ -128,8 +141,12 @@ export default async function BlogPage() {
               <img src="https://res.cloudinary.com/dzg25zm9i/image/upload/v1781697094/RAMUDJITU_sf1t8w.png" alt="Ramudjitu" style={{height:"56px", width:"56px", borderRadius:"50%", objectFit:"cover"}} />
               <span style={{fontFamily:"'Playfair Display', serif", fontSize:"16px", fontWeight:"700", letterSpacing:"0.3px"}}><span style={{color:"#2e3a1f"}}>Ramu</span><span style={{color:"#4a3218"}}>Djitu</span></span>
             </Link>
-                 
-            <Link href="/" className="blog-nav-back">← Kembali ke Toko</Link>
+
+            <nav className="blog-nav">
+              <Link href="/#produk">Produk</Link>
+              <Link href="/tentang-kami">Tentang Kami</Link>
+              <Link href="/blog">Blog</Link>
+            </nav>
           </header>
 
           <section className="blog-hero">
@@ -202,7 +219,6 @@ export default async function BlogPage() {
 
         </div>
       </div>
-      <BottomNav activeTab="beranda" />
     </>
   );
 }

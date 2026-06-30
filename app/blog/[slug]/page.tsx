@@ -1,4 +1,3 @@
-import BottomNav from "../../components/BottomNav";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
@@ -54,7 +53,7 @@ const DETAIL_CSS = `
     width: 100%;
     max-width: 690px;
     background: var(--cream-light);
-    min-height: 100vh;
+    min-height: auto;
     box-shadow: 0 0 60px rgba(0,0,0,0.2);
     font-family: 'DM Sans', sans-serif;
     color: var(--text-dark);
@@ -63,8 +62,22 @@ const DETAIL_CSS = `
   .det-header { background: var(--cream-light); padding: 0 1.25rem; height: 60px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--cream-mid); box-shadow: 0 2px 8px rgba(30,18,8,0.06); }
   .det-logo { display: flex; align-items: center; gap:10px; text-decoration: none; }
   .det-logo img { height: 44px; width: 44px; border-radius: 50%; object-fit: cover; }
-  .det-nav-back { display: flex; align-items: center; gap: 6px; color: var(--text-muted); font-size: 13px; text-decoration: none; transition: color 0.2s; }
-  .det-nav-back:hover { color: var(--green-mid); }
+  .det-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .det-nav a {
+    color: var(--text-mid);
+    font-size: 13px;
+    font-weight: 400;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .det-nav a:hover { color: var(--green-mid); }
+  .det-nav a.active { color: var(--green-mid); font-weight: 500; }
 
   .det-hero { background: linear-gradient(135deg, #2C1F0E 0%, #3D2E10 60%, #2D4A1A 100%); border-top: 1px solid rgba(245,236,215,0.08); padding: 2rem 1.25rem 1.5rem; }
   .det-tag { display: inline-block; background: rgba(122,158,78,0.15); border: 1px solid rgba(122,158,78,0.3); color: var(--green-light); font-size: 10px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 1rem; }
@@ -98,7 +111,7 @@ const DETAIL_CSS = `
   .det-related-tag { font-size: 9px; font-weight: 500; color: var(--green-mid); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
   .det-related-ttl { font-size: 13px; font-weight: 500; color: var(--text-dark); line-height: 1.4; }
 
-  .det-footer { background: linear-gradient(135deg, #2C1F0E 0%, #3D2E10 60%, #2D4A1A 100%); border-top: 1px solid rgba(245,236,215,0.08); padding: 2rem 1.25rem 5rem; }
+  .det-footer { background: linear-gradient(135deg, #2C1F0E 0%, #3D2E10 60%, #2D4A1A 100%); border-top: 1px solid rgba(245,236,215,0.08); padding: 2rem 1.25rem 1.5rem; }
   .det-footer-logo { font-family:'Playfair Display',serif; font-size:18px; color:var(--cream); margin-bottom:4px; }
   .det-footer-tagline { font-size:11px; font-weight:300; color:rgba(245,236,215,0.4); margin-bottom:1.25rem; }
   .det-footer-sosmed { display:flex; gap:10px; margin-bottom:1.5rem; }
@@ -173,7 +186,11 @@ export default async function ArtikelDetailPage({ params }: { params: Promise<{ 
               <span style={{fontFamily:"'Playfair Display', serif", fontSize:"16px", fontWeight:"700", letterSpacing:"0.3px"}}><span style={{color:"#2e3a1f"}}>Ramu</span><span style={{color:"#4a3218"}}>Djitu</span></span>
             </Link>
 
-            <Link href="/blog" className="det-nav-back">← Kembali ke Blog</Link>
+            <nav className="det-nav">
+              <Link href="/#produk">Produk</Link>
+              <Link href="/tentang-kami">Tentang Kami</Link>
+              <Link href="/blog">Blog</Link>
+            </nav>
           </header>
 
           <section className="det-hero">
@@ -259,7 +276,6 @@ export default async function ArtikelDetailPage({ params }: { params: Promise<{ 
 
         </div>
       </div>
-      <BottomNav activeTab="beranda" />
     </>
   );
 }

@@ -1,6 +1,6 @@
 import { getLatestArtikel, getAllProduk } from "@/sanity/queries";
 import { urlForImage } from "@/sanity/image";
-import HomeClient from "./HomeClient";
+import HomeContent from "./HomeContent";
 
 export const revalidate = 60;
 
@@ -24,5 +24,5 @@ export default async function Home() {
     imageUrl: a.mainImage ? urlForImage(a.mainImage).width(180).height(180).url() : undefined,
   }));
 
-  return <HomeClient blogPreviews={blogPreviews} produkList={produkRaw} />;
+  return <HomeContent blogPreviews={blogPreviews} produkList={produkRaw} />;
 }

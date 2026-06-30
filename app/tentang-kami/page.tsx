@@ -1,4 +1,3 @@
-import BottomNav from "../components/BottomNav";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -38,7 +37,7 @@ const CSS = `
     width: 100%;
     max-width: 690px;
     background: var(--cream-light);
-    min-height: 100vh;
+    min-height: auto;
     box-shadow: 0 0 60px rgba(0,0,0,0.2);
     font-family: 'DM Sans', sans-serif;
     color: var(--text-dark); 
@@ -72,17 +71,22 @@ const CSS = `
     object-fit: cover;
   }
 
-  .tentang-nav-back {
+  .tentang-nav {
     display: flex;
     align-items: center;
-    gap: 6px;
-    color: var(--text-muted);
+    gap: 1.5rem;
+  }
+
+  .tentang-nav a {
+    color: var(--text-mid);
     font-size: 13px;
+    font-weight: 400;
     text-decoration: none;
     transition: color 0.2s;
   }
 
-  .tentang-nav-back:hover { color: var(--green-mid); }
+  .tentang-nav a:hover { color: var(--green-mid); }
+  .tentang-nav a.active { color: var(--green-mid); font-weight: 500; }
 
    .tentang-hero { background: linear-gradient(135deg, #2C1F0E 0%, #3D2E10 60%, #2D4A1A 100%); border-top: 1px solid rgba(245,236,215,0.08); padding: 2rem 1.25rem 1.5rem; }
 
@@ -123,7 +127,7 @@ const CSS = `
   }
 
   .tentang-main {
-    padding: 2rem 1.25rem 5rem;
+    padding: 2rem 1.25rem; 5rem;
   }
 
   .tentang-section-label {
@@ -252,7 +256,7 @@ const CSS = `
 
   .tentang-cta-btn:hover { background: var(--green-deep); }
 
-  .tentang-footer { background: linear-gradient(135deg, #2C1F0E 0%, #3D2E10 60%, #2D4A1A 100%); border-top: 1px solid rgba(245,236,215,0.08); padding: 2rem 1.25rem 5rem; }
+  .tentang-footer { background: linear-gradient(135deg, #2C1F0E 0%, #3D2E10 60%, #2D4A1A 100%); border-top: 1px solid rgba(245,236,215,0.08); padding: 2rem 1.25rem 1.5rem; }
   .tentang-footer-logo { font-family:'Playfair Display',serif; font-size:18px; color:var(--cream); margin-bottom:4px; }
   .tentang-footer-tagline { font-size:11px; font-weight:300; color:rgba(245,236,215,0.4); margin-bottom:1.25rem; }
   .tentang-footer-sosmed { display:flex; gap:10px; margin-bottom:1.5rem; }
@@ -282,8 +286,12 @@ export default function TentangKamiPage() {
               <img src="https://res.cloudinary.com/dzg25zm9i/image/upload/v1781697094/RAMUDJITU_sf1t8w.png" alt="Ramudjitu" style={{height:"56px", width:"56px", borderRadius:"50%", objectFit:"cover"}} />
               <span style={{fontFamily:"'Playfair Display', serif", fontSize:"16px", fontWeight:"700", letterSpacing:"0.3px"}}><span style={{color:"#2e3a1f"}}>Ramu</span><span style={{color:"#4a3218"}}>Djitu</span></span>
             </Link>
-                 
-            <Link href="/" className="tentang-nav-back">← Kembali ke Toko</Link>
+
+            <nav className="tentang-nav">
+              <Link href="/#produk">Produk</Link>
+              <Link href="/tentang-kami">Tentang Kami</Link>
+              <Link href="/blog">Blog</Link>
+            </nav>
           </header>
 
           {/* HERO */}
@@ -364,8 +372,7 @@ export default function TentangKamiPage() {
           </footer>
 
         </div>
-      </div>
-      <BottomNav activeTab="beranda" />
+      </div>  
     </>
   );
 }
