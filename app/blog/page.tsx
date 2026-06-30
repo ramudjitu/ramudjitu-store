@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { getAllArtikel } from "@/sanity/queries";
 import { urlForImage } from "@/sanity/image";
+import HamburgerMenu from "@/components/HamburgerMenu";
 
 function optimasiCloudinary(url: string, width: number = 600) {
   if (!url || !url.includes('cloudinary.com')) return url;
@@ -146,6 +147,7 @@ export default async function BlogPage() {
               <Link href="/#produk">Produk</Link>
               <Link href="/tentang-kami">Tentang Kami</Link>
               <Link href="/blog">Blog</Link>
+              <HamburgerMenu prefix="blog" />
             </nav>
           </header>
 

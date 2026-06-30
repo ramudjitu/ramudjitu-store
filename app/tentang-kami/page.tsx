@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import HamburgerMenu from "@/components/HamburgerMenu";
 
 export const metadata: Metadata = {
   title: "Tentang Kami | Ramudjitu",
@@ -292,6 +293,7 @@ export default function TentangKamiPage() {
               <Link href="/tentang-kami">Tentang Kami</Link>
               <Link href="/blog">Blog</Link>
             </nav>
+            <HamburgerMenu prefix="tentang" />
           </header>
 
           {/* HERO */}

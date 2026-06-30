@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 import { getArtikelBySlug } from "@/sanity/queries";
 import { urlForImage } from "@/sanity/image";
+import HamburgerMenu from "@/components/HamburgerMenu";
 
 function optimasiCloudinary(url: string, width: number = 600) {
   if (!url || !url.includes('cloudinary.com')) return url;
@@ -190,6 +191,7 @@ export default async function ArtikelDetailPage({ params }: { params: Promise<{ 
               <Link href="/#produk">Produk</Link>
               <Link href="/tentang-kami">Tentang Kami</Link>
               <Link href="/blog">Blog</Link>
+              <HamburgerMenu prefix="det" />
             </nav>
           </header>
 
