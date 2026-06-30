@@ -80,8 +80,8 @@ const RAW_CSS = `
   .ramu-logo img { height: 44px; width: 44px; border-radius: 50%; object-fit: cover; }
   .ramu-header-right { display: flex; align-items: center; gap: 10px; }
   .ramu-nav { display: none; }
-  @media (min-width: 500px) { .ramu-nav { display: flex; align-items: center; gap: 1.25rem; flex: 1; justify-content: flex-end; } }
-  .ramu-nav a { color: var(--text-mid); font-size: 12px; font-weight: 400; text-decoration: none; transition: color 0.2s; cursor: pointer; }
+  @media (min-width: 500px) { .ramu-nav { display: flex; align-items: center; gap: 1.5rem; flex: 1; justify-content: flex-end; } }
+  .ramu-nav a { color: var(--text-mid); font-size: 13px; font-weight: 400; text-decoration: none; transition: color 0.2s; cursor: pointer; }
   .ramu-nav a:hover { color: var(--green-mid); }
 
   .ramu-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
