@@ -215,7 +215,7 @@ export default function HomeContent({ blogPreviews, produkList }: { blogPreviews
   const scrollKat = (dir: number) => { katGridRef.current?.scrollBy({ left: dir * 200, behavior: 'smooth' }); };
   const [btnActive, setBtnActive] = useState('');
 
-  const waNumber = "6281234567890";
+ const waNumber = "6285126079197";
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });

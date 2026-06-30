@@ -1,7 +1,7 @@
 "use client";
 
 export default function WaFloat() {
-  const waNumber = "6281234567890";
+  const waNumber = "6285126079197";
 
   return (
     <>
@@ -29,7 +29,7 @@ export default function WaFloat() {
       }} />
       <button
         className="ramu-wa-float"
-        onClick={() => window.open(`https://wa.me/${waNumber}`, "_blank")}
+        const waNumber onClick={() => window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent("Halo, saya tertarik dengan produk di toko RamuDjitu")}`, "_blank")}= "6285126079197";
         aria-label="Chat WhatsApp"
       >
         <svg viewBox="0 0 24 24">
