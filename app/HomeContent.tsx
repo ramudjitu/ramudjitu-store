@@ -144,9 +144,9 @@ const RAW_CSS = `
   .ramu-p-desc { font-size: 11px; font-weight: 300; color: var(--text-muted); margin-bottom: 10px; line-height: 1.5; }
   .ramu-p-btn-detail {
     display: flex; align-items: center; justify-content: center; gap: 6px;
-    width: 100%; height: 46px;
+    width: 100%; height: 50px;
     background: #00AA5B; color: #FFFFFF;
-    border: none; border-radius: 14px;
+    border: none; border-radius: 999px;
     font-size: 14px; font-weight: 700;
     cursor: pointer; font-family: 'DM Sans', sans-serif;
     text-decoration: none; transition: all 0.2s;
