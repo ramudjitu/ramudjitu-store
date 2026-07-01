@@ -1,7 +1,24 @@
 "use client";
 
+import { usePathname } from "next/navigation";
+
+const HIDDEN_PATHS = [
+  "/syarat-ketentuan",
+  "/kebijakan-privasi",
+  "/kebijakan-pengembalian",
+  "/hubungi-kami",
+  "/faq",
+];
+
 export default function WaFloat() {
   const waNumber = "6285126079197";
+  const pathname = usePathname();
+
+  const isHidden = HIDDEN_PATHS.some(
+    (path) => pathname === path || pathname.startsWith(`${path}/`)
+  );
+
+  if (isHidden) return null;
 
   return (
     <>
