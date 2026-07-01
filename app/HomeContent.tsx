@@ -368,11 +368,11 @@ export default function HomeContent({ blogPreviews, produkList }: { blogPreviews
               </a>
             </div>
             <div className="ramu-footer-links">
-              <a href="#">Syarat & Ketentuan</a>
-              <a href="#">Kebijakan Privasi</a>
-              <a href="#">Kebijakan Pengembalian</a>
-              <a href="#">Hubungi Kami</a>
-              <a href="#">FAQ</a>
+              <Link href="/syarat-ketentuan">Syarat & Ketentuan</Link> 
+              <Link href="/kebijakan-privasi">Kebijakan Privasi</Link>
+              <Link href="/kebijakan-pengembalian">Kebijakan Pengembalian</Link>
+              <Link href="/hubungi-kami">Hubungi Kami</Link>
+              <Link href="/faq">FAQ</Link>
             </div>
             <div className="ramu-footer-copy">© 2026 Ramudjitu · Semua hak dilindungi</div>
           </footer>
