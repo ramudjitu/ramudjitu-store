@@ -173,12 +173,12 @@ export default async function BlogPage() {
                 {artikelList.map((artikel: any) => (
                   <Link href={`/blog/${artikel.slug}`} className="blog-card" key={artikel.slug}>
                     <div className="blog-card-img">
-                      {artikel.mainImage ? (
-                        <img src={optimasiCloudinary(artikel.imageUrl)} alt={artikel.title} />
-                      ) : (
-                        "🌿"
-                      )}
-                    </div>
+  {artikel.mainImage ? (
+    <img src={optimasiCloudinary(urlForImage(artikel.mainImage).url())} alt={artikel.title} />
+  ) : (
+    "🌿"
+  )}
+</div>
                     <div className="blog-card-body">
                       <span className="blog-card-tag">{artikel.tag}</span>
                       <div className="blog-card-title">{artikel.title}</div>
