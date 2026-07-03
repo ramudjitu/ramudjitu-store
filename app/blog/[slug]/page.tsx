@@ -266,12 +266,11 @@ export default async function ArtikelDetailPage({ params }: { params: Promise<{ 
               </a>
             </div>
             <div className="det-footer-links">
-              <Link href="/" style={{fontSize:"11px",color:"rgba(245,236,215,0.4)",textDecoration:"none"}}>Beranda</Link>
-              <Link href="/blog" style={{fontSize:"11px",color:"rgba(245,236,215,0.4)",textDecoration:"none"}}>Blog</Link>
-              <a href="#">Syarat & Ketentuan</a>
-              <a href="#">Kebijakan Privasi</a>
-              <a href="#">FAQ</a>
-              <a href="#">Hubungi Kami</a>
+              <Link href="/syarat-ketentuan">Syarat & Ketentuan</Link> 
+              <Link href="/kebijakan-privasi">Kebijakan Privasi</Link>
+              <Link href="/kebijakan-pengembalian">Kebijakan Pengembalian</Link>
+              <Link href="/hubungi-kami">Hubungi Kami</Link>
+              <Link href="/faq">FAQ</Link>
             </div>
             <div className="det-footer-copy">© 2026 RamuDjitu · Semua hak dilindungi</div>
           </footer>
