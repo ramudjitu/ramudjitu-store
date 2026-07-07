@@ -300,7 +300,7 @@ export default function HomeContent({ blogPreviews, produkList }: { blogPreviews
                 </div>
               ) : (
                 produkList.filter(p => p.kategori === aktifKategori).map((p, i) => (
-                  <Link key={i} className="ramu-p-card" href={p.urlLP || "#"} style={{ textDecoration: "none" }}>
+                  <Link key={i} className="ramu-p-card" href={`/produk/${p.slug}`} style={{ textDecoration: "none" }}>
                     <div className="ramu-p-img">
                       {p.gambar && <img src={optimasiCloudinary(p.gambar)} alt={p.nama} />}
                     </div>
