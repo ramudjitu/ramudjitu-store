@@ -2,7 +2,7 @@
   "name": "ramudjitu-store",
   "version": "0.1.0",
   "private": true,
- "scripts": {
+  "scripts": {
     "dev": "next dev",
     "dev:studio": "npm run dev --prefix studio",
     "dev:all": "concurrently \"npm run dev\" \"npm run dev:studio\"",
