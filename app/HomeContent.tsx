@@ -13,7 +13,7 @@ interface BlogPreview {
   imageUrl?: string;
 }
 
-type KategoriKey = "nutrisi" | "stamina" | "amino" | "antioksidan";
+type KategoriKey = string;
 
 function optimasiCloudinary(url: string, width: number = 400) {
   if (!url || !url.includes('cloudinary.com')) return url;
@@ -21,10 +21,10 @@ function optimasiCloudinary(url: string, width: number = 400) {
 }
 
 const kategoriList: { key: KategoriKey; emoji: string; nama: string; count: string; img: string }[] = [
-  { key: "nutrisi", emoji: "🥤", nama: "Fondasi", count: "6 produk", img: "https://res.cloudinary.com/dzg25zm9i/image/upload/f_auto,q_auto,w_300/v1781697490/kategori-fondasi.png_ufrw0h.png" },
-  { key: "stamina", emoji: "⚡", nama: "Regenerasi", count: "5 produk", img: "https://res.cloudinary.com/dzg25zm9i/image/upload/f_auto,q_auto,w_300/v1781697483/kategori-regenerasi.png_pnfzjl.png" },
-  { key: "amino", emoji: "💪", nama: "Perlindungan", count: "4 produk", img: "https://res.cloudinary.com/dzg25zm9i/image/upload/f_auto,q_auto,w_300/v1781697483/kategori-perlindungan.png_c0yxsi.png" },
-  { key: "antioksidan", emoji: "🛡️", nama: "Performa", count: "4 produk", img: "https://res.cloudinary.com/dzg25zm9i/image/upload/f_auto,q_auto,w_300/v1781697488/kategori-performa.png_ylvhfx.png" },
+  { key: "Fondasi", emoji: "🥤", nama: "Fondasi", count: "6 produk", img: "https://res.cloudinary.com/dzg25zm9i/image/upload/f_auto,q_auto,w_300/v1781697490/kategori-fondasi.png_ufrw0h.png" },
+  { key: "Regenerasi", emoji: "⚡", nama: "Regenerasi", count: "5 produk", img: "https://res.cloudinary.com/dzg25zm9i/image/upload/f_auto,q_auto,w_300/v1781697483/kategori-regenerasi.png_pnfzjl.png" },
+  { key: "Perlindungan", emoji: "💪", nama: "Perlindungan", count: "4 produk", img: "https://res.cloudinary.com/dzg25zm9i/image/upload/f_auto,q_auto,w_300/v1781697483/kategori-perlindungan.png_c0yxsi.png" },
+  { key: "Performa", emoji: "🛡️", nama: "Performa", count: "4 produk", img: "https://res.cloudinary.com/dzg25zm9i/image/upload/f_auto,q_auto,w_300/v1781697488/kategori-performa.png_ylvhfx.png" },
 ];
 
 const RAW_CSS = `
@@ -279,7 +279,7 @@ export default function HomeContent({ blogPreviews, produkList }: { blogPreviews
               <div ref={katGridRef} style={{ display: "flex", gap: "10px", overflowX: "auto", scrollBehavior: "smooth", WebkitOverflowScrolling: "touch", scrollbarWidth: "none", msOverflowStyle: "none" }}>
                 {kategoriList.map((kat) => (
                   <div key={kat.key} className={`ramu-kat-card${aktifKategori === kat.key ? " active" : ""}`} onClick={() => setAktifKategori(kat.key)} style={{ position: "relative", overflow: "hidden", padding: 0 }}>
-                    <img src={kat.img} alt={kat.nama} fetchPriority={kat.key === "nutrisi" ? "high" : "low"} loading={kat.key === "nutrisi" ? "eager" : "lazy"} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", borderRadius: "12px" }} />
+                    <img src={kat.img} alt={kat.nama} fetchPriority={kat.key === "Fondasi" ? "high" : "low"} loading={kat.key === "Fondasi" ? "eager" : "lazy"} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", borderRadius: "12px" }} />
                     <div style={{ position: "absolute", bottom: "10px", left: "12px", zIndex: 2 }}>
                       <div style={{ background: "rgba(0,0,0,0.08)", backdropFilter: "blur(6px)", color: "#fff", fontSize: "12px", fontWeight: 500, padding: "4px 14px", borderRadius: "999px", textShadow: "0 1px 3px rgba(0,0,0,0.5)" }}>{kat.nama}</div>
                     </div>
