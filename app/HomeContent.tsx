@@ -145,7 +145,7 @@ const RAW_CSS = `
   .ramu-p-btn-detail {
     display: flex; align-items: center; justify-content: center; gap: 6px;
     width: 100%; height: 50px;
-    background: #00AA5B; color: #FFFFFF;
+    background: var(--green-mid); color: #FFFFFF;
     border: none; border-radius: 999px;
     font-size: 14px; font-weight: 700;
     cursor: pointer; font-family: 'DM Sans', sans-serif;
@@ -153,7 +153,7 @@ const RAW_CSS = `
     margin-top: 8px;
     box-shadow: 0 6px 14px rgba(0,0,0,0.12);
   }
-  .ramu-p-btn-detail:hover { background: #008C4A; }
+  .ramu-p-btn-detail:hover { background: var(--green-deep); }
 
   .ramu-blog-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem; }
   .ramu-btn-outline { display: inline-flex; align-items: center; border: 1.5px solid var(--green-mid); color: var(--green-mid); font-size: 11px; font-weight: 500; padding: 6px 14px; border-radius: 20px; text-decoration: none; transition: all 0.2s; font-family: 'DM Sans', sans-serif; background: transparent; cursor: pointer; }

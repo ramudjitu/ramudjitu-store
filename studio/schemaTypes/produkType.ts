@@ -12,6 +12,13 @@ export const produkType = defineType({
       validation: Rule => Rule.required(),
     }),
     defineField({
+      name: 'brand',
+      title: 'Nama Brand (contoh: GetAmor)',
+      type: 'string',
+      description: 'Ditampilkan kecil di atas judul produk pada halaman detail',
+      validation: Rule => Rule.required(),
+    }),
+    defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',

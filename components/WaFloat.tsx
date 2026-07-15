@@ -8,6 +8,7 @@ const HIDDEN_PATHS = [
   "/kebijakan-pengembalian",
   "/hubungi-kami",
   "/faq",
+  "/produk",
 ];
 
 export default function WaFloat() {

@@ -42,6 +42,7 @@ export async function getProdukBySlug(slug: string) {
   return client.fetch(
     `*[_type == "produk" && slug.current == $slug && aktif == true][0] {
       nama,
+      brand,
       "slug": slug.current,
       harga,
       hargaNum,
@@ -60,6 +61,7 @@ export async function getAllProduk() {
   return client.fetch(`
     *[_type == "produk" && aktif == true] | order(urutan asc) {
       nama,
+      brand,
       "slug": slug.current,
       harga,
       hargaNum,
