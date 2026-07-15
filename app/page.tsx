@@ -1,4 +1,5 @@
-import { getLatestArtikel, getAllProduk } from "@/sanity/queries";
+import { getLatestArtikel } from "@/sanity/queries";
+import { getAllProduk } from "@/lib/wp";
 import { urlForImage } from "@/sanity/image";
 import HomeContent from "./HomeContent";
 
