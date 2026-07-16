@@ -31,24 +31,16 @@ function htmlToParagraphs(html: string): string[] {
     .filter((text) => text.length > 0);
 }
 
-const LABEL_KE_KODE: Record<string, string> = {
-  fondasi: "nutrisi",
-  regenerasi: "stamina",
-  perlindungan: "amino",
-  performa: "antioksidan",
-};
-
 function mapWpProduk(node: any) {
   if (!node) return null;
   const d = node.detailProduk || {};
-  const labelKategori = (d.katagori || "").trim().toLowerCase();
   return {
     nama: node.title,
     brand: "RamuDjitu",
     slug: node.slug,
     harga: d.harga ? `Rp${Number(d.harga).toLocaleString("id-ID")}` : "",
     hargaNum: d.harga || 0,
-    kategori: LABEL_KE_KODE[labelKategori] || d.katagori || "",
+    kategori: d.katagori || "",
     deskripsiSingkat: "",
     deskripsi: htmlToParagraphs(node.content),
     gambar: node.featuredImage?.node?.sourceUrl || "",
@@ -88,8 +80,4 @@ export async function getAllProduk() {
     }`
   );
   return data.produks.nodes.map(mapWpProduk);
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 6fc39e1cf0f1b175dc2c5b362c8917a72782b01c
