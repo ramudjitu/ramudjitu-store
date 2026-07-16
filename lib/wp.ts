@@ -43,6 +43,10 @@ function mapWpProduk(node: any) {
     kategori: d.katagori || "",
     deskripsiSingkat: "",
     deskripsi: htmlToParagraphs(node.content),
+    bulletManfaat: (d.bulletManfaat || "")
+      .split("\n")
+      .map((s: string) => s.trim())
+      .filter((s: string) => s.length > 0),
     gambar: node.featuredImage?.node?.sourceUrl || "",
     urlLP: d.linkLp || "#",
     urlCheckout: d.linkCheckout || "#",

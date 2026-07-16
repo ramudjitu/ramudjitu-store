@@ -531,6 +531,21 @@ export default function ProdukClient({ slug, sanityProduk }: { slug: string; san
             </div>
           </div>
 
+          {/* MANFAAT (bullet points) */}
+{sanityProduk.bulletManfaat && sanityProduk.bulletManfaat.length > 0 && (
+  <div className="pd-section">
+    <div className="pd-section-label">Manfaat</div>
+    <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "10px" }}>
+      {sanityProduk.bulletManfaat.map((item: string, i: number) => (
+        <li key={i} style={{ display: "flex", alignItems: "flex-start", gap: "10px", fontSize: "15px", lineHeight: "1.5", color: "#5A4030" }}>
+          <span style={{ color: "#4A7A25", fontWeight: 700, flexShrink: 0 }}>✔</span>
+          <span>{item.replace(/^✔\s*/, "")}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+)}
+
           {/* DESKRIPSI */}
           {sanityProduk.deskripsi && sanityProduk.deskripsi.length > 0 && (
             <div className="pd-section">
