@@ -1,8 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { PortableText, PortableTextComponents } from "@portabletext/react";
-import { getArtikelBySlug } from "@/sanity/queries";
-import { urlForImage } from "@/sanity/image";
+import { getArtikelBySlug } from "@/lib/wp";
 import HamburgerMenu from "@/components/HamburgerMenu";
 
 function optimasiCloudinary(url: string, width: number = 600) {
@@ -91,10 +89,15 @@ const DETAIL_CSS = `
   .det-emoji-banner img { width: 100%; height: 100%; object-fit: cover; }
 
   .det-content { padding: 2rem 1.25rem 1.5rem; }
-  .det-content p { font-size: 14px; font-weight: 300; color: var(--text-mid); line-height: 1.9; margin-bottom: 1.25rem; }
+  .det-content p { font-size: 14px; font-weight: 400; color: var(--text-dark); line-height: 1.65; margin-bottom: 1.25rem; }
   .det-content h2 { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--text-dark); margin-bottom: 0.6rem; margin-top: 1.75rem; }
   .det-content img { width: 100%; border-radius: 12px; margin: 1.25rem 0; }
   .det-content strong { font-weight: 600; color: var(--text-dark); }
+  .det-content ul, .det-content ol { margin: 0 0 1.25rem 0; padding-left: 1.25rem; }
+  .det-content li { font-size: 14px; font-weight: 400; color: #000; line-height: 1.65; margin-bottom: 0.3rem; }
+  .det-content ul { list-style: disc; }
+  .det-content ol { list-style: decimal; }
+  .det-content h3 { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--text-dark); margin-bottom: 0.5rem; margin-top: 1.5rem; }
 
   .det-cta { background: var(--green-pale); border: 1px solid var(--green-bright); border-radius: 14px; padding: 1.25rem; margin: 1.5rem 0; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
   .det-cta-text { font-size: 13px; font-weight: 500; color: var(--green-deep); }
@@ -135,18 +138,6 @@ function formatTanggal(dateString: string) {
   return `${d.getDate()} ${bulan[d.getMonth()]} ${d.getFullYear()}`;
 }
 
-// Komponen custom untuk render rich text dari Sanity (heading, paragraf, gambar)
-const ptComponents: PortableTextComponents = {
-  block: {
-    h2: ({ children }) => <h2>{children}</h2>,
-    normal: ({ children }) => <p>{children}</p>,
-  },
-  types: {
-    image: ({ value }) => (
-      <img src={value?.asset?.url || ''} alt={value?.alt || ''} />
-    ),
-   },
- };
  
 export default async function ArtikelDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -206,14 +197,14 @@ export default async function ArtikelDetailPage({ params }: { params: Promise<{ 
 
           <div className="det-emoji-banner">
             {artikel.mainImage ? (
-              <img src={urlForImage(artikel.mainImage).width(700).url()} alt={artikel.title} />
+            <img src={artikel.mainImage} alt={artikel.title} />
             ) : (
               "🌿"
             )}
           </div>
 
           <article className="det-content">
-            {artikel.content && <PortableText value={artikel.content} components={ptComponents} />}
+            {artikel.content && <div dangerouslySetInnerHTML={{ __html: artikel.content }} />}
 
             <div className="det-cta">
               <div>
@@ -232,7 +223,7 @@ export default async function ArtikelDetailPage({ params }: { params: Promise<{ 
                   <Link href={`/blog/${rel.slug}`} className="det-related-card" key={rel.slug}>
                     <span className="det-related-emoji">
                       {rel.mainImage ? (
-                        <img src={urlForImage(rel.mainImage).width(88).height(88).url()} alt={rel.title} />
+                      <img src={rel.mainImage} alt={rel.title} />
                       ) : (
                         "🌿"
                       )}

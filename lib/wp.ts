@@ -85,3 +85,82 @@ export async function getAllProduk() {
   );
   return data.produks.nodes.map(mapWpProduk);
 }
+
+function hitungReadTime(html: string): string {
+  const teks = (html || "").replace(/<[^>]+>/g, " ");
+  const jumlahKata = teks.trim().split(/\s+/).filter(Boolean).length;
+  const menit = Math.max(1, Math.round(jumlahKata / 200));
+  return `${menit} menit`;
+}
+
+function mapWpArtikel(node: any) {
+  if (!node) return null;
+  return {
+    title: node.title,
+    slug: node.slug,
+    tag: node.detailArtikel?.tag || "Edukasi",
+    mainImage: node.featuredImage?.node?.sourceUrl || "",
+    description: (node.excerpt || "")
+    .replace(/<[^>]+>/g, "")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&hellip;/g, "…")
+    .replace(/&amp;/g, "&")
+    .replace(/\[…\]|\[&hellip;\]/g, "")
+    .trim(),
+    readTime: hitungReadTime(node.content),
+    publishedAt: node.date,
+    content: node.content || "",
+    related: [] as any[],
+  };
+}
+
+export async function getAllArtikel() {
+  const data = await wpFetch(
+    `query GetAllArtikel {
+      posts(first: 100) {
+        nodes {
+          title
+          slug
+          date
+          excerpt
+          content
+          featuredImage { node { sourceUrl } }
+          detailArtikel { tag }
+        }
+      }
+    }`
+  );
+  return data.posts.nodes.map(mapWpArtikel);
+}
+
+export async function getLatestArtikel(limit: number = 3) {
+  const semua = await getAllArtikel();
+  return semua.slice(0, limit);
+}
+
+export async function getArtikelBySlug(slug: string) {
+  const data = await wpFetch(
+    `query GetArtikelBySlug($slug: ID!) {
+      post(id: $slug, idType: SLUG) {
+        title
+        slug
+        date
+        excerpt
+        content
+        featuredImage { node { sourceUrl } }
+        detailArtikel { tag }
+      }
+    }`,
+    { slug }
+  );
+  const artikel = mapWpArtikel(data.post);
+  if (!artikel) return null;
+
+  const semua = await getAllArtikel();
+  const lainnya = semua.filter((a: any) => a.slug !== slug);
+  const tagSama = lainnya.filter((a: any) => a.tag === artikel.tag);
+  const sisanya = lainnya.filter((a: any) => a.tag !== artikel.tag);
+  artikel.related = [...tagSama, ...sisanya].slice(0, 3);
+
+  return artikel;
+}

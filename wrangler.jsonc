@@ -10,9 +10,5 @@
   },
   "images": {
     "binding": "IMAGES"
-  },
-  "vars": {
-    "NEXT_PUBLIC_SANITY_PROJECT_ID": "37xf9uwg",
-    "NEXT_PUBLIC_SANITY_DATASET": "production"
   }
 }

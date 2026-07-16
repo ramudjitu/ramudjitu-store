@@ -1,6 +1,4 @@
-import { getLatestArtikel } from "@/sanity/queries";
-import { getAllProduk } from "@/lib/wp";
-import { urlForImage } from "@/sanity/image";
+import { getLatestArtikel, getAllProduk } from "@/lib/wp";
 import HomeContent from "./HomeContent";
 
 export const revalidate = 60;
@@ -22,7 +20,7 @@ export default async function Home() {
     description: a.description,
     readTime: a.readTime,
     publishedAt: formatTanggal(a.publishedAt),
-    imageUrl: a.mainImage ? urlForImage(a.mainImage).width(180).height(180).url() : undefined,
+    imageUrl: a.mainImage || undefined,
   }));
 
   return <HomeContent blogPreviews={blogPreviews} produkList={produkRaw} />;

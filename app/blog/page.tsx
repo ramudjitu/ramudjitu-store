@@ -1,7 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { getAllArtikel } from "@/sanity/queries";
-import { urlForImage } from "@/sanity/image";
+import { getAllArtikel } from "@/lib/wp";
 import HamburgerMenu from "@/components/HamburgerMenu";
 
 function optimasiCloudinary(url: string, width: number = 600) {
@@ -99,8 +98,28 @@ const BLOG_CSS = `
   .blog-card-img img { width: 100%; height: 100%; object-fit: cover; }
   .blog-card-body { padding: 14px; flex: 1; }
   .blog-card-tag { display: inline-block; background: var(--green-pale); color: var(--green-mid); font-size: 9px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; padding: 2px 8px; border-radius: 8px; margin-bottom: 7px; }
-  .blog-card-title { font-family: 'Playfair Display', serif; font-size: 14px; color: var(--text-dark); line-height: 1.4; margin-bottom: 6px; }
-  .blog-card-excerpt { font-size: 12px; font-weight: 300; color: var(--text-muted); line-height: 1.6; margin-bottom: 8px; }
+ .blog-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  color: #000;
+  line-height: 1.4;
+  margin-bottom: 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.blog-card-excerpt {
+  font-size: 12px;
+  font-weight: 400;
+  color: #000;
+  line-height: 1.6;
+  margin-bottom: 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
   .blog-card-meta { font-size: 11px; color: var(--text-muted); }
 
   .blog-empty { text-align: center; padding: 3rem 1rem; color: var(--text-muted); font-size: 13px; }
@@ -159,14 +178,14 @@ export default async function BlogPage() {
 
           <main className="blog-main">
             <div className="blog-tags">
-              {["Semua", "Herbal", "Edukasi", "Tips"].map((tag) => (
+              {["Semua", "Edukasi", "Tips"].map((tag) => (
                 <button key={tag} className={`blog-tag-btn${tag === "Semua" ? " active" : ""}`}>{tag}</button>
               ))}
             </div>
 
             {artikelList.length === 0 ? (
               <div className="blog-empty">
-                Belum ada artikel. Tulis artikel pertama di Sanity Studio ya! 🌿
+                Belum ada artikel. Tulis artikel pertama di WordPress ya! 🌿
               </div>
             ) : (
               <div className="blog-grid">
@@ -174,7 +193,7 @@ export default async function BlogPage() {
                   <Link href={`/blog/${artikel.slug}`} className="blog-card" key={artikel.slug}>
                     <div className="blog-card-img">
   {artikel.mainImage ? (
-    <img src={optimasiCloudinary(urlForImage(artikel.mainImage).url())} alt={artikel.title} />
+    <img src={optimasiCloudinary(artikel.mainImage)} alt={artikel.title} />
   ) : (
     "🌿"
   )}
@@ -224,4 +243,3 @@ export default async function BlogPage() {
     </>
   );
 }
-
