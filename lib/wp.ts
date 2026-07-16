@@ -88,4 +88,8 @@ export async function getAllProduk() {
     }`
   );
   return data.produks.nodes.map(mapWpProduk);
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 6fc39e1cf0f1b175dc2c5b362c8917a72782b01c
