@@ -8,13 +8,6 @@ function optimasiCloudinary(url: string, width: number = 600) {
   return url.replace('/image/upload/', `/image/upload/f_auto,q_auto,w_${width}/`);
 }
 
-const KATEGORI_LABELS: Record<string, string> = {
-  nutrisi: "Fondasi",
-  stamina: "Regenerasi",
-  amino: "Perlindungan",
-  antioksidan: "Performa",
-};
-
 const CSS = `
   :root {
     --brown-dark: #1E1208;
@@ -456,7 +449,7 @@ export default function ProdukClient({ slug, sanityProduk }: { slug: string; san
   const checkoutUrl = sanityProduk.urlCheckout || "#";
   const lpUrl = sanityProduk.urlLP || "#";
   const brand = sanityProduk.brand;
-  const kategoriLabel = KATEGORI_LABELS[sanityProduk.kategori] || sanityProduk.kategori || "Produk";
+  const kategoriLabel = sanityProduk.kategori || "Produk";
 
   return (
     <>

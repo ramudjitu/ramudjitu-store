@@ -1,5 +1,5 @@
 import ProdukClient from "./ProdukClient";
-import { getProdukBySlug } from "@/sanity/queries";
+import { getProdukBySlug } from "@/lib/wp";
 
 export const revalidate = 60;
 
