@@ -348,7 +348,7 @@ const CSS = `
 
   /* Spacer so sticky CTA doesn't cover content on mobile/tablet */
   .pd-cta-spacer {
-    height: 96px;
+    height: 140px;
   }
 
   /* STICKY CTA — mobile & tablet */
@@ -359,7 +359,7 @@ const CSS = `
       right: 0;
       bottom: 0;
       z-index: 200;
-      flex-direction: row;
+      flex-direction: column;
       gap: 8px;
       max-width: 690px;
       margin: 0 auto;
@@ -369,8 +369,8 @@ const CSS = `
     }
 
     .pd-btn-beli, .pd-btn-lp {
-      padding: 13px 8px;
-      font-size: 13px;
+      padding: 14px;
+      font-size: 14px;
     }
   }
 
