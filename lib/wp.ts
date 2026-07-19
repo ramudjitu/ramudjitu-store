@@ -3,7 +3,10 @@ const WP_GRAPHQL_ENDPOINT = "https://cms.berkyu.com/graphql";
 async function wpFetch(query: string, variables: Record<string, any> = {}) {
   const res = await fetch(WP_GRAPHQL_ENDPOINT, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      "User-Agent": "RamuDjituStorefront/1.0 (+https://store.ramudjitu.workers.dev)",
+    },
     body: JSON.stringify({ query, variables }),
     next: { revalidate: 60 },
   });
