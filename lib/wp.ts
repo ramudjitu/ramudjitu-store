@@ -39,7 +39,7 @@ function mapWpProduk(node: any) {
   const d = node.detailProduk || {};
   return {
     nama: node.title,
-    brand: "RamuDjitu",
+    brand: d.merek || "RamuDjitu",
     slug: node.slug,
     harga: d.harga ? `Rp${Number(d.harga).toLocaleString("id-ID")}` : "",
     hargaNum: d.harga || 0,
@@ -64,7 +64,7 @@ export async function getProdukBySlug(slug: string) {
         slug
         content
         featuredImage { node { sourceUrl } }
-        detailProduk { harga katagori bulletManfaat linkCheckout linkLp }
+        detailProduk { harga katagori bulletManfaat linkCheckout linkLp merek }
       }
     }`,
     { slug }
@@ -81,7 +81,7 @@ export async function getAllProduk() {
           slug
           content
           featuredImage { node { sourceUrl } }
-          detailProduk { harga katagori bulletManfaat linkCheckout linkLp }
+          detailProduk { harga katagori bulletManfaat linkCheckout linkLp merek }
         }
       }
     }`
