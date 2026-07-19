@@ -21,10 +21,10 @@ function optimasiCloudinary(url: string, width: number = 400) {
 }
 
 const kategoriList: { key: KategoriKey; emoji: string; nama: string; count: string; img: string }[] = [
-  { key: "Fondasi", emoji: "🥤", nama: "Fondasi", count: "6 produk", img: "https://pub-df035f14559c4d0493d6fb7f58b20128.r2.dev/kategori-fondasi.webp" },
-  { key: "Regenerasi", emoji: "⚡", nama: "Regenerasi", count: "5 produk", img: "https://pub-df035f14559c4d0493d6fb7f58b20128.r2.dev/kategori-regenerasi.webp" },
-  { key: "Perlindungan", emoji: "💪", nama: "Perlindungan", count: "4 produk", img: "https://pub-df035f14559c4d0493d6fb7f58b20128.r2.dev/kategori-perlindungan.webp" },
-  { key: "Performa", emoji: "🛡️", nama: "Performa", count: "4 produk", img: "https://pub-df035f14559c4d0493d6fb7f58b20128.r2.dev/kategori-performa.webp" },
+  { key: "Fondasi", emoji: "🥤", nama: "Fondasi", count: "6 produk", img: "https://res.cloudinary.com/dzg25zm9i/image/upload/f_auto,q_auto,w_600/v1781697490/kategori-fondasi.png_ufrw0h.png" },
+  { key: "Regenerasi", emoji: "⚡", nama: "Regenerasi", count: "5 produk", img: "https://res.cloudinary.com/dzg25zm9i/image/upload/f_auto,q_auto,w_600/v1781697483/kategori-regenerasi.png_pnfzjl.png" },
+  { key: "Perlindungan", emoji: "💪", nama: "Perlindungan", count: "4 produk", img: "https://res.cloudinary.com/dzg25zm9i/image/upload/f_auto,q_auto,w_600/v1781697483/kategori-perlindungan.png_c0yxsi.png" },
+  { key: "Performa", emoji: "🛡️", nama: "Performa", count: "4 produk", img: "https://res.cloudinary.com/dzg25zm9i/image/upload/f_auto,q_auto,w_600/v1781697488/kategori-performa.png_ylvhfx.png" },
 ];
 
 const RAW_CSS = `
