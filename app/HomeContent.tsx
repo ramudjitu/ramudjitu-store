@@ -103,87 +103,127 @@ const RAW_CSS = `
   .ramu-mobile-menu a:hover { color: var(--green-mid); }
 
   .ramu-hero {
-    background: linear-gradient(135deg, #2C1F0E 0%, #3D2E10 60%, #2D4A1A 100%);
-    padding: 2.5rem 1.25rem;
+    background: #1D2712;
+    padding: 2.75rem 1.25rem 2.5rem;
     position: relative; overflow: hidden;
+    border-top: 2px solid var(--amber);
   }
-  .ramu-hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 280px; height: 280px; background: radial-gradient(circle, rgba(74,122,37,0.18) 0%, transparent 70%); pointer-events: none; }
-  .ramu-hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(122,158,78,0.15); border: 1px solid rgba(122,158,78,0.3); color: var(--green-light); font-size: 10px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 1.25rem; }
-  .ramu-hero-badge span { width: 5px; height: 5px; background: var(--green-bright); border-radius: 50%; display: inline-block; }
-  .ramu-hero-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 400; color: var(--cream); line-height: 1.2; margin-bottom: 0.75rem; }
-  .ramu-hero-title em { font-style: italic; color: var(--green-light); }
-  .ramu-hero-sub { font-size: 14px; font-weight: 300; color: rgba(245,236,215,0.65); line-height: 1.8; margin-bottom: 1.5rem; }
-  .ramu-hero-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--green-mid); color: #fff; font-size: 13px; font-weight: 500; padding: 11px 24px; border-radius: 32px; border: none; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; margin-bottom: 1.5rem; }
-  .ramu-hero-cta:hover { background: var(--green-deep); }
-  .ramu-hero-cta svg { width: 14px; height: 14px; fill: none; stroke: #fff; stroke-width: 2; }
-  .ramu-hero-stats { display: flex; gap: 10px; }
-  .ramu-stat-pill { background: rgba(245,236,215,0.07); border: 1px solid rgba(245,236,215,0.12); border-radius: 12px; padding: 12px 16px; text-align: center; flex: 1; }
-  .ramu-stat-num { font-family: 'Playfair Display', serif; font-size: 13px; color: var(--green-light); }
-  .ramu-stat-label { font-size: 11px; color: rgba(245,236,215,0.5); margin-top: 3px; }
+  .ramu-hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(212,134,15,0.5), transparent); }
+  .ramu-hero-badge { display: inline-flex; align-items: center; gap: 8px; background: transparent; border: 1px solid rgba(212,134,15,0.4); color: var(--amber-light); font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border-radius: 999px; margin-bottom: 1.5rem; }
+  .ramu-hero-badge span { width: 4px; height: 4px; background: var(--amber); border-radius: 50%; display: inline-block; }
+  .ramu-hero-title { font-family: 'Playfair Display', serif; font-size: 27px; font-weight: 500; color: var(--cream); line-height: 1.3; letter-spacing: 0.2px; margin-bottom: 1rem; }
+  .ramu-hero-title em { font-style: italic; font-weight: 700; color: var(--amber-light); }
+  .ramu-hero-sub { font-size: 13px; font-weight: 300; color: rgba(245,236,215,0.55); line-height: 1.8; margin-bottom: 1.75rem; }
+  .ramu-hero-cta { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--cream); font-size: 12px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; padding: 12px 28px; border-radius: 999px; border: 1px solid var(--amber); cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; margin-bottom: 2rem; }
+  .ramu-hero-cta:hover { background: var(--amber); color: var(--brown-dark); }
+  .ramu-hero-cta svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.5; }
+  .ramu-hero-stats { display: flex; }
+  .ramu-stat-pill { background: transparent; border: none; border-right: 1px solid rgba(212,134,15,0.25); padding: 0 16px; text-align: center; flex: 1; }
+  .ramu-stat-pill:last-child { border-right: none; }
+  .ramu-stat-num { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 500; color: var(--amber-light); letter-spacing: 0.5px; }
+  .ramu-stat-label { font-size: 10px; color: rgba(245,236,215,0.7); margin-top: 4px; letter-spacing: 0.5px; text-transform: uppercase; }
 
   .ramu-section { padding: 1.75rem 1.25rem; }
   .ramu-section-alt { padding: 1.75rem 1.25rem; background: var(--cream-mid); }
-  .ramu-section-title { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 300; color: var(--text-dark); margin-bottom: 1.25rem; line-height: 1.35; }
+  .ramu-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--amber); margin-bottom: 0.5rem; }
+  .ramu-section-title { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 300; color: #000; margin-bottom: 1.25rem; line-height: 1.35; }
 
   .ramu-kat-card { min-width: 200px; height: 100px; flex-shrink: 0; scroll-snap-align: start; background: #fff; border: 1.5px solid var(--cream-mid); border-radius: 14px; cursor: pointer; transition: all 0.2s; display: flex; flex-direction: row; align-items: center; gap: 12px; }
   @media (min-width: 500px) { .ramu-kat-card { min-width: 220px; height: 110px; } }
-  .ramu-kat-card:hover { border-color: var(--green-bright); }
-  .ramu-kat-card.active { border-color: var(--green-mid); background: var(--green-pale); }
+  .ramu-kat-card:hover { border-color: var(--amber); }
+  .ramu-kat-card.active { border-color: var(--amber); background: #FBF3E4; }
+  .ramu-kat-card { min-width: 200px; height: 100px; flex-shrink: 0; scroll-snap-align: start; background: #fff; border: 1.5px solid var(--cream-mid); border-radius: 14px; cursor: pointer; transition: all 0.2s; display: flex; flex-direction: row; align-items: center; gap: 12px; }
+@media (min-width: 500px) { .ramu-kat-card { min-width: 220px; height: 110px; } }
+.ramu-kat-card:hover { border-color: var(--amber); }
+.ramu-kat-card:hover .ramu-kat-img { transform: scale(1.06); filter: brightness(1.05); }
+.ramu-kat-card.active { border-color: var(--amber); background: #FBF3E4; }
+.ramu-kat-img { transition: transform 0.4s ease, filter 0.3s ease; }
+.ramu-kat-label {
+  background: rgba(0,0,0,0.08);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 14px;
+  border-radius: 999px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+  letter-spacing: 0.2px;
+}
+.ramu-kat-card:hover .ramu-kat-label {
+  background: rgba(212,134,15,0.35);
+  border-color: rgba(245,200,66,0.6);
+  letter-spacing: 0.6px;
+}
 
-  .ramu-filter-label { font-size: 12px; color: var(--text-muted); margin-bottom: 1rem; }
-  .ramu-filter-label strong { color: var(--text-dark); }
+.ramu-kat-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 10;
+  background: #fff; border: 1.5px solid var(--cream-mid); border-radius: 50%;
+  width: 36px; height: 36px; font-size: 20px; line-height: 1; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-dark); transition: all 0.2s;
+}
+.ramu-kat-arrow:hover { background: var(--amber); border-color: var(--amber); color: #fff; }
+.ramu-kat-arrow.left { left: 0; }
+.ramu-kat-arrow.right { right: 0; }
+
+  .ramu-filter-label { font-size: 12px; color: #000; margin-bottom: 1.25rem; text-transform: uppercase; letter-spacing: 1.5px; padding-bottom: 0.75rem; border-bottom: 1px solid var(--cream-mid); }
+  .ramu-filter-label strong { color: #000; font-family: 'DM Sans', sans-serif; font-style: normal; font-weight: 400; text-transform: none; letter-spacing: 0; font-size: 12px; }
   .ramu-produk-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
   @media (min-width: 480px) { .ramu-produk-grid { grid-template-columns: 1fr 1fr; } }
-  .ramu-p-card { background: #fff; border: 1px solid var(--cream-mid); border-radius: 14px; overflow: hidden; cursor: pointer; transition: all 0.2s; }
-  .ramu-p-card:hover { border-color: var(--green-bright); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(74,122,37,0.1); }
+  .ramu-p-card { background: #fff; border: 1px solid var(--cream-mid); border-radius: 14px; overflow: hidden; cursor: pointer; transition: all 0.25s; }
+  .ramu-p-card:hover { border-color: var(--amber); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(212,134,15,0.18); }
   .ramu-p-img { position: relative; width: 100%; padding-bottom: 100%; overflow: hidden; background: var(--green-pale); }
-  .ramu-p-img img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; background: var(--cream-light); }
+  .ramu-p-img img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; background: var(--cream-light); transition: transform 0.5s ease; }
+  .ramu-p-card:hover .ramu-p-img img { transform: scale(1.06); }
   .ramu-p-info { padding: 10px; }
-  .ramu-p-price { font-size: 16px; font-weight: 700; color: #111827; margin-bottom: 4px; display: block; }
-  .ramu-p-name { font-size: 12px; font-weight: 500; color: #1F2937; margin-bottom: 4px; line-height: 1.4; }
-  .ramu-p-desc { font-size: 11px; font-weight: 300; color: var(--text-muted); margin-bottom: 10px; line-height: 1.5; }
+  .ramu-p-price { font-size: 16px; font-weight: 700; color: #111827 !important; margin-bottom: 4px; display: block; }
+  .ramu-p-name { font-size: 12px; font-weight: 500; color: #1F2937 !important; margin-bottom: 4px; line-height: 1.4; }
+  .ramu-p-desc { font-size: 11px; font-weight: 300; color: var(--text-muted) !important; margin-bottom: 10px; line-height: 1.5; }
   .ramu-p-btn-detail {
     display: flex; align-items: center; justify-content: center; gap: 6px;
-    width: 100%; height: 50px;
-    background: var(--green-mid); color: #FFFFFF;
-    border: none; border-radius: 999px;
-    font-size: 14px; font-weight: 700;
+    width: 100%; height: 46px;
+    background: #1D2712; color: var(--cream);
+    border: 1px solid var(--amber); border-radius: 999px;
+    font-size: 11px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase;
     cursor: pointer; font-family: 'DM Sans', sans-serif;
-    text-decoration: none; transition: all 0.2s;
+    text-decoration: none; transition: all 0.25s;
     margin-top: 8px;
-    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
   }
-  .ramu-p-btn-detail:hover { background: var(--green-deep); }
+  .ramu-p-btn-detail:hover { background: var(--amber); color: var(--brown-dark); border-color: var(--amber); }
 
   .ramu-blog-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem; }
-  .ramu-btn-outline { display: inline-flex; align-items: center; border: 1.5px solid var(--green-mid); color: var(--green-mid); font-size: 11px; font-weight: 500; padding: 6px 14px; border-radius: 20px; text-decoration: none; transition: all 0.2s; font-family: 'DM Sans', sans-serif; background: transparent; cursor: pointer; }
-  .ramu-btn-outline:hover { background: var(--green-mid); color: #fff; }
+  .ramu-btn-outline { display: inline-flex; align-items: center; border: 1px solid var(--amber); color: #1D2712; font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 7px 16px; border-radius: 999px; text-decoration: none; transition: all 0.2s; font-family: 'DM Sans', sans-serif; background: transparent; cursor: pointer; }
+  .ramu-btn-outline:hover { background: var(--amber); color: #fff; }
   .ramu-blog-grid { display: flex; flex-direction: column; gap: 12px; }
   .ramu-blog-card { background: #fff; border: 1px solid var(--cream-mid); border-radius: 14px; overflow: hidden; text-decoration: none; display: flex; transition: all 0.2s; }
-  .ramu-blog-card:hover { border-color: var(--green-bright); }
+  .ramu-blog-card:hover { border-color: var(--amber); }
+  .ramu-blog-card:hover .ramu-blog-tag { background: rgba(212,134,15,0.35); border-color: rgba(245,200,66,0.6); letter-spacing: 1.4px; }
   .ramu-blog-img { width: 90px; min-height: 100px; background: var(--green-pale); display: flex; align-items: center; justify-content: center; font-size: 32px; flex-shrink: 0; overflow: hidden; }
   .ramu-blog-img img { width: 100%; height: 100%; object-fit: cover; }
   .ramu-blog-info { padding: 12px; flex: 1; }
-  .ramu-blog-tag { display: inline-block; background: var(--green-pale); color: var(--green-mid); font-size: 9px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; padding: 2px 8px; border-radius: 8px; margin-bottom: 6px; }
+  .ramu-blog-tag { display: inline-block; background: rgba(212,134,15,0.08); color: #1D2712; font-size: 9px; font-weight: 600; letter-spacing: 1px; text-transform: none; padding: 4px 12px; border-radius: 999px; border: 1px solid transparent; margin-bottom: 8px; transition: all 0.3s ease; }
   .ramu-blog-title { font-family: 'Playfair Display', serif; font-size: 13px; color: var(--text-dark); line-height: 1.4; margin-bottom: 6px; }
   .ramu-blog-meta { font-size: 10px; color: var(--text-muted); }
   .ramu-blog-empty { text-align: center; padding: 2rem 1rem; color: var(--text-muted); font-size: 12px; }
 
-  .ramu-footer { background: linear-gradient(135deg, #2C1F0E 0%, #3D2E10 60%, #2D4A1A 100%); border-top: 1px solid rgba(245,236,215,0.08); padding: 2rem 1.25rem 1.5rem; }
+  .ramu-footer { background: #1D2712; border-top: 2px solid var(--amber); padding: 2.5rem 1.25rem 1.5rem; position: relative; }
   .ramu-footer-logo { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--cream); margin-bottom: 4px; }
-  .ramu-footer-tagline { font-size: 11px; font-weight: 300; color: rgba(245,236,215,0.4); margin-bottom: 1.25rem; }
+  .ramu-footer-tagline { font-size: 11px; font-weight: 300; color: rgba(245,236,215,0.5); margin-bottom: 1.5rem; }
   .ramu-footer-sosmed { display: flex; gap: 10px; margin-bottom: 1.5rem; }
-  .ramu-sosmed-btn { width: 34px; height: 34px; border-radius: 50%; background: rgba(245,236,215,0.08); border: 1px solid rgba(245,236,215,0.15); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all 0.2s; }
-  .ramu-sosmed-btn:hover { background: var(--green-mid); border-color: var(--green-mid); }
+  .ramu-sosmed-btn { width: 34px; height: 34px; border-radius: 50%; background: transparent; border: 1px solid rgba(212,134,15,0.3); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all 0.2s; }
+  .ramu-sosmed-btn:hover { background: var(--amber); border-color: var(--amber); }
   .ramu-sosmed-btn svg { width: 15px; height: 15px; fill: rgba(245,236,215,0.7); }
   .ramu-sosmed-fb { background: #1877F2 !important; border-color: #1877F2 !important; }
   .ramu-sosmed-ig { background: #E1306C !important; border-color: #E1306C !important; }
   .ramu-sosmed-yt { background: #FF0000 !important; border-color: #FF0000 !important; }
   .ramu-sosmed-tt { background: #010101 !important; border-color: #333 !important; }
   .ramu-footer-links { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-bottom: 1.5rem; }
-  .ramu-footer-links a { font-size: 11px; color: rgba(245,236,215,0.4); text-decoration: none; transition: color 0.2s; cursor: pointer; }
-  .ramu-footer-links a:hover { color: var(--green-light); }
-  .ramu-footer-copy { font-size: 10px; color: rgba(245,236,215,0.25); text-align: center; padding-top: 1rem; border-top: 1px solid rgba(245,236,215,0.08); }
+  .ramu-footer-links a { font-size: 11px; color: rgba(245,236,215,0.5); text-decoration: none; transition: color 0.2s; cursor: pointer; }
+  .ramu-footer-links a:hover { color: var(--amber-light); }
+  .ramu-footer-links a:visited { color: rgba(245,236,215,0.5); }
+  .ramu-footer-copy { font-size: 10px; color: rgba(245,236,215,0.35); text-align: center; padding-top: 1rem; border-top: 1px solid rgba(212,134,15,0.15); }
 
   .ramu-wa-float {
     position: fixed;
@@ -255,7 +295,7 @@ export default function HomeContent({ blogPreviews, produkList }: { blogPreviews
 
           {/* HERO */}
           <section className="ramu-hero">
-            <div className="ramu-hero-badge"><span></span> HEALTH & WELLNESS PILIHAN</div>
+            <div className="ramu-hero-badge">HEALTH & WELLNESS PILIHAN</div>
             <h1 className="ramu-hero-title">Tidak Semua Produk Kami Jual. Hanya yang Kami <em>Percaya,</em></h1>
             <p style={{ fontSize: "17px", fontWeight: "400", color: "rgba(245,236,215,0.75)", lineHeight: "1.6", marginTop: "-0.5rem", marginBottom: "1.5rem" }}>Temukan pilihan terpercaya untuk hidup yang lebih sehat</p>
             <button className="ramu-hero-cta" onClick={() => scrollTo("produk")}>
@@ -274,14 +314,14 @@ export default function HomeContent({ blogPreviews, produkList }: { blogPreviews
             <div className="ramu-eyebrow">Kategori</div>
             <h2 className="ramu-section-title">Pilih kebutuhanmu</h2>
             <div style={{ position: "relative", padding: "0 18px" }}>
-              <button onClick={() => { scrollKat(-1); setBtnActive('left'); setTimeout(() => setBtnActive(''), 300); }} style={{ position: "absolute", left: "0", top: "50%", transform: "translateY(-50%)", zIndex: 10, background: btnActive === 'left' ? '#4A7A25' : '#fff', border: "1.5px solid #EDE0C8", borderRadius: "50%", width: "36px", height: "36px", fontSize: "20px", lineHeight: "1", cursor: "pointer", boxShadow: "0 2px 8px rgba(0,0,0,0.1)", display: "flex", alignItems: "center", justifyContent: "center", transition: "background 0.2s", color: btnActive === 'left' ? '#fff' : '#1E1208' }}>‹</button>
-              <button onClick={() => { scrollKat(1); setBtnActive('right'); setTimeout(() => setBtnActive(''), 300); }} style={{ position: "absolute", right: "0", top: "50%", transform: "translateY(-50%)", zIndex: 10, background: btnActive === 'right' ? '#4A7A25' : '#fff', border: "1.5px solid #EDE0C8", borderRadius: "50%", width: "36px", height: "36px", fontSize: "20px", lineHeight: "1", cursor: "pointer", boxShadow: "0 2px 8px rgba(0,0,0,0.1)", display: "flex", alignItems: "center", justifyContent: "center", transition: "background 0.2s", color: btnActive === 'right' ? '#fff' : '#1E1208' }}>›</button>
+             <button onClick={() => scrollKat(-1)} className="ramu-kat-arrow left">‹</button>
+             <button onClick={() => scrollKat(1)} className="ramu-kat-arrow right">›</button>
               <div ref={katGridRef} style={{ display: "flex", gap: "10px", overflowX: "auto", scrollBehavior: "smooth", WebkitOverflowScrolling: "touch", scrollbarWidth: "none", msOverflowStyle: "none" }}>
                 {kategoriList.map((kat) => (
                   <div key={kat.key} className={`ramu-kat-card${aktifKategori === kat.key ? " active" : ""}`} onClick={() => setAktifKategori(kat.key)} style={{ position: "relative", overflow: "hidden", padding: 0 }}>
-                    <img src={kat.img} alt={kat.nama} fetchPriority={kat.key === "Fondasi" ? "high" : "low"} loading={kat.key === "Fondasi" ? "eager" : "lazy"} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", borderRadius: "12px" }} />
+                    <img src={kat.img} alt={kat.nama} className="ramu-kat-img" fetchPriority={kat.key === "Fondasi" ? "high" : "low"} loading={kat.key === "Fondasi" ? "eager" : "lazy"} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", borderRadius: "12px" }} />
                     <div style={{ position: "absolute", bottom: "10px", left: "12px", zIndex: 2 }}>
-                      <div style={{ background: "rgba(0,0,0,0.08)", backdropFilter: "blur(6px)", color: "#fff", fontSize: "12px", fontWeight: 500, padding: "4px 14px", borderRadius: "999px", textShadow: "0 1px 3px rgba(0,0,0,0.5)" }}>{kat.nama}</div>
+                    <div className="ramu-kat-label">{kat.nama}</div>
                     </div>
                   </div>
                 ))}
@@ -292,7 +332,7 @@ export default function HomeContent({ blogPreviews, produkList }: { blogPreviews
           {/* PRODUK */}
           <section className="ramu-section">
             <div className="ramu-eyebrow">Produk</div>
-            <div className="ramu-filter-label">Menampilkan: <strong>{kategoriList.find((k) => k.key === aktifKategori)?.nama}</strong></div>
+            <div className="ramu-filter-label"><strong>{kategoriList.find((k) => k.key === aktifKategori)?.nama}</strong></div>
             <div className="ramu-produk-grid">
               {produkList.filter(p => p.kategori === aktifKategori).length === 0 ? (
                 <div style={{ gridColumn: "1/-1", textAlign: "center", padding: "2rem", color: "var(--text-muted)" }}>
@@ -349,7 +389,7 @@ export default function HomeContent({ blogPreviews, produkList }: { blogPreviews
           <footer className="ramu-footer">
             <div className="ramu-footer-logo">
               <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: "700" }}>
-                <span style={{ color: "#C5DC8E" }}>Ramu</span><span style={{ color: "#F5ECD7" }}>Djitu</span>
+                <span style={{ color: "#F5C842" }}>Ramu</span><span style={{ color: "#F5ECD7" }}>Djitu</span>
               </span>
             </div>
             <div className="ramu-footer-tagline">Herbal pilihan, kesehatan terjaga</div>
