@@ -27,7 +27,7 @@ export default function WaFloat() {
         __html: `
           .ramu-wa-float {
             position: fixed;
-            bottom: 24px;
+            bottom: 70px;
             right: calc(50% - 345px + 16px);
             z-index: 999;
             width: 52px; height: 52px;

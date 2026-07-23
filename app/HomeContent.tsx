@@ -109,53 +109,49 @@ const RAW_CSS = `
     border-top: 2px solid var(--amber);
   }
   .ramu-hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(212,134,15,0.5), transparent); }
-  .ramu-hero-badge { display: inline-flex; align-items: center; gap: 8px; background: transparent; border: 1px solid rgba(212,134,15,0.4); color: var(--amber-light); font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border-radius: 999px; margin-bottom: 1.5rem; }
-  .ramu-hero-badge span { width: 4px; height: 4px; background: var(--amber); border-radius: 50%; display: inline-block; }
+  .ramu-hero-badge { display: inline-flex; align-items: center; gap: 8px; background: transparent; border: 1px solid rgba(122,158,78,0.4); color: var(--green-light); font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border-radius: 999px; margin-bottom: 1.5rem; }
+  .ramu-hero-badge span { width: 4px; height: 4px; background: var(--green-bright); border-radius: 50%; display: inline-block; }
   .ramu-hero-title { font-family: 'Playfair Display', serif; font-size: 27px; font-weight: 500; color: var(--cream); line-height: 1.3; letter-spacing: 0.2px; margin-bottom: 1rem; }
-  .ramu-hero-title em { font-style: italic; font-weight: 700; color: var(--amber-light); }
+  .ramu-hero-title em { font-style: italic; font-weight: 700; color: var(--green-light); }
   .ramu-hero-sub { font-size: 13px; font-weight: 300; color: rgba(245,236,215,0.55); line-height: 1.8; margin-bottom: 1.75rem; }
-  .ramu-hero-cta { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--cream); font-size: 12px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; padding: 12px 28px; border-radius: 999px; border: 1px solid var(--amber); cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; margin-bottom: 2rem; }
-  .ramu-hero-cta:hover { background: var(--amber); color: var(--brown-dark); }
+  .ramu-hero-cta { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--cream); font-size: 12px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; padding: 12px 28px; border-radius: 999px; border: 1px solid var(--green-bright); cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; margin-bottom: 2rem; }
+  .ramu-hero-cta:hover { background: var(--green-mid); color: #fff; border-color: var(--green-mid); }
   .ramu-hero-cta svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.5; }
   .ramu-hero-stats { display: flex; }
   .ramu-stat-pill { background: transparent; border: none; border-right: 1px solid rgba(212,134,15,0.25); padding: 0 16px; text-align: center; flex: 1; }
   .ramu-stat-pill:last-child { border-right: none; }
-  .ramu-stat-num { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 500; color: var(--amber-light); letter-spacing: 0.5px; }
+  .ramu-stat-num { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 500; color: var(--green-light); letter-spacing: 0.5px; }
   .ramu-stat-label { font-size: 10px; color: rgba(245,236,215,0.7); margin-top: 4px; letter-spacing: 0.5px; text-transform: uppercase; }
 
   .ramu-section { padding: 1.75rem 1.25rem; }
   .ramu-section-alt { padding: 1.75rem 1.25rem; background: var(--cream-mid); }
-  .ramu-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--amber); margin-bottom: 0.5rem; }
+  .ramu-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--green-mid); margin-bottom: 0.5rem; }
   .ramu-section-title { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 300; color: #000; margin-bottom: 1.25rem; line-height: 1.35; }
 
   .ramu-kat-card { min-width: 200px; height: 100px; flex-shrink: 0; scroll-snap-align: start; background: #fff; border: 1.5px solid var(--cream-mid); border-radius: 14px; cursor: pointer; transition: all 0.2s; display: flex; flex-direction: row; align-items: center; gap: 12px; }
   @media (min-width: 500px) { .ramu-kat-card { min-width: 220px; height: 110px; } }
-  .ramu-kat-card:hover { border-color: var(--amber); }
-  .ramu-kat-card.active { border-color: var(--amber); background: #FBF3E4; }
-  .ramu-kat-card { min-width: 200px; height: 100px; flex-shrink: 0; scroll-snap-align: start; background: #fff; border: 1.5px solid var(--cream-mid); border-radius: 14px; cursor: pointer; transition: all 0.2s; display: flex; flex-direction: row; align-items: center; gap: 12px; }
-@media (min-width: 500px) { .ramu-kat-card { min-width: 220px; height: 110px; } }
-.ramu-kat-card:hover { border-color: var(--amber); }
-.ramu-kat-card:hover .ramu-kat-img { transform: scale(1.06); filter: brightness(1.05); }
-.ramu-kat-card.active { border-color: var(--amber); background: #FBF3E4; }
-.ramu-kat-img { transition: transform 0.4s ease, filter 0.3s ease; }
-.ramu-kat-label {
-  background: rgba(0,0,0,0.08);
-  backdrop-filter: blur(6px);
-  color: #fff;
-  font-size: 12px;
-  font-weight: 500;
-  padding: 4px 14px;
-  border-radius: 999px;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-  border: 1px solid transparent;
-  transition: all 0.3s ease;
-  letter-spacing: 0.2px;
-}
-.ramu-kat-card:hover .ramu-kat-label {
-  background: rgba(212,134,15,0.35);
-  border-color: rgba(245,200,66,0.6);
-  letter-spacing: 0.6px;
-}
+  .ramu-kat-card:hover { border-color: var(--green-bright); }
+  .ramu-kat-card:hover .ramu-kat-img { transform: scale(1.06); filter: brightness(1.05); }
+  .ramu-kat-card.active { border-color: var(--green-mid); background: var(--green-pale); }
+  .ramu-kat-img { transition: transform 0.4s ease, filter 0.3s ease; }
+  .ramu-kat-label {
+    background: rgba(0,0,0,0.08);
+    backdrop-filter: blur(6px);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 14px;
+    border-radius: 999px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+    letter-spacing: 0.2px;
+  }
+  .ramu-kat-card:hover .ramu-kat-label {
+    background: rgba(74,122,37,0.35);
+    border-color: rgba(197,220,142,0.6);
+    letter-spacing: 0.6px;
+  }
 
 .ramu-kat-arrow {
   position: absolute; top: 50%; transform: translateY(-50%); z-index: 10;
@@ -164,7 +160,7 @@ const RAW_CSS = `
   display: flex; align-items: center; justify-content: center;
   color: var(--text-dark); transition: all 0.2s;
 }
-.ramu-kat-arrow:hover { background: var(--amber); border-color: var(--amber); color: #fff; }
+.ramu-kat-arrow:hover { background: var(--green-mid); border-color: var(--green-mid); color: #fff; }
 .ramu-kat-arrow.left { left: 0; }
 .ramu-kat-arrow.right { right: 0; }
 
@@ -173,7 +169,7 @@ const RAW_CSS = `
   .ramu-produk-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
   @media (min-width: 480px) { .ramu-produk-grid { grid-template-columns: 1fr 1fr; } }
   .ramu-p-card { background: #fff; border: 1px solid var(--cream-mid); border-radius: 14px; overflow: hidden; cursor: pointer; transition: all 0.25s; }
-  .ramu-p-card:hover { border-color: var(--amber); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(212,134,15,0.18); }
+  .ramu-p-card:hover { border-color: var(--green-bright); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(74,122,37,0.18); }
   .ramu-p-img { position: relative; width: 100%; padding-bottom: 100%; overflow: hidden; background: var(--green-pale); }
   .ramu-p-img img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; background: var(--cream-light); transition: transform 0.5s ease; }
   .ramu-p-card:hover .ramu-p-img img { transform: scale(1.06); }
@@ -185,49 +181,49 @@ const RAW_CSS = `
     display: flex; align-items: center; justify-content: center; gap: 6px;
     width: 100%; height: 46px;
     background: #1D2712; color: var(--cream);
-    border: 1px solid var(--amber); border-radius: 999px;
+    border: 1px solid var(--green-bright); border-radius: 999px;
     font-size: 11px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase;
     cursor: pointer; font-family: 'DM Sans', sans-serif;
     text-decoration: none; transition: all 0.25s;
     margin-top: 8px;
   }
-  .ramu-p-btn-detail:hover { background: var(--amber); color: var(--brown-dark); border-color: var(--amber); }
+  .ramu-p-btn-detail:hover { background: var(--green-mid); color: #fff; border-color: var(--green-mid); }
 
   .ramu-blog-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem; }
-  .ramu-btn-outline { display: inline-flex; align-items: center; border: 1px solid var(--amber); color: #1D2712; font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 7px 16px; border-radius: 999px; text-decoration: none; transition: all 0.2s; font-family: 'DM Sans', sans-serif; background: transparent; cursor: pointer; }
-  .ramu-btn-outline:hover { background: var(--amber); color: #fff; }
+  .ramu-btn-outline { display: inline-flex; align-items: center; border: 1px solid var(--green-mid); color: #1D2712; font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 7px 16px; border-radius: 999px; text-decoration: none; transition: all 0.2s; font-family: 'DM Sans', sans-serif; background: transparent; cursor: pointer; }
+  .ramu-btn-outline:hover { background: var(--green-mid); color: #fff; }
   .ramu-blog-grid { display: flex; flex-direction: column; gap: 12px; }
   .ramu-blog-card { background: #fff; border: 1px solid var(--cream-mid); border-radius: 14px; overflow: hidden; text-decoration: none; display: flex; transition: all 0.2s; }
-  .ramu-blog-card:hover { border-color: var(--amber); }
-  .ramu-blog-card:hover .ramu-blog-tag { background: rgba(212,134,15,0.35); border-color: rgba(245,200,66,0.6); letter-spacing: 1.4px; }
+  .ramu-blog-card:hover { border-color: var(--green-bright); }
+  .ramu-blog-card:hover .ramu-blog-tag { background: rgba(74,122,37,0.15); border-color: var(--green-mid); letter-spacing: 1.4px; }
   .ramu-blog-img { width: 90px; min-height: 100px; background: var(--green-pale); display: flex; align-items: center; justify-content: center; font-size: 32px; flex-shrink: 0; overflow: hidden; }
   .ramu-blog-img img { width: 100%; height: 100%; object-fit: cover; }
   .ramu-blog-info { padding: 12px; flex: 1; }
-  .ramu-blog-tag { display: inline-block; background: rgba(212,134,15,0.08); color: #1D2712; font-size: 9px; font-weight: 600; letter-spacing: 1px; text-transform: none; padding: 4px 12px; border-radius: 999px; border: 1px solid transparent; margin-bottom: 8px; transition: all 0.3s ease; }
+  .ramu-blog-tag { display: inline-block; background: rgba(74,122,37,0.1); color: #1D2712; font-size: 9px; font-weight: 600; letter-spacing: 1px; text-transform: none; padding: 4px 12px; border-radius: 999px; border: 1px solid transparent; margin-bottom: 8px; transition: all 0.3s ease; }
   .ramu-blog-title { font-family: 'Playfair Display', serif; font-size: 13px; color: var(--text-dark); line-height: 1.4; margin-bottom: 6px; }
   .ramu-blog-meta { font-size: 10px; color: var(--text-muted); }
   .ramu-blog-empty { text-align: center; padding: 2rem 1rem; color: var(--text-muted); font-size: 12px; }
 
-  .ramu-footer { background: #1D2712; border-top: 2px solid var(--amber); padding: 2.5rem 1.25rem 1.5rem; position: relative; }
+  .ramu-footer { background: #1D2712; padding: 2.5rem 1.25rem 0; position: relative; }
   .ramu-footer-logo { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--cream); margin-bottom: 4px; }
   .ramu-footer-tagline { font-size: 11px; font-weight: 300; color: rgba(245,236,215,0.5); margin-bottom: 1.5rem; }
   .ramu-footer-sosmed { display: flex; gap: 10px; margin-bottom: 1.5rem; }
-  .ramu-sosmed-btn { width: 34px; height: 34px; border-radius: 50%; background: transparent; border: 1px solid rgba(212,134,15,0.3); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all 0.2s; }
-  .ramu-sosmed-btn:hover { background: var(--amber); border-color: var(--amber); }
-  .ramu-sosmed-btn svg { width: 15px; height: 15px; fill: rgba(245,236,215,0.7); }
-  .ramu-sosmed-fb { background: #1877F2 !important; border-color: #1877F2 !important; }
-  .ramu-sosmed-ig { background: #E1306C !important; border-color: #E1306C !important; }
-  .ramu-sosmed-yt { background: #FF0000 !important; border-color: #FF0000 !important; }
-  .ramu-sosmed-tt { background: #010101 !important; border-color: #333 !important; }
+  .ramu-sosmed-btn { width: 34px; height: 34px; border-radius: 9px; background: transparent; border: none; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: transform 0.2s; }
+  .ramu-sosmed-btn:hover { background: var(--green-mid) !important; transform: translateY(-2px); }
+  .ramu-sosmed-btn svg { width: 17px; height: 17px; fill: #fff; }
+  .ramu-sosmed-fb { background: #1877F2 !important; }
+  .ramu-sosmed-ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888) !important; }
+  .ramu-sosmed-tt { background: #000 !important; }
+  .ramu-sosmed-yt { background: #FF0000 !important; }
   .ramu-footer-links { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-bottom: 1.5rem; }
   .ramu-footer-links a { font-size: 11px; color: rgba(245,236,215,0.5); text-decoration: none; transition: color 0.2s; cursor: pointer; }
-  .ramu-footer-links a:hover { color: var(--amber-light); }
+  .ramu-footer-links a:hover { color: var(--green-light); }
   .ramu-footer-links a:visited { color: rgba(245,236,215,0.5); }
-  .ramu-footer-copy { font-size: 10px; color: rgba(245,236,215,0.35); text-align: center; padding-top: 1rem; border-top: 1px solid rgba(212,134,15,0.15); }
+  .ramu-footer-copy { font-size: 10px; color: var(--text-mid); text-align: center; background: var(--cream-light); border-top: 2px solid var(--amber); margin: 1.5rem -1.25rem 0; padding: 1rem 1.25rem; }
 
   .ramu-wa-float {
     position: fixed;
-    bottom: 24px;
+    bottom: 70px;
     right: calc(50% - 345px + 16px);
     z-index: 999;
     width: 52px; height: 52px;
@@ -300,7 +296,7 @@ export default function HomeContent({ blogPreviews, produkList }: { blogPreviews
             <p style={{ fontSize: "17px", fontWeight: "400", color: "rgba(245,236,215,0.75)", lineHeight: "1.6", marginTop: "-0.5rem", marginBottom: "1.5rem" }}>Temukan pilihan terpercaya untuk hidup yang lebih sehat</p>
             <button className="ramu-hero-cta" onClick={() => scrollTo("produk")}>
               Lihat Semua Produk
-              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+            <svg viewBox="0 0 24 24" fill="#fff"><polygon points="8 5 19 12 8 19 8 5" /></svg>  
             </button>
             <div className="ramu-hero-stats">
               <div className="ramu-stat-pill"><div className="ramu-stat-num">PRODUK PILIHAN</div><div className="ramu-stat-label">Health & Wellness</div></div>
@@ -398,10 +394,14 @@ export default function HomeContent({ blogPreviews, produkList }: { blogPreviews
                 <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" /></svg>
               </a>
               <a href="https://instagram.com/ramudjitu" target="_blank" rel="noopener noreferrer" className="ramu-sosmed-btn ramu-sosmed-ig">
-                <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg>
-              </a>
+            <svg viewBox="0 0 24 24" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" />
+            <circle cx="12" cy="12" r="4" fill="none" />
+            <circle cx="17.5" cy="6.5" r="1" fill="#fff" stroke="none" />
+            </svg>
+            </a>
               <a href="https://youtube.com/@ramudjitu" target="_blank" rel="noopener noreferrer" className="ramu-sosmed-btn ramu-sosmed-yt">
-                <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z" /><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" style={{ fill: "var(--brown-dark)" }} /></svg>
+              <svg viewBox="0 0 24 24" fill="#fff"><polygon points="8 5 19 12 8 19 8 5" /></svg>
               </a>
               <a href="https://tiktok.com/@ramudjitu" target="_blank" rel="noopener noreferrer" className="ramu-sosmed-btn ramu-sosmed-tt">
                 <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z" /></svg>
